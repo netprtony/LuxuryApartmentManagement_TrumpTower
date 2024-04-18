@@ -1,114 +1,115 @@
-use master
-go
-drop database LuxuryApartmentManagement_TrumpTowers
-go
-create database LuxuryApartmentManagement_TrumpTowers
-go
-use LuxuryApartmentManagement_TrumpTowers
-go
-create table Buildings
+USE MASTER
+GO
+drop DATABASE LuxuryApartmentManagement_TrumpTowers
+GO
+CREATE DATABASE LuxuryApartmentManagement_TrumpTowers
+GO
+USE LuxuryApartmentManagement_TrumpTowers
+GO
+set dateformat DMY
+GO
+CREATE TABLE BUILDINGS
 (
-	Build_Address nvarchar(100) primary key,
-	Build_Name nvarchar(100) not null,
-	Build_Describe nvarchar(255)
+	Build_Address NVARCHAR(100) PRIMARY KEY,
+	Build_Name NVARCHAR(100) DEFAULT 'Unnamed',
+	Build_Describe NVARCHAR(255)
 )
 
-go
-create table Categorize_Apartments
+GO
+CREATE TABLE CATEGORIZE_APARTMENTS
 (
-	CateApart_ID int identity (1,1) primary key,
-	CateApart_Name nvarchar(100) not null,
-	CateApart_Explication nvarchar(255),
-	Build_Address nvarchar(100)
-	constraint FK_CateApart_Build foreign key (Build_Address) references Buildings(Build_Address)
+	CateApart_ID INT IDENTITY (1,1) PRIMARY KEY,
+	CateApart_Name NVARCHAR(100) DEFAULT 'Unnamed',
+	CateApart_Explication NVARCHAR(255),
+	Build_Address NVARCHAR(100)
+	CONSTRAINT FK_CateApart_Build FOREIGN KEY (Build_Address) REFERENCES BUILDINGS(Build_Address)
 )
-go
+GO
 
-create table Apartments
+CREATE TABLE APARTMENTS
 (
-	Apart_ID int identity (1,1) primary key,
-	Apart_Name nvarchar(100),
-	Apart_Cate int,
-	Apart_Build int,
-	Apart_Floor int,
-	Apart_View bit,
-	Apart_Acreage nvarchar(50),
-	Apart_Price decimal,
-	Apart_Describe nvarchar(255),
-	Apart_Available bit,
-	CateApart_ID int
-	constraint FK_Apart_Cate foreign key (CateApart_ID) references Categorize_Apartments(CateApart_ID)
+	Apart_ID INT IDENTITY (1,1) PRIMARY KEY,
+	Apart_Name NVARCHAR(100),
+	Apart_Cate INT,
+	Apart_Build INT,
+	Apart_Floor INT,
+	Apart_View BIT,
+	Apart_Acreage NVARCHAR(50),
+	Apart_Price DECIMAL,
+	Apart_Describe NVARCHAR(255),
+	Apart_Available BIT,
+	CateApart_ID INT
+	CONSTRAINT FK_Apart_Cate FOREIGN KEY (CateApart_ID) REFERENCES CATEGORIZE_APARTMENTS(CateApart_ID)
 )
-go
-create table Customers
+GO
+CREATE TABLE CUSTOMERS
 (	
-	Cus_ID int identity (1,1) primary key,
-	Cus_Name nvarchar(100),
+	Cus_ID INT IDENTITY (1,1) PRIMARY KEY,
+	Cus_Name NVARCHAR(100),
 	Cus_CitizenIdentificationPhoto Image,
-	Cus_BirDate datetime,
-	Cus_HomeTower nvarchar(200),
-	Cus_Gender nvarchar(10),
-	Cus_PhoneNumber varchar(11),
-	Cus_Mail nvarchar(50),
-	Cus_Note nvarchar(255),
+	Cus_BirDate DATETIME,
+	Cus_HomeTower NVARCHAR(200),
+	Cus_Gender NVARCHAR(10),
+	Cus_PhoneNumber VARCHAR(11),
+	Cus_Mail NVARCHAR(50),
+	Cus_Note NVARCHAR(255),
 )
-go
-create table Building_Services
+GO
+CREATE TABLE BUILDING_SERVICES
 (
-	BuiServ_ID int identity (1,1) primary key,
-	BuiServ_Name nvarchar(100),
-	BuiServ_Price decimal,
-	BuiServ_Explication nvarchar(255),
-	BuiServ_Available bit,
-	Build_Address nvarchar(100)
-	constraint FK_BuServ_Build foreign key (Build_Address) references Buildings(Build_Address)
+	BuiServ_ID INT IDENTITY (1,1) PRIMARY KEY,
+	BuiServ_Name NVARCHAR(100),
+	BuiServ_Price DECIMAL,
+	BuiServ_Explication NVARCHAR(255),
+	BuiServ_Available BIT,
+	Build_Address NVARCHAR(100)
+	CONSTRAINT FK_BuServ_Build FOREIGN KEY (Build_Address) REFERENCES BUILDINGS(Build_Address)
 )
-go
-create table Apartment_Services
+GO
+CREATE TABLE APARTMENT_SERVICES
 (
-	ApartServ_ID int identity (1,1) primary key,
-	ApartServ_Name nvarchar(100),
-	ApartServ_Price decimal,
-	ApartServ_Explication nvarchar(255),
-	ApartServ_Available bit,
-	Apart_ID int
-	constraint FK_Apart_Serv foreign key (Apart_ID) references Apartments(Apart_ID)
+	ApartServ_ID INT IDENTITY (1,1) PRIMARY KEY,
+	ApartServ_Name NVARCHAR(100),
+	ApartServ_Price DECIMAL,
+	ApartServ_Explication NVARCHAR(255),
+	ApartServ_Available BIT,
+	Apart_ID INT
+	CONSTRAINT FK_Apart_Serv FOREIGN KEY (Apart_ID) REFERENCES APARTMENTS(Apart_ID)
 )
 
-go
-create table Categorize_Contracts
+GO
+CREATE TABLE CATEGORIZE_CONTRACTS
 (
-	CateCon_ID int identity (1,1) primary key,
-	CateCon_Name nvarchar(100)
+	CateCon_ID INT IDENTITY (1,1) PRIMARY KEY,
+	CateCon_Name NVARCHAR(100)
 )
-go
-create table Contracts
+GO
+CREATE TABLE CONTRACTS
 (
-	Contr_ID int identity (1,1) primary key,
-	Contr_Date datetime,
-	Contr_Available bit,
-	CateCon_ID int
-	constraint FK_Contract_Cate foreign key (CateCon_ID) references Categorize_Contracts(CateCon_ID)
+	Contr_ID INT IDENTITY (1,1) PRIMARY KEY,
+	Contr_Date DATETIME,
+	Contr_Status BIT,
+	CateCon_ID INT,
+	CONSTRAINT FK_Contract_Cate FOREIGN KEY (CateCon_ID) REFERENCES CATEGORIZE_CONTRACTS(CateCon_ID)
+	
 )
-go
-create table Detail_Contracts
+GO
+CREATE TABLE DETAIL_CONTRACTS
 (
-	DetailCT_ID int identity(1,1) primary key,
-	DetailCT_DepositPayment decimal,
-	DetailCT_OutstandingPayment decimal,
-	DetailCT_OldIndex int,
-	DetailCT_NewIndex int,
-	Contr_ID int
-	constraint FK_Contract_Deltail foreign key (Contr_ID) references Contracts(Contr_ID)
+	DetailCT_ID INT IDENTITY(1,1) PRIMARY KEY,
+	DetailCT_DepositPayment DECIMAL,
+	DetailCT_OutstandingPayment DECIMAL,
+	DetailCT_OldIndex INT,
+	DetailCT_NewIndex INT,
+	Contr_ID INT
+	CONSTRAINT FK_Contract_Deltail FOREIGN KEY (Contr_ID) REFERENCES CONTRACTS(Contr_ID)
 )
-go
-create table Problems
+GO
+CREATE TABLE PROBLEMS
 (
-	Prob_Id int identity (1,1) primary key,
-	Prob_Describe nvarchar(255),
-	Prob_Note nvarchar(255),
-	Prob_Status nvarchar(50),
-	Prob_DateOccur date,
-	Apart_ID int,
-	constraint FK_Problem_ApartID foreign key (Apart_ID) references Apartments(Apart_ID)
+	Prob_ID INT IDENTITY(1,1) PRIMARY KEY,
+	Prob_Describe NVARCHAR(255),
+	Prob_Note NVARCHAR(255),
+	Prob_Status NVARCHAR(50),
+	Prob_DateOccur DATETINE,
 )
