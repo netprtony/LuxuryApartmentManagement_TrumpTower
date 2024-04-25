@@ -1,3 +1,27 @@
+use master
+create database diaCD
+
+use diaCD
+create table NhomKhachHang (
+	id int IDENTITY (1,1) primary key,
+	name nvarchar(100)
+)
+go 
+create table KhachHang(
+	id int IDENTITY (1,1) primary key,
+	name nvarchar(100),
+	birth int,
+	idNhomKH int,
+	constraint FK_KH_NhomKH FOREIGN KEY (idNhomKH) REFERENCES NhomKhachHang(id)
+)
+go
+
+create table CDDVD(
+	id int IDENTITY (1,1) primary key,
+	tilte nvarchar(255),
+	cateDisk nvarchar(50),
+	publication int
+)
 USE MASTER
 GO
 drop DATABASE LuxuryApartmentManagement_TrumpTowers
