@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import MODEL.CD;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 /**
  *
  * @author Administrator
