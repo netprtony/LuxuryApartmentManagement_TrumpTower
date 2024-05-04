@@ -30,7 +30,7 @@ GO
 CREATE TABLE CATEGORIZE_APARTMENTS
 (
 	CateApart_ID INT IDENTITY (1,1) PRIMARY KEY,
-	CateApart_Number NVARCHAR(100) DEFAULT N'Chưa đặt tên',
+	CateApart_Name NVARCHAR(100) DEFAULT N'Chưa đặt tên',
 	CateApart_Explication NVARCHAR(255) DEFAULT N'Chưa cập nhật',
 )
 GO
@@ -38,11 +38,11 @@ INSERT INTO CATEGORIZE_APARTMENTS (CateApart_Number, CateApart_Explication)
 VALUES	('Aparment - 1', 'Apartment luxury 1'),
 		('Aparment - 2', 'Apartment luxury 2'),
 		('Aparment - 3', 'Apartment luxury 3'),
-		('Hotel - 1', 'Nhà nghỉ để nghỉ'),
-		('Hotel - 2', 'Nhà nghỉ không để nghỉ'),
-		('Motel - 1', 'Nhà trọ sinh viên'),
-		('Hotel - 2', 'Nhà trọ cho người lao động'),
-		('Home stay - 1', 'Dành cho khách du lịch')
+		('Hotel - 1', N'Nhà nghỉ để nghỉ'),
+		('Hotel - 2', N'Nhà nghỉ không để nghỉ'),
+		('Motel - 1', N'Nhà trọ sinh viên'),
+		('Hotel - 2', N'Nhà trọ cho người lao động'),
+		('Home stay - 1', N'Dành cho khách du lịch')
 GO
 CREATE TABLE SERVICES
 (
@@ -209,3 +209,35 @@ GO
 INSERT INTO ACCOUNTS (Acc_User, Acc_NameOwner, Acc_Password)
 VALUES 
 	(N'netprtony', 'huynhvikhang', '123')
+
+GO
+create proc USP_LoginAccount 
+@username varchar(50),
+@password varchar(50)
+as
+begin	
+	select * from ACCOUNTS 
+	where Acc_User = @username
+	and Acc_Password = @password
+end
+GO
+create proc USP_GetAllAccount
+as
+begin
+	select * from ACCOUNTS
+end
+GO
+create proc USP_GetAllApartment
+as
+begin
+	select * from APARTMENTS
+end
+GO
+create proc USP_FindAparmentByNumber
+@number nvarchar(100)
+as
+begin
+	select * from APARTMENTS where Apart_Number like @number
+end
+GO
+ 

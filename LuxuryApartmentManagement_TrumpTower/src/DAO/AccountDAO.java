@@ -8,6 +8,9 @@ import MODEL.Account;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,5 +38,90 @@ public class AccountDAO {
             e.printStackTrace();
         }
         return acc;
+    }
+    public List<Account> readAll(){
+        List<Account> lstAc = new ArrayList<>();
+        try {
+            String sql = "select * from Accounts";
+            Connection con = DBConnect.openConnection();
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            lstAc.clear();
+            while (rs.next()) {                
+                Account ac = new Account();
+                ac.setUser(rs.getString(1));
+                ac.setName(rs.getString(2));
+                ac.setPassword(rs.getString(3));
+                ac.setRole(rs.getString(4));
+                lstAc.add(ac);
+            }
+        } catch (Exception e) {
+        }
+        return lstAc;
+    }
+    public int Add(Account ac){
+        try {
+            String sql = "insert into accounts values(?, ?, ?, ?)";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, ac.getUser());
+            pstm.setString(2, ac.getName());
+            pstm.setString(3, ac.getPassword());
+            pstm.setString(4, ac.getRole());
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    public int Update(Account ac){
+        try{
+            String sql = "update accounts set Acc_User = ?, Acc_NameOwner = ?, Acc_Password = ?, Acc_Role = ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, ac.getUser());
+            pstm.setString(2, ac.getName());
+            pstm.setString(3, ac.getPassword());
+            pstm.setString(4, ac.getRole());
+            return pstm.executeUpdate();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    public int Delete(String id){
+        try {
+            String sql = "Detele accounts where Acc_User = ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, id);
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    public List<Account> find(String id){
+        List<Account> lstAc = new ArrayList<>();
+        try {
+            String sql = "select * from Accounts where Acc_User = ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+            lstAc.clear();
+            while(rs.next()){
+                Account ac = new Account();
+                ac.setUser(rs.getString(1));
+                ac.setName(rs.getString(2));
+                ac.setPassword(rs.getString(3));
+                ac.setRole(rs.getString(4));
+                lstAc.add(ac);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lstAc;
     }
 }
