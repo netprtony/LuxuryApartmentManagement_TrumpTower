@@ -18,14 +18,14 @@ CREATE TABLE BUILDINGS
 GO
 INSERT INTO BUILDINGS (Build_ID, Build_Name)
 VALUES 
-	('A', 'Tòa A'),
-	('B', 'Tòa B'),
-	('C', 'Tòa C'),
-	('D', 'Tòa D'),
-	('E', 'Tòa E'),
-	('F', 'Tòa F'),
-	('G', 'Tòa G'),
-	('H', 'Tòa H')
+	('A', N'Tòa A'),
+	('B', N'Tòa B'),
+	('C', N'Tòa C'),
+	('D', N'Tòa D'),
+	('E', N'Tòa E'),
+	('F', N'Tòa F'),
+	('G', N'Tòa G'),
+	('H', N'Tòa H')
 GO
 CREATE TABLE CATEGORIZE_APARTMENTS
 (
@@ -34,7 +34,7 @@ CREATE TABLE CATEGORIZE_APARTMENTS
 	CateApart_Explication NVARCHAR(255) DEFAULT N'Chưa cập nhật',
 )
 GO
-INSERT INTO CATEGORIZE_APARTMENTS (CateApart_Number, CateApart_Explication)
+INSERT INTO CATEGORIZE_APARTMENTS (CateApart_Name, CateApart_Explication)
 VALUES	('Aparment - 1', 'Apartment luxury 1'),
 		('Aparment - 2', 'Apartment luxury 2'),
 		('Aparment - 3', 'Apartment luxury 3'),
@@ -171,17 +171,15 @@ VALUES
 	(2, 1),
 	(3, 2),
 	(3, 3),
-	(4, 4),
-	(5, 5),
 	(2, 2),
 	(2, 3)
 GO
 CREATE TABLE PROBLEMS
 (
 	Prob_ID INT IDENTITY(1,1) PRIMARY KEY,
-	Prob_Describe NVARCHAR(255) DEFAULT 'Chưa mô tả',
+	Prob_Describe NVARCHAR(255) DEFAULT N'Chưa mô tả',
 	Prob_Note NVARCHAR(255) NULL,
-	Prob_Status NVARCHAR(50) DEFAULT 'Chưa xong',
+	Prob_Status NVARCHAR(50) DEFAULT N'Chưa xong',
 	Prob_DateOccur DATETIME DEFAULT CURRENT_TIMESTAMP,
 	Apart_ID INT,
 	CONSTRAINT FK_Probs_Apart FOREIGN KEY (Apart_ID) REFERENCES APARTMENTS(Apart_ID)
