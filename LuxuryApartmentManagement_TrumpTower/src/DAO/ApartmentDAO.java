@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -6,7 +6,7 @@ package DAO;
 
 
 import MODEL.ApartmentModel;
-import MODEL.ServiceModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +52,52 @@ public class ApartmentDAO {
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, number);
+            ResultSet rs = pstm.executeQuery();
+            lst.clear();
+            while(rs.next()){
+                ApartmentModel a = new ApartmentModel();
+                a.setId(rs.getInt("Apart_id"));
+                a.setAcreage(rs.getString("Apart_acreage"));
+                a.setAvaialbe(rs.getBoolean("Apart_available"));
+                a.setDescribe(rs.getString("Apart_describe"));
+                a.setFloor(rs.getInt("Apart_floor"));
+                a.setIdBuild(rs.getString("Build_ID"));
+                a.setIdCate(rs.getInt("CateApart_ID"));
+                a.setPrice(rs.getDouble("Apart_Price"));
+                a.setNumber(rs.getString("Apart_Number"));
+                a.setView(rs.getBoolean("Apart_View"));
+                
+                lst.add(a);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lst;
+    }
+        public List<ApartmentModel> Filter(ApartmentModel ap, Double priceFrom, Double priceTo){
+        List<ApartmentModel> lst = new ArrayList<>();
+        try {
+            String sql = "exec USP_FilterApartment "
+                    + "@idBuild = ?,"
+                    + "@idCate = ?,"
+                    + "@isAvail = ?,"
+                    + "@priceFrom = ?,"
+                    + "@priceTo = ?,"
+                    + "@floor = ?,"
+                    + "@isView = ?,"
+                    + "@acreage = ?,"
+                    + "@des = ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, ap.getIdBuild());
+            pstm.setInt(2, ap.getIdCate());
+            pstm.setBoolean(3, ap.isAvaialbe());
+            pstm.setDouble(4, priceFrom);
+            pstm.setDouble(5, priceTo);
+            pstm.setInt(6, ap.getFloor());
+            pstm.setBoolean(7, ap.isView());
+            pstm.setString(8, ap.getAcreage());
+            pstm.setString(9, ap.getDescribe()  );
             ResultSet rs = pstm.executeQuery();
             lst.clear();
             while(rs.next()){
