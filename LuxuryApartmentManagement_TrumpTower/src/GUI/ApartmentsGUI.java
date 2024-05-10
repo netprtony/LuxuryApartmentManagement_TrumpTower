@@ -39,7 +39,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     public ApartmentsGUI() {
         initComponents();
         loadCboCateApart();
-         loadCboBuild()
+         loadCboBuild();
     }   
 
     /**
