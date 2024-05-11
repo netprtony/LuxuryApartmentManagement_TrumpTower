@@ -14,6 +14,7 @@ import MODEL.CategoryApartmentModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +30,8 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     List<ApartmentModel> lst = new ArrayList<>();
     DefaultTableModel tblModel  = new DefaultTableModel();
     DefaultComboBoxModel CboModel = new DefaultComboBoxModel();
-    CategoryApartmentDAO dao = new CategoryApartmentDAO();
+    ApartmentDAO apdao = new ApartmentDAO();
+    CategoryApartmentDAO cateDapo = new CategoryApartmentDAO();
     int index = 0;
  
     
@@ -39,7 +41,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     public ApartmentsGUI() {
         initComponents();
         loadCboCateApart();
-         loadCboBuild();
+        loadCboBuild();
     }   
 
     /**
@@ -112,7 +114,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         btn_update = new javax.swing.JButton();
         btn_del = new javax.swing.JButton();
         btn_new = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btn_createNumberApr = new javax.swing.JButton();
         jCheckBox4 = new javax.swing.JCheckBox();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -424,6 +426,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         jLabel23.setText("Number:");
 
         tf_detailNumber.setEditable(false);
+        tf_detailNumber.setEnabled(false);
 
         btn_add.setText("Add");
 
@@ -433,7 +436,12 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
         btn_new.setText("New");
 
-        jButton10.setText("Create");
+        btn_createNumberApr.setText("Create");
+        btn_createNumberApr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_createNumberAprActionPerformed(evt);
+            }
+        });
 
         jCheckBox4.setText("Custom");
 
@@ -500,7 +508,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addComponent(jCheckBox4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton10))
+                                .addComponent(btn_createNumberApr))
                             .addComponent(tf_detailNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -536,7 +544,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                     .addComponent(tf_detailNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
+                    .addComponent(btn_createNumberApr)
                     .addComponent(jCheckBox4))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -707,7 +715,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
 
         pack();
@@ -772,7 +780,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     }
    
     public void loadCboCateApart(){
-       List<CategoryApartmentModel> lst = dao.readAll();
+       List<CategoryApartmentModel> lst = cateDapo.readAll();
        CboModel.removeAllElements();
        CboModel = (DefaultComboBoxModel) cbo_cateAp.getModel();
         for (CategoryApartmentModel cate : lst) {
@@ -786,15 +794,39 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     public void loadCboBuild(){
         BuildingDAO dao = new BuildingDAO();
         List<BuildingModel> lst = dao.readAll();
-        CboModel.removeAllElements();
-        CboModel = (DefaultComboBoxModel) cbo_build.getModel();
-        for (BuildingModel b : lst) {
-            CboModel.addElement(b);
+        for (BuildingModel bui : lst) {
+            CboModel.addElement(bui);
         }
         if(lst.isEmpty()){
-            CboModel.addElement("Đã thêm tất cả loại tòa nhà");
+            CboModel.addElement("Đã thêm tất cả loại phòng");
         }
         cbo_build.setModel(CboModel);
+    }
+    public String findLargestValue(List<ApartmentModel> lst){
+        String largestValue = null;
+        if(lst == null) return null;
+        for (ApartmentModel a : lst) {
+            if (a instanceof ApartmentModel) {
+                String str = a.getNumber();
+                if (largestValue == null || str.compareTo(largestValue) > 0) {
+                    largestValue = str;
+                }
+            }
+        }
+        return largestValue;
+    }
+    public String create_apartment_number(){
+        String resultID = "";
+        String bui = String.valueOf(cbo_detailBuild.getSelectedItem());
+        String floor = String.valueOf(tf_detailFloor.getValue());
+        lst = apdao.readAll();
+        String newID = findLargestValue(lst);
+        if(newID == null){
+            resultID = bui.charAt(0) + floor + '0';
+        }else {
+            resultID = bui.charAt(0) + floor + newID;
+        }
+        return resultID;
     }
     private void btn_findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_findActionPerformed
         FillTableWasFilter();
@@ -815,6 +847,10 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         c.setLocationRelativeTo(null); 
         this.dispose();
     }//GEN-LAST:event_btn_proCusActionPerformed
+
+    private void btn_createNumberAprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createNumberAprActionPerformed
+        tf_detailNumber.setText(create_apartment_number());
+    }//GEN-LAST:event_btn_createNumberAprActionPerformed
 
     /**
      * @param args the command line arguments
@@ -853,6 +889,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
+    private javax.swing.JButton btn_createNumberApr;
     private javax.swing.JButton btn_del;
     private javax.swing.JButton btn_find;
     private javax.swing.JButton btn_new;
@@ -867,7 +904,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox ck_isVailable;
     private javax.swing.JCheckBox ck_isView;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox3;
