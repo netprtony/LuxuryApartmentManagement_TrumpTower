@@ -8,16 +8,16 @@ package MODEL;
  *
  * @author netprtony
  */
-public class Building {
+public class BuildingModel {
     private String id;
     private String address;
     private String name;
     private String describe;
 
-    public Building() {
+    public BuildingModel() {
     }
 
-    public Building(String id, String address, String name, String describe) {
+    public BuildingModel(String id, String address, String name, String describe) {
         this.id = id;
         this.address = address;
         this.name = name;

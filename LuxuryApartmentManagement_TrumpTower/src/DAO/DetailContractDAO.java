@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import MODEL.CategoryApartmentModel;
+import MODEL.DetailContractModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,87 +15,85 @@ import java.util.List;
 /**
  *
  * @author netprtony
- */ 
-public class CategoryApartmentDAO {
-    public List<CategoryApartmentModel> readAll(){
-        List<CategoryApartmentModel> lst = new ArrayList<>();
+ */
+public class DetailContractDAO {
+    public List<DetailContractModel> readAll(){
+        List<DetailContractModel> lst = new ArrayList<>();
         try {
-            String  sql = "select * from CATEGORIZE_APARTMENTS";
+            String  sql = "select * from DETAIL_CONTRACTS";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {                
-                CategoryApartmentModel cate = new CategoryApartmentModel();
-                cate.setId(rs.getInt("CateApart_ID"));
-                cate.setName(rs.getString("CateApart_Name"));
-                cate.setExp(rs.getString("CateApart_Explication"));
-                lst.add(cate);
+                DetailContractModel cus = new DetailContractModel();
+                cus.setId(rs.getInt("Contr_ID"));
+                cus.setIdService(rs.getInt("Serv_ID"));
+                
+                lst.add(cus);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return lst;
     }
-    public List<CategoryApartmentModel> FindByName(String name){
-        List<CategoryApartmentModel> lst = new ArrayList<>();
+    public List<DetailContractModel> FindByIdContract(int id){
+        List<DetailContractModel> lst = new ArrayList<>();
         try {
-            String sql = "select * from CATEGORIZE_APARTMENTS where CateApart_Name like %?%";
+            String sql = "select * from DETAIL_CONTRACTS where Contr_ID = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, name);
+            pstm.setInt(1, id);
             ResultSet rs = pstm.executeQuery();
             lst.clear();
             while(rs.next()){
-                CategoryApartmentModel cate = new CategoryApartmentModel();
-                cate.setId(rs.getInt("CateApart_ID"));
-                cate.setName(rs.getString("CateApart_Name"));
-                cate.setExp(rs.getString("CateApart_Explication"));
-                lst.add(cate);
+                DetailContractModel cus = new DetailContractModel();
+                cus.setId(rs.getInt("Contr_ID"));
+                cus.setIdService(rs.getInt("Serv_ID"));
+
+                lst.add(cus);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return lst;
     }
-    public int add(CategoryApartmentModel s){
+    public int add(DetailContractModel de){
         try {
-            String sql=  "insert into CATEGORIZE_APARTMENTS"
-                    + "(CateApart_Name, CateApart_Price, CateApart_Explication) "
+            String sql=  "insert into DETAIL_CONTRACTS"
+                    + "(Contr_ID, Serv_ID) "
                     + "values "
-                    + "( ?, ?)";
+                    + "(?, ?)";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, s.getName());
-            pstm.setString(2, s.getExp());
+            pstm.setInt(1, de.getId());
+            pstm.setInt(2, de.getIdService());
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
     }
-    public int delete(int ID){
+    public int delete(int id){
         try {
-            String sql = "delete CATEGORIZE_APARTMENTS where CateApart_ID = ?";
+            String sql = "delete DETAIL_CONTRACTS where Contr_ID = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setInt(1, ID);
+            pstm.setInt(1, id);
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
     }
-    public int update(CategoryApartmentModel cate){
+    public int update(DetailContractModel de){
         try{
-            String sql = "update CATEGORIZE_APARTMENTS set "
-                    + "CateApart_Name = ?,"
-                    + "CateApart_Explication = ?"
-                    + " where CateApart_ID = ?";
+            String sql = "update DETAIL_CONTRACTS set "
+                    + "Serv_ID = ?"
+                    + " where Contr_ID = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, cate.getName());
-            pstm.setString(2, cate.getExp());
-            pstm.setInt(3, cate.getId());
+            pstm.setInt(1, de.getIdService());
+            pstm.setInt(2, de.getId());
             return pstm.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();

@@ -8,21 +8,25 @@ package MODEL;
  *
  * @author netprtony
  */
-public class CategoryApartment {
-    private String id;
+public class ServiceModel {
+    private int id;
     private String name;
+    private Double price;
     private String exp;
+    private boolean available;
 
-    public CategoryApartment() {
+    public ServiceModel() {
     }
 
-    public CategoryApartment(String id, String name, String exp) {
+    public ServiceModel(int id, String name, Double price, String exp, boolean available) {
         this.id = id;
         this.name = name;
+        this.price = price;
         this.exp = exp;
+        this.available = available;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -30,11 +34,19 @@ public class CategoryApartment {
         return name;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
     public String getExp() {
         return exp;
     }
 
-    public void setId(String id) {
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -42,9 +54,16 @@ public class CategoryApartment {
         this.name = name;
     }
 
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public void setExp(String exp) {
         this.exp = exp;
     }
-    
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
     
 }

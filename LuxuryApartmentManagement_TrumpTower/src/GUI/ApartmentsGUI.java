@@ -11,10 +11,11 @@ import DAO.CategoryApartmentDAO;
 import MODEL.ApartmentModel;
 import MODEL.BuildingModel;
 import MODEL.CategoryApartmentModel;
+import MODEL.ContractModel;
+import MODEL.CustomerModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +29,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ApartmentsGUI extends javax.swing.JFrame {
     List<ApartmentModel> lst = new ArrayList<>();
+    List<ContractModel> lstContr = new ArrayList<>();
+    List<CustomerModel> lstCus = new ArrayList<>();
     DefaultTableModel tblModel  = new DefaultTableModel();
     DefaultComboBoxModel CboModel = new DefaultComboBoxModel();
     ApartmentDAO apdao = new ApartmentDAO();
@@ -82,12 +85,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         tf_floor = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_apartments = new javax.swing.JTable();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        btn_proCus = new javax.swing.JButton();
-        lb_apartID = new javax.swing.JLabel();
-        lb_number = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
@@ -126,6 +123,26 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        lb_aprNumber = new javax.swing.JLabel();
+        lb_datetimeRent = new javax.swing.JLabel();
+        lb_gender = new javax.swing.JLabel();
+        lb_renterName = new javax.swing.JLabel();
+        lb_renterID = new javax.swing.JLabel();
+        lb_hometower = new javax.swing.JLabel();
+        lb_phone = new javax.swing.JLabel();
+        lb_birth = new javax.swing.JLabel();
+        lb_contractID = new javax.swing.JLabel();
+        lb_email = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -270,8 +287,8 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -315,81 +332,23 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tbl_apartments);
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
-
-        jLabel16.setText("ID:");
-
-        jLabel20.setText("Number:");
-
-        btn_proCus.setText("Properties Member");
-        btn_proCus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_proCusActionPerformed(evt);
-            }
-        });
-
-        lb_apartID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lb_apartID.setText("Apart_ID");
-
-        lb_number.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lb_number.setText("Apart_number");
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_proCus)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_number, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_apartID, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(lb_apartID))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(lb_number))
-                .addGap(18, 18, 18)
-                .addComponent(btn_proCus)
-                .addGap(21, 21, 21))
-        );
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -598,7 +557,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_del)
                     .addComponent(btn_new))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel12Layout.createSequentialGroup()
                     .addGap(97, 97, 97)
@@ -649,12 +608,12 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -706,7 +665,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 629, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 594, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
@@ -721,17 +680,137 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jTabbedPane3.addTab("Services", jPanel9);
 
+        jLabel1.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel1.setText("Renter ID:");
+
+        jLabel2.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel2.setText("Datetime of rent:");
+
+        jLabel3.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel3.setText("Renter:");
+
+        jLabel4.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel4.setText("Gender:");
+
+        jLabel21.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel21.setText("Phone:");
+
+        jLabel22.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel22.setText("Hometower:");
+
+        jLabel24.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel24.setText("Birth:");
+
+        jLabel25.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel25.setText("ContractID: ");
+
+        jLabel26.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel26.setText("Mail:");
+
+        jLabel27.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        jLabel27.setText("Apartment Number: ");
+
+        lb_aprNumber.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_aprNumber.setForeground(new java.awt.Color(102, 0, 0));
+        lb_aprNumber.setText("A102");
+
+        lb_datetimeRent.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_datetimeRent.setForeground(new java.awt.Color(102, 0, 0));
+        lb_datetimeRent.setText("A102");
+
+        lb_gender.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_gender.setForeground(new java.awt.Color(102, 0, 0));
+        lb_gender.setText("A102");
+
+        lb_renterName.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_renterName.setForeground(new java.awt.Color(102, 0, 0));
+        lb_renterName.setText("A102");
+
+        lb_renterID.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_renterID.setForeground(new java.awt.Color(102, 0, 0));
+        lb_renterID.setText("A102");
+
+        lb_hometower.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_hometower.setForeground(new java.awt.Color(102, 0, 0));
+        lb_hometower.setText("A102");
+
+        lb_phone.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_phone.setForeground(new java.awt.Color(102, 0, 0));
+        lb_phone.setText("A102");
+
+        lb_birth.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_birth.setForeground(new java.awt.Color(102, 0, 0));
+        lb_birth.setText("A102");
+
+        lb_contractID.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_contractID.setForeground(new java.awt.Color(102, 0, 0));
+        lb_contractID.setText("A102");
+
+        lb_email.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
+        lb_email.setForeground(new java.awt.Color(102, 0, 0));
+        lb_email.setText("A102");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_datetimeRent)
+                        .addGap(241, 241, 241)
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lb_aprNumber))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_renterName)
+                                .addGap(221, 221, 221)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_gender))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_renterID)
+                                .addGap(191, 191, 191)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_hometower)))
+                        .addGap(169, 169, 169)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_birth))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_phone)))
+                        .addGap(103, 103, 103)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_contractID))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_email)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane3)
@@ -740,8 +819,34 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane3)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel27)
+                    .addComponent(lb_aprNumber)
+                    .addComponent(lb_datetimeRent))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel26)
+                    .addComponent(lb_gender)
+                    .addComponent(lb_phone)
+                    .addComponent(lb_renterName)
+                    .addComponent(lb_email))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25)
+                    .addComponent(lb_hometower)
+                    .addComponent(lb_birth)
+                    .addComponent(lb_contractID)
+                    .addComponent(lb_renterID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 551, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -807,18 +912,27 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         }
         table.setModel(tblModel);
     }
-    public void showForm(){
-        index = tbl_apartments.getSelectedRow();
+    public void showFormProperties(){
+        index = tbl_apartmentDetail.getSelectedRow();
         if(index < 0){
             JOptionPane.showMessageDialog(this, "Please select random row in this table!");
             return;
         }else{
-            ApartmentModel a = new ApartmentModel();
-            a = lst.get(index);
-            lb_apartID.setText(a.getId() + "");
-            lb_number.setText(a.getNumber());
-            tf_detailNumber.setText(a.getNumber());
+            String idApart = lst.get(index) + "";
+            lstCus = apdao.getInfoCustomerByApartmentNumber(idApart);
+            CustomerModel cus = new CustomerModel();
+            lb_renterName.setText(cus.getName());
+            lb_renterID.setText(cus.getId());
+            lb_gender.setText(cus.getGender());
+            lb_hometower.setText(cus.getHomeTower());
+            lb_phone.setText(cus.getPhoneNumber());
+            lb_birth.setText(cus.getBirth());
+            lstContr = apdao.getInfoContractByApartmentNumber(idApart);
+            ContractModel con = new ContractModel();
+            lb_contractID.setText(con.getId() + "");
+            lb_datetimeRent.setText(con.getDate());
         }
+        
     }
     public void clearForm(){
         tf_acreage.setText("");
@@ -888,14 +1002,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private void tbl_apartmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_apartmentsMouseClicked
         
     }//GEN-LAST:event_tbl_apartmentsMouseClicked
-
-    private void btn_proCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_proCusActionPerformed
-        CustomersGUI c = new CustomersGUI();
-        c.setVisible(true);
-        c.pack();
-        c.setLocationRelativeTo(null); 
-        this.dispose();
-    }//GEN-LAST:event_btn_proCusActionPerformed
     public double CurrencyConverter(double amount, String currency){
         double VND_TO_USD_RATE = 0.00003929;
         return currency.equals("USD") ? (amount / VND_TO_USD_RATE): amount;
@@ -953,7 +1059,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_delActionPerformed
 
     private void tbl_apartmentDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_apartmentDetailMouseClicked
-        // TODO add your handling code here:
+        showFormProperties();
     }//GEN-LAST:event_tbl_apartmentDetailMouseClicked
 
     private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
@@ -983,6 +1089,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         tf_detailPrice.setText("");
         
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -1025,7 +1132,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_find;
     private javax.swing.JButton btn_new;
     private javax.swing.JButton btn_newFilter;
-    private javax.swing.JButton btn_proCus;
     private javax.swing.JButton btn_update;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbo_build;
@@ -1043,18 +1149,26 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1065,7 +1179,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1080,8 +1193,16 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JLabel lb_apartID;
-    private javax.swing.JLabel lb_number;
+    private javax.swing.JLabel lb_aprNumber;
+    private javax.swing.JLabel lb_birth;
+    private javax.swing.JLabel lb_contractID;
+    private javax.swing.JLabel lb_datetimeRent;
+    private javax.swing.JLabel lb_email;
+    private javax.swing.JLabel lb_gender;
+    private javax.swing.JLabel lb_hometower;
+    private javax.swing.JLabel lb_phone;
+    private javax.swing.JLabel lb_renterID;
+    private javax.swing.JLabel lb_renterName;
     private javax.swing.JTable tbl_apartmentDetail;
     private javax.swing.JTable tbl_apartments;
     private javax.swing.JTable tbl_services;

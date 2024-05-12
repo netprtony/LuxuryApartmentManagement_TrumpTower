@@ -8,19 +8,21 @@ package MODEL;
  *
  * @author netprtony
  */
-public class CategoryContract {
-    private String id;
+public class CategoryApartmentModel {
+    private int id;
     private String name;
+    private String exp;
 
-    public CategoryContract() {
+    public CategoryApartmentModel() {
     }
 
-    public CategoryContract(String id, String name) {
+    public CategoryApartmentModel(int id, String name, String exp) {
         this.id = id;
         this.name = name;
+        this.exp = exp;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -28,12 +30,21 @@ public class CategoryContract {
         return name;
     }
 
-    public void setId(String id) {
+    public String getExp() {
+        return exp;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setExp(String exp) {
+        this.exp = exp;
+    }
+    
     
 }

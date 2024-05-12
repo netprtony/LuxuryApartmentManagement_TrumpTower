@@ -8,8 +8,8 @@ package MODEL;
  *
  * @author netprtony
  */
-public class Apartment {
-    private String id;
+public class ApartmentModel {
+    private int id;
     private String number;
     private int floor;
     private boolean view;
@@ -17,13 +17,13 @@ public class Apartment {
     private Double price;
     private String describe;
     private boolean avaialbe;
-    private String idCate;
+    private int idCate;
     private String idBuild;
 
-    public Apartment() {
+    public ApartmentModel() {
     }
 
-    public Apartment(String id, String number, int floor, boolean view, String acreage, Double price, String describe, boolean avaialbe, String idCate, String idBuild) {
+    public ApartmentModel(int id, String number, int floor, boolean view, String acreage, Double price, String describe, boolean avaialbe, int idCate, String idBuild) {
         this.id = id;
         this.number = number;
         this.floor = floor;
@@ -36,7 +36,7 @@ public class Apartment {
         this.idBuild = idBuild;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ public class Apartment {
         return avaialbe;
     }
 
-    public String getIdCate() {
+    public int getIdCate() {
         return idCate;
     }
 
@@ -76,7 +76,7 @@ public class Apartment {
         return idBuild;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -108,7 +108,7 @@ public class Apartment {
         this.avaialbe = avaialbe;
     }
 
-    public void setIdCate(String idCate) {
+    public void setIdCate(int idCate) {
         this.idCate = idCate;
     }
 

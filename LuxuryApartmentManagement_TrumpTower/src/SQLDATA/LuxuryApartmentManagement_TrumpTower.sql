@@ -1,4 +1,4 @@
-USE MASTER
+	USE MASTER
 GO
 drop DATABASE LuxuryApartmentManagement_TrumpTowers
 GO
@@ -8,6 +8,7 @@ USE LuxuryApartmentManagement_TrumpTowers
 GO
 set dateformat DMY
 GO
+--===================================================================================================
 CREATE TABLE BUILDINGS
 (
 	Build_ID VARCHAR(5) PRIMARY KEY,
@@ -27,6 +28,7 @@ VALUES
 	('G', N'Tòa G'),
 	('H', N'Tòa H')
 GO
+--===================================================================================================
 CREATE TABLE CATEGORIZE_APARTMENTS
 (
 	CateApart_ID INT IDENTITY (1,1) PRIMARY KEY,
@@ -44,6 +46,7 @@ VALUES	('Aparment - 1', 'Apartment luxury 1'),
 		('Hotel - 2', N'Nhà trọ cho người lao động'),
 		('Home stay - 1', N'Dành cho khách du lịch')
 GO
+--===================================================================================================
 CREATE TABLE SERVICES
 (
 	Serv_ID INT IDENTITY (1,1) PRIMARY KEY,
@@ -65,6 +68,7 @@ VALUES
 	('Blank Lounge Landmark', 50, N'a day', 1),
 	('Private Wifi', 100, N'a month', 1)
 GO
+--===================================================================================================
 CREATE TABLE APARTMENTS
 (
 	Apart_ID INT IDENTITY (1,1) PRIMARY KEY,
@@ -106,6 +110,7 @@ VAlUES	('A001', 1, '1,092 ft²', 3150000, 1, 'A'),
 		('A114',14, '1,092 ft²', 3150000, 1, 'A'),
 		('A115',15, '1,092 ft²', 3150000, 2, 'A')
 GO
+--===================================================================================================
 CREATE TABLE CUSTOMERS
 (	
 	Cus_ID VARCHAR(20) PRIMARY KEY,
@@ -116,16 +121,31 @@ CREATE TABLE CUSTOMERS
 	Cus_PhoneNumber VARCHAR(11) UNIQUE,
 	Cus_Mail VARCHAR(50) UNIQUE,
 	Cus_Note NVARCHAR(255) DEFAULT  N'Không có chú thích',
-	
+	Cus_Relative VARCHAR(20)
 )
+
+
 GO
-INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) 
-VAlUES 
-	('079203020000', N'Lưu Thị Thanh Hồng', '25/05/2005', N'Nhị Bình', N'Nữ', '0359369087', 'Hongnhoi25@gmail.com'),
-	('079203020001', N'Phạm Minh Anh', '23/05/2003', N'Nhị Bình', N'Nữ', '0359369011', 'Hongnhoi11@gmail.com'),
-	('079203020002', N'Huỳnh Nguyễn Tường Vy', '21/01/2005', N'Nhị Bình', N'Nữ', '0359369010', 'Hongnhoi10@gmail.com'),
-	('079203020003', N'Huỳnh Mai Tường Vy', '23/12/2005', N'Nhị Bình', N'Nữ', '0359369012', 'Hongnhoi12@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020008', N'Trần Bảo Trường', '25/05/2005', N'Nhị Bình', N'Nữ', '0359369018', 'cute123@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020007', N'Lưu Ngọc Anh', '25/05/2005', N'Nhị Bình', N'Nữ', '0359369015', 'ngocanh@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020006', N'Phạm Quỳnh Anh', '25/05/2005', N'Nhị Bình', N'Nữ', '0359369016', 'wanh@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020005', N'Lưu Ngọc Hà', '25/05/2005', N'Nhị Bình', N'Nữ', '0359369014', 'agoha@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020004', N'Lê Ngọc Linh', '25/05/2005', N'Nhị Bình', N'Nữ', '0359369013', 'Hongnho1@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020000', N'Lưu Thị Thanh Hồng', '25/05/2005', N'Nhị Bình', N'Nữ', '0359369087', 'Hongnhoi25@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020001', N'Phạm Minh Anh', '23/05/2003', N'Nhị Bình', N'Nữ', '0359369011', 'Hongnhoi11@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020002', N'Huỳnh Nguyễn Tường Vy', '21/01/2005', N'Nhị Bình', N'Nữ', '0359369010', 'Hongnhoi10@gmail.com')
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('079203020003', N'Huỳnh Mai Tường Vy', '23/12/2005', N'Nhị Bình', N'Nữ', '0359369012', 'Hongnhoi12@gmail.com')
 GO
+--===================================================================================================
 CREATE TABLE CATEGORIZE_CONTRACTS
 (
 	CateCon_ID INT IDENTITY (1,1) PRIMARY KEY,
@@ -137,6 +157,7 @@ VALUES
 	('Long-term'),
 	('Short-term')
 GO
+--===================================================================================================
 CREATE TABLE CONTRACTS
 (
 	Contr_ID INT IDENTITY (1,1) PRIMARY KEY, 
@@ -150,30 +171,61 @@ CREATE TABLE CONTRACTS
 	CONSTRAINT FK_Contracts_Apart FOREIGN KEY (Apart_ID) REFERENCES APARTMENTS(Apart_ID),
 )
 GO
-INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID)
-VALUES
-	(1, '079203020000', 1),
-	(2, '079203020001', 2),
-	(1, '079203020002', 3),
-	(1, '079203020003', 4)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020008', 9)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020007', 8)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020006', 7)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020005', 6)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020004', 5)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020000', 1)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(2, '079203020001', 2)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020002', 3)
+INSERT INTO CONTRACTS(CateCon_ID, Cus_ID, Apart_ID) VALUES	(1, '079203020003', 4)
+GO
+--===================================================================================================
+create proc USP_InsertDe_contract
+@idContr int, @idSer int, @quantity int
+as	
+begin	
+	if exists (select * from DETAIL_CONTRACTS 
+				where Contr_ID = @idContr 
+				and Serv_ID = @idSer)
+	begin
+		update DETAIL_CONTRACTS set quantity += @quantity
+		where Contr_ID = @idContr 
+		and Serv_ID = @idSer
+	end
+	else
+	begin
+		insert into DETAIL_CONTRACTS values (@idContr, @idSer, @quantity)
+	end
+end
+GO
+
 GO
 CREATE TABLE DETAIL_CONTRACTS
 (
 	Contr_ID INT,
 	Serv_ID INT,
+	quantity int default 1,
 	CONSTRAINT FK_Deltails_Contract FOREIGN KEY (Contr_ID) REFERENCES CONTRACTS(Contr_ID),
 	CONSTRAINT FK_Deltails_Service FOREIGN KEY (Serv_ID) REFERENCES SERVICES(Serv_ID),
 	CONSTRAINT PK_CONTRACT_SERVICE PRIMARY KEY (Contr_ID, Serv_ID)
 )
+INSERT INTO DETAIL_CONTRACTS(Contr_ID, Serv_ID) VALUES
+	(9, 1),(9, 2),(9, 3),(9, 4),(9, 5),(9, 7),(9, 9)
+INSERT INTO DETAIL_CONTRACTS(Contr_ID, Serv_ID) VALUES
+	(8, 1),(8, 3),(8, 5),(8, 9),(8, 7)
+INSERT INTO DETAIL_CONTRACTS(Contr_ID, Serv_ID) VALUES
+	(7, 1),(7, 9),(7, 7),(7, 2)
+INSERT INTO DETAIL_CONTRACTS(Contr_ID, Serv_ID) VALUES
+	(6, 1),(6, 2),(6, 3),(6, 9)
+INSERT INTO DETAIL_CONTRACTS(Contr_ID, Serv_ID) VALUES
+	(2, 1),(2, 2), (2, 6)
+ INSERT INTO DETAIL_CONTRACTS(Contr_ID, Serv_ID) VALUES
+	(3, 1),(3, 4)
+
 GO
-INSERT INTO DETAIL_CONTRACTS(Contr_ID, Serv_ID)
-VALUES 
-	(2, 1),
-	(3, 2),
-	(3, 3),
-	(2, 2),
-	(2, 3)
-GO
+--===================================================================================================
 CREATE TABLE PROBLEMS
 (
 	Prob_ID INT IDENTITY(1,1) PRIMARY KEY,
@@ -196,6 +248,7 @@ VALUES
 		(7),
 		(8)
 GO
+--===================================================================================================
 CREATE TABLE ACCOUNTS 
 (
 	Acc_User VARCHAR(50) PRIMARY KEY,
@@ -209,33 +262,108 @@ VALUES
 	(N'netprtony', 'huynhvikhang', '123')
 
 GO
+--===================================================================================================
+
+----------------Accounts-------------------
 create proc USP_LoginAccount 
 @username varchar(50),
 @password varchar(50)
 as
-begin	
-	select * from ACCOUNTS 
-	where Acc_User = @username
-	and Acc_Password = @password
-end
+BEGIN
+    BEGIN TRY
+        select * from ACCOUNTS
+		where Acc_User = @username
+		and Acc_Password = @password
+        PRINT N'Đăng nhập thành công!.'
+    END TRY
+    BEGIN CATCH
+        PRINT 'Error: ' + ERROR_MESSAGE()
+    END CATCH
+END
+-------------------------------------------------
 GO
-create proc USP_GetAllAccount
+CREATE PROCEDURE USP_ChangePassword
+    @Username NVARCHAR(50),
+    @OldPassword NVARCHAR(50),
+    @NewPassword NVARCHAR(50)
+AS
+BEGIN
+    DECLARE @StoredPassword NVARCHAR(50)
+
+    -- Kiểm tra mật khẩu cũ
+    SELECT @StoredPassword = Acc_Password 
+    FROM ACCOUNTS 
+    WHERE Acc_User = @Username
+    
+    IF @StoredPassword IS NOT NULL AND @StoredPassword = @OldPassword
+    BEGIN
+        -- Mật khẩu cũ chính xác, tiến hành thay đổi mật khẩu
+        UPDATE ACCOUNTS 
+        SET Acc_Password = @NewPassword
+        WHERE Acc_User = @Username
+        
+        PRINT 'Mật khẩu đã được thay đổi thành công.'
+    END
+    ELSE
+    BEGIN
+        -- Mật khẩu cũ không chính xác hoặc tài khoản không tồn tại
+        PRINT 'Mật khẩu cũ không chính xác hoặc tài khoản không tồn tại.'
+    END
+END
+go
+create PROCEDURE USP_FilterApartment
+@idBuild nvarchar(5),
+@idCate int,
+@isAvail bit,
+@priceFrom decimal,
+@priceTo decimal,
+@floor int,
+@isView bit,
+@acreage nvarchar(50),
+@des nvarchar(255)
 as
 begin
-	select * from ACCOUNTS
+	select * from APARTMENTS left join CATEGORIZE_APARTMENTS on  APARTMENTS.CateApart_ID = CATEGORIZE_APARTMENTS.CateApart_ID
+	where	Build_ID = @idBuild
+	or		APARTMENTS.CateApart_ID = @idCate
+	or		Apart_View =  @isView
+	or		Apart_Available = @isAvail
+	or		Apart_Price >= @priceFrom and Apart_Price <= @priceTo
+	or		Apart_Acreage like @acreage
+	or		Apart_Describe like @des
+	or		Apart_Floor = @floor
 end
-GO
-create proc USP_GetAllApartment
+go
+create proc USP_ShowAllServiceByIdApart
+@idApart int
 as
 begin
-	select * from APARTMENTS
+	select a.Apart_Number,  cus.Cus_Name, s.Serv_Name, dc.quantity from DETAIL_CONTRACTS dc left join CONTRACTS c on dc.Contr_ID = c.Contr_ID
+				 left join APARTMENTS a on a.Apart_ID = c.Apart_ID
+				 left join CUSTOMERS cus on c.Cus_ID = cus.Cus_ID
+				 left join SERVICES s on s.Serv_ID = dc.Serv_ID
+			where a.Apart_ID  = @idApart	
 end
-GO
-create proc USP_FindAparmentByNumber
-@number nvarchar(100)
+
+go
+alter proc USP_GetInforContractByNumberApartment
+@idAparment int
 as
 begin
-	select * from APARTMENTS where Apart_Number like @number
+	select Contr_ID, Contr_Date from APARTMENTS a right join CONTRACTS c on a.Apart_ID = c.Apart_ID 
+	where a.Apart_ID = @idAparment
 end
-GO
- 
+go
+alter proc USP_GetInforRenterByNumberApartment
+@idAparment int
+as
+begin
+	select Cus_Name, c.Cus_ID, Cus.Cus_Gender, Cus_HomeTower, Cus_PhoneNumber, LEFT(Cus_BirDate, 11) as 'birth', Cus_Mail 
+	from APARTMENTS a 
+	right join CONTRACTS c 
+	on  a.Apart_ID = c.Apart_ID 
+	inner join CUSTOMERS cus 
+	on cus.Cus_ID = c.Cus_ID 
+	where a.Apart_ID = @idAparment
+end
+go

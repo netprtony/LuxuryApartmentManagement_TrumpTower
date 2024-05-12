@@ -4,7 +4,6 @@
  */
 package DAO;
 
-import GUI.Building;
 import MODEL.BuildingModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +20,7 @@ public class BuildingDAO {
     public List<BuildingModel> readAll(){
         List<BuildingModel> lst = new ArrayList<>();
         try {
-            String  sql = "exec USP_GetAllBuilding";
+            String  sql = "Select * from BUILDINGS";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -38,13 +37,15 @@ public class BuildingDAO {
         }
         return lst;
     }
-    public List<BuildingModel> FindById(String id){
+    
+    public List<BuildingModel> FindByName(String name){
         List<BuildingModel> lst = new ArrayList<>();
         try {
-            String sql = "exec USP_FindByIDBuilding @id = ?";
+            String sql = "select * from BUILDINGS "
+                    + "where Build_Name  like %?%";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, id);
+            pstm.setString(1, name);
             ResultSet rs = pstm.executeQuery();
             lst.clear();
             while(rs.next()){
@@ -60,10 +61,54 @@ public class BuildingDAO {
         }
         return lst;
     }
-    public int add(Building Bui){
+    public int add(BuildingModel bui){
         try {
-            String sql = ""
+            String sql=  "insert into BUILDINGS "
+                    + "(Build_ID, Build_Address, Build_Name, Build_Describe) "
+                    + "values"
+                    + " (?, ?, ?, ?)";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, bui.getId());
+            pstm.setString(2, bui.getAddress());
+            pstm.setString(3, bui.getName());
+            pstm.setString(4, bui.getDescribe());
+            return pstm.executeUpdate();
         } catch (Exception e) {
+            e.printStackTrace();
         }
+        return -1;
+    }
+    public int delete(String id){
+        try {
+            String sql = "delete BUILDINGS "
+                    + "where Build_ID = ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, id);
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    public int update(BuildingModel bui){
+        try{
+            String sql = "update buidlings set "
+                    + "build_id = ?,"
+                    + "build_address = ?,"
+                    + "build_name = ?,"
+                    + "build_describe = ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, bui.getId());
+            pstm.setString(2, bui.getAddress());
+            pstm.setString(3, bui.getName());
+            pstm.setString(4, bui.getDescribe());
+            return pstm.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

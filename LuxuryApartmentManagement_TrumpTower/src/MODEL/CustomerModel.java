@@ -8,7 +8,7 @@ package MODEL;
  *
  * @author netprtony
  */
-public class Customer {
+public class CustomerModel {
     private String id;
     private String name;
     private String birth;
@@ -17,11 +17,11 @@ public class Customer {
     private String phoneNumber;
     private String mail;
     private String note;
-
-    public Customer() {
+    private String relative;
+    public CustomerModel() {
     }
 
-    public Customer(String id, String name, String birth, String homeTower, String gender, String phoneNumber, String mail, String note) {
+    public CustomerModel(String id, String name, String birth, String homeTower, String gender, String phoneNumber, String mail, String note, String relative) {
         this.id = id;
         this.name = name;
         this.birth = birth;
@@ -30,6 +30,15 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.mail = mail;
         this.note = note;
+        this.relative = relative;
+    }
+
+    public void setRelative(String relative) {
+        this.relative = relative;
+    }
+
+    public String getRelative() {
+        return relative;
     }
 
     public String getId() {

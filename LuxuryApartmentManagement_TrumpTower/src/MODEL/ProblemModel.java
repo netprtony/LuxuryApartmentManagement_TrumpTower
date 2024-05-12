@@ -8,18 +8,18 @@ package MODEL;
  *
  * @author netprtony
  */
-public class Problem {
-    private String id;
+public class ProblemModel {
+    private int id;
     private String describe;
     private String note;
     private String status;
     private String dateOccur;
-    private String idAprt;
+    private int idAprt;
 
-    public Problem() {
+    public ProblemModel() {
     }
 
-    public Problem(String id, String describe, String note, String status, String dateOccur, String idAprt) {
+    public ProblemModel(int id, String describe, String note, String status, String dateOccur, int idAprt) {
         this.id = id;
         this.describe = describe;
         this.note = note;
@@ -28,7 +28,7 @@ public class Problem {
         this.idAprt = idAprt;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -48,11 +48,11 @@ public class Problem {
         return dateOccur;
     }
 
-    public String getIdAprt() {
+    public int getIdAprt() {
         return idAprt;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -72,7 +72,7 @@ public class Problem {
         this.dateOccur = dateOccur;
     }
 
-    public void setIdAprt(String idAprt) {
+    public void setIdAprt(int idAprt) {
         this.idAprt = idAprt;
     }
     

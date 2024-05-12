@@ -6,6 +6,8 @@ package DAO;
 
 
 import MODEL.ApartmentModel;
+import MODEL.ContractModel;
+import MODEL.CustomerModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.UIManager;
 
 /**
  *
@@ -43,7 +46,50 @@ public class ApartmentDAO {
         }
         return lstAp;
     }
-    
+    public List<CustomerModel> getInfoCustomerByApartmentNumber(String idApart){
+        List<CustomerModel> lstCus = new ArrayList<>();
+        try {
+            String sql = "USP_GetInforRenterByNumberApartment ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, idApart);
+            ResultSet rs = pstm.executeQuery();
+            lstCus.clear();
+            while(rs.next()){
+                CustomerModel c = new CustomerModel();
+                c.setName(rs.getString(1));
+                c.setId(rs.getString(2));
+                c.setGender(rs.getString(3));
+                c.setHomeTower(rs.getString(4));
+                c.setPhoneNumber(rs.getString(5));
+                c.setMail(rs.getString(6));
+                lstCus.add(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lstCus;
+    }
+     public List<ContractModel> getInfoContractByApartmentNumber(String idApart){
+        List<ContractModel> lstContr = new ArrayList<>();
+        try {
+            String sql = "USP_GetInforContractByNumberApartment ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, idApart);
+            ResultSet rs = pstm.executeQuery();
+            lstContr.clear();
+            while(rs.next()){
+                ContractModel c = new ContractModel();
+                c.setId(rs.getInt(1));
+                c.setDate(rs.getString(2));
+                lstContr.add(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lstContr;
+    }
     public List<ApartmentModel> FindByApartmentNumber(String number){
         List<ApartmentModel> lst = new ArrayList<>();
         try {
@@ -151,13 +197,13 @@ public class ApartmentDAO {
         }
         return -1;
     }
-    public int delete(String id){
+    public int delete(String name){
         try {
             String sql = "delete APARTMENTS "
-                    + "where Apart_id = ?";
+                    + "where Apart_name = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, id);
+            pstm.setString(1, name);
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

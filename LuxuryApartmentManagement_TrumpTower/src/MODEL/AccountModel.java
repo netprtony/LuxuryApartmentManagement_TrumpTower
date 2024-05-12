@@ -8,16 +8,16 @@ package MODEL;
  *
  * @author netprtony
  */
-public class Account {
+public class AccountModel {
     private String user;
     private String name;
     private String password;
     private String role;
 
-    public Account() {
+    public AccountModel() {
     }
 
-    public Account(String user, String name, String password, String role) {
+    public AccountModel(String user, String name, String password, String role) {
         this.user = user;
         this.name = name;
         this.password = password;

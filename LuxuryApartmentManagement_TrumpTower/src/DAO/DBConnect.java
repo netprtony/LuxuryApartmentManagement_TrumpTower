@@ -16,12 +16,11 @@ public class DBConnect {
     public static Connection openConnection() throws Exception{
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         System.out.println("Loading...");
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=diaCD";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=LuxuryApartmentManagement_TrumpTowers;";
         String user = "sa";
-        String password = "123";
+        String password = "Bakugan2805";
         Connection con = DriverManager.getConnection(url, user, password);
         System.out.println("Connected...");
         return con;
     }
- 
 }

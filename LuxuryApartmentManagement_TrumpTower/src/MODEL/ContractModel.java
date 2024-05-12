@@ -10,18 +10,18 @@ package MODEL;
  *
  * @author netprtony
  */
-public class Contract {
-    private String id;
+public class ContractModel {
+    private int id;
     private String date;
     private boolean status;
-    private String idCate;
+    private int idCate;
     private String idCus;
-    private String idAprt;
+    private int idAprt;
 
-    public Contract() {
+    public ContractModel() {
     }
 
-    public Contract(String id, String date, boolean status, String idCate, String idCus, String idAprt) {
+    public ContractModel(int id, String date, boolean status, int idCate, String idCus, int idAprt) {
         this.id = id;
         this.date = date;
         this.status = status;
@@ -30,7 +30,7 @@ public class Contract {
         this.idAprt = idAprt;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -42,7 +42,7 @@ public class Contract {
         return status;
     }
 
-    public String getIdCate() {
+    public int getIdCate() {
         return idCate;
     }
 
@@ -50,11 +50,11 @@ public class Contract {
         return idCus;
     }
 
-    public String getIdAprt() {
+    public int getIdAprt() {
         return idAprt;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -66,7 +66,7 @@ public class Contract {
         this.status = status;
     }
 
-    public void setIdCate(String idCate) {
+    public void setIdCate(int idCate) {
         this.idCate = idCate;
     }
 
@@ -74,8 +74,10 @@ public class Contract {
         this.idCus = idCus;
     }
 
-    public void setIdAprt(String idAprt) {
+    public void setIdAprt(int idAprt) {
         this.idAprt = idAprt;
     }
+
+    
     
 }

@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import MODEL.Account;
+import MODEL.AccountModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,8 +17,8 @@ import java.util.List;
  * @author netprtony
  */
 public class AccountDAO {
-    public  Account Login(String user, String password){
-        Account acc = null;
+    public  AccountModel Login(String user, String password){
+        AccountModel acc = null;
         try {
             Connection con = DBConnect.openConnection();
             String sql = "exec USP_LoginAccount @username = ? , @password = ?";
@@ -27,7 +27,7 @@ public class AccountDAO {
             pre.setString(2, password);
             ResultSet r = pre.executeQuery();
             if(r.next()){
-                acc = new Account();
+                acc = new AccountModel();
                 acc.setUser(r.getString("Acc_User"));
                 acc.setName(r.getString("Acc_NameOwner"));
                 acc.setPassword(r.getString("Acc_Password"));
@@ -39,8 +39,8 @@ public class AccountDAO {
         }
         return acc;
     }
-    public List<Account> readAll(){
-        List<Account> lstAc = new ArrayList<>();
+    public List<AccountModel> readAll(){
+        List<AccountModel> lstAc = new ArrayList<>();
         try {
             String sql = "select * from Accounts";
             Connection con = DBConnect.openConnection();
@@ -48,7 +48,7 @@ public class AccountDAO {
             ResultSet rs = stm.executeQuery(sql);
             lstAc.clear();
             while (rs.next()) {                
-                Account ac = new Account();
+                AccountModel ac = new AccountModel();
                 ac.setUser(rs.getString(1));
                 ac.setName(rs.getString(2));
                 ac.setPassword(rs.getString(3));
@@ -59,9 +59,11 @@ public class AccountDAO {
         }
         return lstAc;
     }
-    public int Add(Account ac){
+    public int Add(AccountModel ac){
         try {
-            String sql = "insert into accounts values(?, ?, ?, ?)";
+            String sql = "insert into accounts"
+                    + "(Acc_User, Acc_NameOwner, Acc_Password, Acc_Role)"
+                    + " values(?, ?, ?, ?)";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, ac.getUser());
@@ -74,18 +76,33 @@ public class AccountDAO {
         }
         return -1;
     }
-    public int Update(Account ac){
+    public int Update(AccountModel ac){
         try{
-            String sql = "update accounts set Acc_User = ?, Acc_NameOwner = ?, Acc_Password = ?, Acc_Role = ?";
+            String sql = "update accounts set Acc_Password = ?, Acc_NameOwner = ?, Acc_Role = ?"
+                    + " where Acc_User = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, ac.getUser());
+            pstm.setString(1, ac.getPassword());
             pstm.setString(2, ac.getName());
-            pstm.setString(3, ac.getPassword());
-            pstm.setString(4, ac.getRole());
+            pstm.setString(3, ac.getRole());
+            pstm.setString(4, ac.getUser());
             return pstm.executeUpdate();
             
         }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    public int ChangePassword(AccountModel ac){
+        try {
+            String sql = "EXEC ChangePassword ?, ?, ?";
+           Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, ac.getUser());
+            //pstm.setString(2, tf_passOld.getText());
+            //pstm.setString(3, tf_passNew.getText());
+            return pstm.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
@@ -102,8 +119,8 @@ public class AccountDAO {
         }
         return -1;
     }
-    public List<Account> find(String id){
-        List<Account> lstAc = new ArrayList<>();
+    public List<AccountModel> find(String id){
+        List<AccountModel> lstAc = new ArrayList<>();
         try {
             String sql = "select * from Accounts where Acc_User = ?";
             Connection con = DBConnect.openConnection();
@@ -112,7 +129,7 @@ public class AccountDAO {
             ResultSet rs = pstm.executeQuery();
             lstAc.clear();
             while(rs.next()){
-                Account ac = new Account();
+                AccountModel ac = new AccountModel();
                 ac.setUser(rs.getString(1));
                 ac.setName(rs.getString(2));
                 ac.setPassword(rs.getString(3));
