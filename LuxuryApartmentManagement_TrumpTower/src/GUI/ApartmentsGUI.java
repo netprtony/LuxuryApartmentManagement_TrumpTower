@@ -32,7 +32,8 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     List<ContractModel> lstContr = new ArrayList<>();
     List<CustomerModel> lstCus = new ArrayList<>();
     DefaultTableModel tblModel  = new DefaultTableModel();
-    DefaultComboBoxModel CboModel = new DefaultComboBoxModel();
+    DefaultComboBoxModel CboModelCate = new DefaultComboBoxModel();
+    DefaultComboBoxModel CboModelBui = new DefaultComboBoxModel();
     ApartmentDAO apdao = new ApartmentDAO();
     CategoryApartmentDAO cateDapo = new CategoryApartmentDAO();
     int index = 0;
@@ -45,6 +46,9 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         initComponents();
         loadCboCateApart();
         loadCboBuild();
+        loadCboBuildDetail();
+        loadCboCateDetail();
+        FillTableData();
     }   
 
     /**
@@ -151,8 +155,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Filter"));
 
-        cbo_build.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tòa A" }));
-
         jLabel7.setText("From");
 
         jLabel8.setText("To");
@@ -162,8 +164,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         ck_isView.setText("View");
 
         jLabel10.setText("Acreage");
-
-        cbo_cateAp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hotel", "Motel", "Home stay", " " }));
 
         jLabel11.setText("Build");
 
@@ -301,20 +301,20 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
         tbl_apartments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Number", "Floor", "View", "Acreage", "Price", "Available", "Category", "Build"
+                "ID", "Number", "Floor", "View", "Acreage", "Price", "Category", "Build"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -346,10 +346,10 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Filter", jPanel5);
@@ -443,78 +443,72 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(42, 42, 42)
-                                .addComponent(cbo_detailBuild, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel12Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(23, 23, 23)
-                                        .addComponent(cbo_detailCateAp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel12Layout.createSequentialGroup()
-                                        .addComponent(btn_add)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn_update))
-                                    .addGroup(jPanel12Layout.createSequentialGroup()
-                                        .addComponent(jLabel19)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18))
-                                                    .addGroup(jPanel12Layout.createSequentialGroup()
-                                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(21, 21, 21)))
-                                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(tf_detailAcrage, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                                                    .addComponent(tf_detailPrice))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                                                .addComponent(jLabel15)
-                                                .addGap(30, 30, 30)))
-                                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbo_exchange, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cbo_km, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(tf_detailFloor, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                    .addGroup(jPanel12Layout.createSequentialGroup()
-                                        .addComponent(btn_del)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn_new)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(49, 49, 49))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addComponent(btn_add)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btn_update)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btn_del)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btn_new))
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane8))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tf_detailNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                                 .addComponent(ck_isViewDetail)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ck_IsCusNumber)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_createNumberApr)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel12Layout.createSequentialGroup()
-                    .addGap(34, 34, 34)
-                    .addComponent(ck_isvailableDetail1)
-                    .addContainerGap(202, Short.MAX_VALUE)))
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(42, 42, 42)
+                                .addComponent(cbo_detailBuild, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel12Layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(23, 23, 23)
+                                    .addComponent(cbo_detailCateAp, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel12Layout.createSequentialGroup()
+                                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18))
+                                                .addGroup(jPanel12Layout.createSequentialGroup()
+                                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(21, 21, 21)))
+                                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(tf_detailAcrage)
+                                                .addComponent(tf_detailPrice))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                            .addComponent(jLabel15)
+                                            .addGap(30, 30, 30)))
+                                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cbo_exchange, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cbo_km, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tf_detailFloor, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(ck_isvailableDetail1)
+                        .addGap(193, 193, 193)))
+                .addGap(6, 22, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(cbo_detailBuild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -525,7 +519,8 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(tf_detailFloor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_detailFloor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ck_isvailableDetail1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
@@ -536,53 +531,47 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                     .addComponent(tf_detailPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbo_exchange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
                     .addComponent(tf_detailNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_createNumberApr)
                     .addComponent(ck_IsCusNumber)
                     .addComponent(ck_isViewDetail))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_add)
-                    .addComponent(btn_update))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_del)
-                    .addComponent(btn_new))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel12Layout.createSequentialGroup()
-                    .addGap(97, 97, 97)
-                    .addComponent(ck_isvailableDetail1)
-                    .addContainerGap(491, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_add)
+                            .addComponent(btn_update)
+                            .addComponent(btn_del)
+                            .addComponent(btn_new))))
+                .addGap(21, 21, 21))
         );
 
         jScrollPane10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Apartments"));
 
         tbl_apartmentDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Number", "Floor", "View", "Acreage", "Price", "Available", "Category", "Build"
+                "ID", "Number", "Floor", "View", "Acreage", "Price", "Category", "Build"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -607,14 +596,17 @@ public class ApartmentsGUI extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Detail", jPanel7);
@@ -786,7 +778,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lb_renterID)
-                                .addGap(191, 191, 191)
+                                .addGap(188, 188, 188)
                                 .addComponent(jLabel22)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lb_hometower)))
@@ -846,8 +838,8 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                     .addComponent(lb_contractID)
                     .addComponent(lb_renterID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 551, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Properties", jPanel6);
@@ -870,13 +862,14 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void FillTableWasFilter(){
-        
         ApartmentModel ap = new ApartmentModel();
         ap.setIdBuild(cbo_build.getSelectedObjects() + "");
         ap.setIdCate(cbo_cateAp.getSelectedIndex());
@@ -887,12 +880,12 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         ap.setAvaialbe(ck_isVailable.isSelected());
         ap.setView(ck_isView.isSelected());
         lst = apdao.Filter(ap, pricefrom, priceTo);
-        FillTableData(tbl_apartments, lst);
+        //FillTableData(tbl_apartments);
     }
-    public void FillTableData(JTable table, List<ApartmentModel> lstDAO){
-        ApartmentDAO apDAO = new ApartmentDAO();
-        lst = lstDAO;
-        tblModel = (DefaultTableModel) table.getModel();
+    public void FillTableData(){
+        ApartmentDAO dao = new ApartmentDAO();
+        lst = dao.readAll();
+        tblModel = (DefaultTableModel) tbl_apartmentDetail.getModel();
         tblModel.setRowCount(0);
         for(ApartmentModel apr : lst){
             Object[] r = new Object[]{
@@ -910,7 +903,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
             };
             tblModel.addRow(r);                 
         }
-        table.setModel(tblModel);
+        tbl_apartmentDetail.setModel(tblModel);
     }
     public void showFormProperties(){
         index = tbl_apartmentDetail.getSelectedRow();
@@ -944,50 +937,65 @@ public class ApartmentsGUI extends javax.swing.JFrame {
    
     public void loadCboCateApart(){
        List<CategoryApartmentModel> lst = cateDapo.readAll();
-       CboModel.removeAllElements();
-       CboModel = (DefaultComboBoxModel) cbo_cateAp.getModel();
+       CboModelCate.removeAllElements();
+       CboModelCate = (DefaultComboBoxModel) cbo_cateAp.getModel();
         for (CategoryApartmentModel cate : lst) {
-            CboModel.addElement(cate);
+            CboModelCate.addElement(cate.getName());
+            
         }
-        if(lst.isEmpty()){
-            CboModel.addElement("Đã thêm tất cả loại phòng");
+        cbo_cateAp.setModel(CboModelCate);
+    }
+    public void loadCboCateDetail(){
+       List<CategoryApartmentModel> lst = cateDapo.readAll();
+       CboModelCate.removeAllElements();
+       CboModelCate = (DefaultComboBoxModel) cbo_cateAp.getModel();
+        for (CategoryApartmentModel cate : lst) {
+            CboModelCate.addElement(cate.getName());
+            
         }
-        cbo_cateAp.setModel(CboModel);
+        cbo_detailCateAp.setModel(CboModelCate);
     }
     public void loadCboBuild(){
         BuildingDAO dao = new BuildingDAO();
         List<BuildingModel> lst = dao.readAll();
         for (BuildingModel bui : lst) {
-            CboModel.addElement(bui);
+            CboModelBui.addElement(bui.getName());
         }
-        if(lst.isEmpty()){
-            CboModel.addElement("Đã thêm tất cả loại phòng");
-        }
-        cbo_build.setModel(CboModel);
+        cbo_build.setModel(CboModelBui);
     }
-    public String findLargestValue(List<ApartmentModel> lst){
-        String largestValue = null;
-        if(lst == null) return null;
+    public void loadCboBuildDetail(){
+        BuildingDAO dao = new BuildingDAO();
+        List<BuildingModel> lst = dao.readAll();
+        for (BuildingModel bui : lst) {
+            CboModelBui.addElement(bui.getName());
+        }
+        cbo_detailBuild.setModel(CboModelBui);
+    }
+    public int findLargestValue(List<ApartmentModel> lst){
+        int largestValue = 0;
+        if(lst == null) return 0;
         for (ApartmentModel a : lst) {
             if (a instanceof ApartmentModel) {
-                String str = a.getNumber();
-                if (largestValue == null || str.compareTo(largestValue) > 0) {
+                int str = a.getId();
+                if (largestValue == 0 || str > 0) {
                     largestValue = str;
                 }
             }
         }
         return largestValue;
     }
+    
     public String create_apartment_number(){
         String resultID = "";
         String bui = String.valueOf(cbo_detailBuild.getSelectedItem());
+        String lastChar = String.valueOf(bui.charAt(bui.length() - 1));
         String floor = tf_detailFloor.getText();
         lst = apdao.readAll();
-        String newID = findLargestValue(lst);
-        if(newID == null){
-            resultID = bui.charAt(0) + floor + '0';
+        int newID = findLargestValue(lst);
+        if(newID == 0){
+            resultID = lastChar + floor + "0";
         }else {
-            resultID = bui.charAt(0) + floor + newID;
+            resultID = lastChar + floor + newID;
         }
         return resultID;
     }
@@ -1007,6 +1015,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         return currency.equals("USD") ? (amount / VND_TO_USD_RATE): amount;
     } 
     private void btn_createNumberAprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createNumberAprActionPerformed
+        if(tf_detailNumber == null) tf_detailNumber.setText("");
         tf_detailNumber.setText(create_apartment_number());
     }//GEN-LAST:event_btn_createNumberAprActionPerformed
 
@@ -1023,7 +1032,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         a.setView(ck_isViewDetail.isSelected());
         if(apdao.add(a) > 0){
             JOptionPane.showMessageDialog(this, "Thêm thành công");
-            FillTableData(tbl_apartmentDetail, apdao.readAll());
+            //FillTableData(tbl_apartmentDetail, apdao.readAll());
         }else{
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
         }
@@ -1042,7 +1051,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         a.setView(ck_isViewDetail.isSelected());
         if(apdao.add(a) > 0){
             JOptionPane.showMessageDialog(this, "Đã sửa thành công");
-            FillTableData(tbl_apartmentDetail, apdao.readAll());
+            //FillTableData(tbl_apartmentDetail, apdao.readAll());
         }else{
             JOptionPane.showMessageDialog(this, "Sửa thất bại");
         }
@@ -1050,7 +1059,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
     private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
         if(apdao.delete(tf_detailPrice.getText()) > 0){
-            FillTableData(tbl_apartmentDetail, apdao.readAll());
+            //FillTableData(tbl_apartmentDetail, apdao.readAll());
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
         }else{
