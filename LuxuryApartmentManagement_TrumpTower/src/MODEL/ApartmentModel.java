@@ -18,8 +18,9 @@ public class ApartmentModel {
     private String describe;
     private boolean avaialbe;
     private int idCate;
-    private String idBuild;
+    private String idBuild; 
 
+   
     public ApartmentModel() {
     }
 
