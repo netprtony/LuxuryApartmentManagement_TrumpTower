@@ -6,6 +6,7 @@ package DAO;
 
 
 import MODEL.ServiceModel;
+import static com.sun.tools.javac.tree.TreeInfo.name;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,6 +40,30 @@ public class ServiceDAO {
         }
         return lst;
     }
+    public List<ServiceModel> readAllServiceInUseByIdApart(String numberApart){
+        List<ServiceModel> lst = new ArrayList<>();
+        try {
+            String  sql = "USP_ShowAllServiceByIdApart ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, numberApart);
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {                
+                ServiceModel s = new ServiceModel();
+                s.setId(rs.getInt("Serv_ID"));
+                s.setNumberApart(rs.getString("apart_number"));
+                s.setNameCustomer(rs.getString("Cus_name"));
+                s.setName(rs.getString("Serv_name"));
+                s.setQuantity(rs.getInt("quantity"));
+                
+                lst.add(s);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lst;
+    }
     public List<ServiceModel> FindByName(String name){
         List<ServiceModel> lst = new ArrayList<>();
         try {
@@ -64,6 +89,24 @@ public class ServiceDAO {
     }
     
     public int add(ServiceModel s){
+        try {
+            String sql=  "insert into SERVICES"
+                    + "(Serv_Name, Serv_Price, Serv_Explication, Serv_Available) "
+                    + "values "
+                    + "( ?, ?, ?, ?)";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, s.getName());
+            pstm.setDouble(2, s.getPrice());
+            pstm.setString(3, s.getExp());
+            pstm.setBoolean(4, s.isAvailable());
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    public int addByNumberApartment(ServiceModel s){
         try {
             String sql=  "insert into SERVICES"
                     + "(Serv_Name, Serv_Price, Serv_Explication, Serv_Available) "
@@ -115,4 +158,5 @@ public class ServiceDAO {
         }
         return -1;
     }
+    
 }
