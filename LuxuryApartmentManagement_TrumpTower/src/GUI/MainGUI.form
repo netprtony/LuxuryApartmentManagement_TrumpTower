@@ -52,7 +52,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="pnl_menu" min="-2" pref="250" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="desktop" max="32767" attributes="0"/>
+              <Component id="jDesktopPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -61,8 +61,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnl_menu" pref="747" max="32767" attributes="0"/>
-                  <Component id="desktop" max="32767" attributes="0"/>
+                  <Component id="pnl_menu" pref="767" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jDesktopPane1" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -203,7 +206,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lb_Building" alignment="0" pref="60" max="32767" attributes="0"/>
+                  <Component id="lb_Building" alignment="1" pref="60" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -731,7 +734,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JDesktopPane" name="desktop">
+    <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
 
       <Layout>
         <DimensionLayout dim="0">
