@@ -9,31 +9,40 @@ package MODEL;
  * @author netprtony
  */
 public class DetailContractModel {
-    private int id;
-    private int idService;
+    private int ContrID;
+    private int SerID;
+    private int quantity;
 
+    public DetailContractModel(int ContrID, int SerID, int quantity) {
+        this.ContrID = ContrID;
+        this.SerID = SerID;
+        this.quantity = quantity;
+    }
     public DetailContractModel() {
+        
+    }
+    public int getContrID() {
+        return ContrID;
     }
 
-    public DetailContractModel(int id, int idService) {
-        this.id = id;
-        this.idService = idService;
+    public int getSerID() {
+        return SerID;
     }
 
-    public int getId() {
-        return id;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public int getIdService() {
-        return idService;
+    public void setContrID(int ContrID) {
+        this.ContrID = ContrID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSerID(int SerID) {
+        this.SerID = SerID;
     }
 
-    public void setIdService(int idService) {
-        this.idService = idService;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
     
 }
