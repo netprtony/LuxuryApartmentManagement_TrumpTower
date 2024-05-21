@@ -807,12 +807,12 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         lst = apdao.Filter(ap, pricefrom, priceTo);
         //FillTableData(tbl_apartments);
     }
-    public void FillTableData(){
+    public void FillTableData() {
         ApartmentDAO dao = new ApartmentDAO();
         lst = dao.readAll();
         tblModel = (DefaultTableModel) tbl_apartmentDetail.getModel();
         tblModel.setRowCount(0);
-        for(ApartmentModel apr : lst){
+        for (ApartmentModel apr : lst) {
             Object[] r = new Object[]{
                 apr.getId(),
                 apr.getAcreage(),
