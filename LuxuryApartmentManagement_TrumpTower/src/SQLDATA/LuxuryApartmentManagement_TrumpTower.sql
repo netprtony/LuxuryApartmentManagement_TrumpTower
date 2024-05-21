@@ -1,4 +1,4 @@
-	USE MASTER
+USE MASTER
 GO
 drop DATABASE LuxuryApartmentManagement_TrumpTowers
 GO
@@ -346,7 +346,7 @@ begin
 end
 
 go
-alter proc USP_GetInforContractByNumberApartment
+create proc USP_GetInforContractByNumberApartment
 @idAparment int
 as
 begin
@@ -354,7 +354,7 @@ begin
 	where a.Apart_ID = @idAparment
 end
 go
-alter proc USP_GetInforRenterByNumberApartment
+create proc USP_GetInforRenterByNumberApartment
 @idAparment int
 as
 begin
