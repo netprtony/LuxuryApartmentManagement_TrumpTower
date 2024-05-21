@@ -89,12 +89,12 @@ public class CustomerDAO {
         }
         return -1;
     }
-    public int delete(int id){
+    public int delete(String id){
         try {
             String sql = "delete CUSTOMERS where Cus_ID = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setInt(1, id);
+            pstm.setString(1, id);
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
