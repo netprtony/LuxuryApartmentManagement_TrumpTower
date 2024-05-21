@@ -5,7 +5,6 @@
 package DAO;
 
 
-import MODEL.CategoryContractModel;
 import MODEL.ContractModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
