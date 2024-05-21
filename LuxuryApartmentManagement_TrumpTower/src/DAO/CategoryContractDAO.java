@@ -4,7 +4,6 @@
  */
 package DAO;
     
-import MODEL.CategoryApartmentModel;
 import MODEL.CategoryContractModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;                               
