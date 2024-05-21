@@ -29,16 +29,16 @@ public class MainGUI extends javax.swing.JFrame {
         home = new HomeGUI();
         home.setBounds(0, 0, 1030, 720);
         home.setVisible(true);
-        desktop.removeAll();
-        desktop.add(home);
+       // desktop.removeAll();
+        //desktop.add(home);
        
     }
     public void openBuiding(){
         building = new BuildingsGUI();
         building.setBounds(0, 0, 1030, 720);
         building.setVisible(true);
-        desktop.removeAll();
-        desktop.add(building);
+        //desktop.removeAll();
+       // desktop.add(building);
        
     }
     /**

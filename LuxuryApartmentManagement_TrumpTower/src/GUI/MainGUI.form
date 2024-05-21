@@ -85,9 +85,6 @@
         <Component class="javax.swing.JLabel" name="lblIconUser">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\user-secret-solid.png"/>
-            </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[250, 72]"/>
@@ -158,9 +155,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\fort-awesome.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Home"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -220,9 +214,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\building-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Buildings"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -282,9 +273,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\apartment-user-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Apartments"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -344,9 +332,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\cate-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Contracts"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -406,9 +391,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\people-group-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Customers"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -468,9 +450,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\table-cells-row-lock-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Categories"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -530,9 +509,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\person-swimming-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Services"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -592,9 +568,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\circle-info-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Problems"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -654,9 +627,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\key-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Sercurity"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -716,9 +686,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Work_space\JavaTech\LuxuryApartmentManagement\LuxuryApartmentManagement_TrumpTower\LuxuryApartmentManagement_TrumpTower\src\GUI\icon\right-from-bracket-solid.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Log out"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
