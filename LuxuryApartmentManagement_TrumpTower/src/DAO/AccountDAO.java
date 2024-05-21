@@ -93,14 +93,14 @@ public class AccountDAO {
         }
         return -1;
     }
-    public int ChangePassword(AccountModel ac){
+    public int ChangePassword(AccountModel ac, String passNew){
         try {
             String sql = "EXEC ChangePassword ?, ?, ?";
            Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, ac.getUser());
-            //pstm.setString(2, tf_passOld.getText());
-            //pstm.setString(3, tf_passNew.getText());
+            pstm.setString(2, ac.getPassword());
+            pstm.setString(3, passNew);
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
