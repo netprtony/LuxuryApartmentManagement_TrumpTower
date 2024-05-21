@@ -25,11 +25,11 @@ public class DetailContractDAO {
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {                
-                DetailContractModel cus = new DetailContractModel();
-                cus.setId(rs.getInt("Contr_ID"));
-                cus.setIdService(rs.getInt("Serv_ID"));
-                
-                lst.add(cus);
+                DetailContractModel del = new DetailContractModel();
+                del.setContrID(rs.getInt("Contr_ID"));
+                del.setSerID(rs.getInt("Serv_ID"));
+                del.setQuantity(rs.getInt("quantity"));
+                lst.add(del);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,11 +46,12 @@ public class DetailContractDAO {
             ResultSet rs = pstm.executeQuery();
             lst.clear();
             while(rs.next()){
-                DetailContractModel cus = new DetailContractModel();
-                cus.setId(rs.getInt("Contr_ID"));
-                cus.setIdService(rs.getInt("Serv_ID"));
+                DetailContractModel del = new DetailContractModel();
+                del.setContrID(rs.getInt("Contr_ID"));
+                del.setSerID(rs.getInt("Serv_ID"));
+                del.setQuantity(rs.getInt("quantity"));
 
-                lst.add(cus);
+                lst.add(del);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,25 +61,27 @@ public class DetailContractDAO {
     public int add(DetailContractModel de){
         try {
             String sql=  "insert into DETAIL_CONTRACTS"
-                    + "(Contr_ID, Serv_ID) "
+                    + "(Contr_ID, Serv_ID, quantity) "
                     + "values "
-                    + "(?, ?)";
+                    + "(?, ?, ?)";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setInt(1, de.getId());
-            pstm.setInt(2, de.getIdService());
+            pstm.setInt(1, de.getContrID());
+            pstm.setInt(2, de.getSerID());
+            pstm.setInt(3, de.getQuantity());
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
     }
-    public int delete(int id){
+    public int delete(int idCon, int idSer){
         try {
-            String sql = "delete DETAIL_CONTRACTS where Contr_ID = ?";
+            String sql = "delete DETAIL_CONTRACTS where Contr_ID = ? and Ser_ID = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setInt(1, id);
+            pstm.setInt(1, idCon);
+            pstm.setInt(2, idSer);
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,12 +91,14 @@ public class DetailContractDAO {
     public int update(DetailContractModel de){
         try{
             String sql = "update DETAIL_CONTRACTS set "
-                    + "Serv_ID = ?"
+                    + "Serv_ID = ?,"
+                    + "quantity = ?"
                     + " where Contr_ID = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setInt(1, de.getIdService());
-            pstm.setInt(2, de.getId());
+            pstm.setInt(1, de.getSerID());
+            pstm.setInt(2, de.getQuantity());
+            pstm.setInt(3, de.getContrID());
             return pstm.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();
