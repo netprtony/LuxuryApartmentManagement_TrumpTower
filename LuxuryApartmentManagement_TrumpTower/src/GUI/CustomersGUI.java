@@ -151,6 +151,9 @@ public class CustomersGUI extends javax.swing.JFrame {
                             .addComponent(tb_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tb_hometower)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(bt_add)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bt_delete)
                         .addGap(50, 50, 50)
                         .addComponent(bt_change))
@@ -173,11 +176,6 @@ public class CustomersGUI extends javax.swing.JFrame {
                                     .addComponent(tb_name, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, Short.MAX_VALUE))))))
                 .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel22Layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(bt_add)
-                    .addContainerGap(338, Short.MAX_VALUE)))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,13 +213,9 @@ public class CustomersGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bt_delete)
-                    .addComponent(bt_change))
-                .addContainerGap(61, Short.MAX_VALUE))
-            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                    .addContainerGap(318, Short.MAX_VALUE)
-                    .addComponent(bt_add)
-                    .addGap(57, 57, 57)))
+                    .addComponent(bt_change)
+                    .addComponent(bt_add))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Customers"));
