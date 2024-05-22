@@ -39,7 +39,6 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
         tb_oldpass = new javax.swing.JTextField();
         tb_newpass = new javax.swing.JTextField();
         tb_comfiPass = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         bt_oke = new javax.swing.JButton();
         lb_username = new javax.swing.JLabel();
 
@@ -52,8 +51,6 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
         jLabel3.setText("Mật Khẩu Mới");
 
         jLabel4.setText("Xác Nhận Mật Khẩu");
-
-        jLabel5.setText("Quên Mật Khẩu?");
 
         bt_oke.setText("CHẤP NHẬN");
         bt_oke.addActionListener(new java.awt.event.ActionListener() {
@@ -68,10 +65,6 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bt_oke)
-                .addGap(105, 105, 105))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -94,12 +87,13 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
                             .addComponent(tb_comfiPass, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb_username, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(241, 241, 241)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(93, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bt_oke)
+                .addGap(225, 225, 225))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,11 +114,9 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tb_comfiPass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(bt_oke)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,7 +133,7 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,7 +143,7 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
         AccountModel acc = new AccountModel();
         acc.setUser(lb_username.getText());
         acc.setPassword(tb_oldpass.getText());
-        if(accDAO.ChangePassword(acc, tb_oldpass.toString()) > 0){
+        if(accDAO.ChangePassword(acc, tb_newpass.toString()) > 0){
             JOptionPane.showMessageDialog(this, "Đã thay đổi mật khẩu");
         }else{
             JOptionPane.showMessageDialog(this, "Thay đổi mật khẩu thất bại");
@@ -199,7 +191,6 @@ public class ChangePasswordGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lb_username;
     private javax.swing.JTextField tb_comfiPass;
