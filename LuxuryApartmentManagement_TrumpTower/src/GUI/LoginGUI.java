@@ -243,7 +243,7 @@ public class LoginGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nhập tài khoản hoặc mật khẩu không đúng");
         }else{
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
-            BuildingsGUI show = new BuildingsGUI();
+            HomeGUI show = new HomeGUI();
             show.setVisible(true);
             this.dispose();
         }
