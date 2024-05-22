@@ -4,10 +4,13 @@
  */
 package GUI;
 
+import DAO.BuildingDAO;
 import DAO.ServiceDAO;
+import MODEL.BuildingModel;
 import MODEL.ServiceModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class ServicesGUI extends javax.swing.JFrame {
     List<ServiceModel> lst = new ArrayList<>();
     DefaultTableModel tblModel  = new DefaultTableModel();
+    ServiceDAO dao = new ServiceDAO();
     int index = 0;
     /**
      * Creates new form ServicesGUI
@@ -26,9 +30,8 @@ public class ServicesGUI extends javax.swing.JFrame {
         
     }
     public void fillDataTable(){
-        ServiceDAO serdao = new ServiceDAO();
-        lst = serdao.readAll();
-        tblModel = (DefaultTableModel) tbl_services.getModel();
+        lst = dao.readAll();
+        tblModel = (DefaultTableModel) tbl_service.getModel();
         tblModel.setRowCount(0);
         for(ServiceModel s : lst){
           Object[] r = new Object[]{
@@ -40,11 +43,10 @@ public class ServicesGUI extends javax.swing.JFrame {
             };
             tblModel.addRow(r);
         }
-        tbl_services.setModel(tblModel);
+        tbl_service.setModel(tblModel);
     }
     public void clearForm(){
-       
-      
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,15 +58,23 @@ public class ServicesGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tbl_services = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        jLabel191 = new javax.swing.JLabel();
+        jLabel192 = new javax.swing.JLabel();
+        jLabel193 = new javax.swing.JLabel();
+        jLabel194 = new javax.swing.JLabel();
+        jScrollPane51 = new javax.swing.JScrollPane();
+        tf_expli = new javax.swing.JTextArea();
+        tf_id = new javax.swing.JTextField();
+        tf_name = new javax.swing.JTextField();
+        tf_price = new javax.swing.JTextField();
+        btn_add = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
+        ck_avai = new javax.swing.JCheckBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_service = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -82,22 +92,130 @@ public class ServicesGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 0, 0)), "Service", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(102, 0, 0))); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
+
+        jLabel191.setText("ID");
+
+        jLabel192.setText("Name");
+
+        jLabel193.setText("Price");
+
+        jLabel194.setText("Explication");
+
+        tf_expli.setColumns(20);
+        tf_expli.setRows(5);
+        tf_expli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 0, 0)));
+        jScrollPane51.setViewportView(tf_expli);
+
+        tf_id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
+        tf_id.setCaretColor(new java.awt.Color(102, 0, 0));
+
+        tf_name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
+        tf_name.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        tf_price.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tf_price.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
+
+        btn_add.setBackground(new java.awt.Color(102, 0, 0));
+        btn_add.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_add.setForeground(new java.awt.Color(204, 153, 0));
+        btn_add.setText("Add");
+        btn_add.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_addActionPerformed(evt);
+            }
+        });
+
+        btn_update.setBackground(new java.awt.Color(102, 0, 0));
+        btn_update.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_update.setForeground(new java.awt.Color(204, 153, 0));
+        btn_update.setText("Change");
+        btn_update.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_delete.setBackground(new java.awt.Color(102, 0, 0));
+        btn_delete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_delete.setForeground(new java.awt.Color(204, 153, 0));
+        btn_delete.setText("Delete");
+        btn_delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
+
+        ck_avai.setText("Available");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1225, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane51, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                    .addComponent(jLabel194)
+                    .addComponent(jLabel193)
+                    .addComponent(jLabel192)
+                    .addComponent(jLabel191)
+                    .addComponent(tf_id)
+                    .addComponent(tf_name)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(tf_price, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(ck_avai)))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel191)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel192)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel193)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tf_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ck_avai))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel194)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane51, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_add)
+                    .addComponent(btn_update)
+                    .addComponent(btn_delete))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Properties", jPanel2);
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "All Service"));
 
-        jScrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Service in use"));
-
-        tbl_services.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_service.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        tbl_service.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -105,84 +223,45 @@ public class ServicesGUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Price", "Available"
+                "ID", "Address", "Name", "Describe"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(tbl_services);
+        tbl_service.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_serviceMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_service);
 
-        jButton1.setText("Update");
-
-        jButton2.setText("Remove");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton3.setText("Add");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5)
-                        .addContainerGap())
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 623, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addGap(70, 70, 70))))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1225, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("Manager", jPanel4);
+        jTabbedPane1.addTab("Service", jPanel1);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -251,15 +330,11 @@ public class ServicesGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -270,6 +345,53 @@ public class ServicesGUI extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
+        ServiceDAO dao = new ServiceDAO();
+        ServiceModel s = new ServiceModel();
+        s.setId(Integer.parseInt(tf_id.getText()));
+        s.setName(tf_name.getText());
+        s.setPrice(Double.parseDouble(tf_price.getText()));
+        s.setExp(tf_expli.getText());
+        int x = dao.add(s);
+        if(x > 0){
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+            fillDataTable();
+            clearForm();
+        }else{
+            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+        }
+    }//GEN-LAST:event_btn_addActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        ServiceModel s = new ServiceModel();
+        s.setId(Integer.parseInt(tf_id.getText()));
+        s.setName(tf_name.getText());
+        s.setPrice(Double.parseDouble(tf_price.getText()));
+        s.setExp(tf_expli.getText());
+        int x = dao.update(s);
+        if(x > 0){
+            JOptionPane.showMessageDialog(this, "Đã sửa thành công");
+            fillDataTable();
+            clearForm();
+        }else{
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
+        }
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        int x = dao.delete(Integer.parseInt(tf_id.getText()));
+        if(x > 0 ){
+            fillDataTable();
+            JOptionPane.showMessageDialog(this, "Đã xóa thành công");
+            clearForm();
+        }else{
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void tbl_serviceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_serviceMouseClicked
+    }//GEN-LAST:event_tbl_serviceMouseClicked
 
     /**
      * @param args the command line arguments
@@ -308,8 +430,198 @@ public class ServicesGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JButton btn_search;
-    private javax.swing.JButton btn_search1;
+    private javax.swing.JButton btn_add;
+    private javax.swing.JButton btn_bui_add;
+    private javax.swing.JButton btn_bui_add1;
+    private javax.swing.JButton btn_bui_add10;
+    private javax.swing.JButton btn_bui_add11;
+    private javax.swing.JButton btn_bui_add12;
+    private javax.swing.JButton btn_bui_add13;
+    private javax.swing.JButton btn_bui_add14;
+    private javax.swing.JButton btn_bui_add15;
+    private javax.swing.JButton btn_bui_add16;
+    private javax.swing.JButton btn_bui_add17;
+    private javax.swing.JButton btn_bui_add18;
+    private javax.swing.JButton btn_bui_add19;
+    private javax.swing.JButton btn_bui_add2;
+    private javax.swing.JButton btn_bui_add20;
+    private javax.swing.JButton btn_bui_add21;
+    private javax.swing.JButton btn_bui_add22;
+    private javax.swing.JButton btn_bui_add23;
+    private javax.swing.JButton btn_bui_add24;
+    private javax.swing.JButton btn_bui_add25;
+    private javax.swing.JButton btn_bui_add26;
+    private javax.swing.JButton btn_bui_add27;
+    private javax.swing.JButton btn_bui_add28;
+    private javax.swing.JButton btn_bui_add29;
+    private javax.swing.JButton btn_bui_add3;
+    private javax.swing.JButton btn_bui_add30;
+    private javax.swing.JButton btn_bui_add31;
+    private javax.swing.JButton btn_bui_add32;
+    private javax.swing.JButton btn_bui_add33;
+    private javax.swing.JButton btn_bui_add34;
+    private javax.swing.JButton btn_bui_add35;
+    private javax.swing.JButton btn_bui_add36;
+    private javax.swing.JButton btn_bui_add37;
+    private javax.swing.JButton btn_bui_add38;
+    private javax.swing.JButton btn_bui_add39;
+    private javax.swing.JButton btn_bui_add4;
+    private javax.swing.JButton btn_bui_add40;
+    private javax.swing.JButton btn_bui_add41;
+    private javax.swing.JButton btn_bui_add42;
+    private javax.swing.JButton btn_bui_add43;
+    private javax.swing.JButton btn_bui_add44;
+    private javax.swing.JButton btn_bui_add45;
+    private javax.swing.JButton btn_bui_add46;
+    private javax.swing.JButton btn_bui_add5;
+    private javax.swing.JButton btn_bui_add6;
+    private javax.swing.JButton btn_bui_add7;
+    private javax.swing.JButton btn_bui_add8;
+    private javax.swing.JButton btn_bui_add9;
+    private javax.swing.JButton btn_bui_del;
+    private javax.swing.JButton btn_bui_del1;
+    private javax.swing.JButton btn_bui_del10;
+    private javax.swing.JButton btn_bui_del11;
+    private javax.swing.JButton btn_bui_del12;
+    private javax.swing.JButton btn_bui_del13;
+    private javax.swing.JButton btn_bui_del14;
+    private javax.swing.JButton btn_bui_del15;
+    private javax.swing.JButton btn_bui_del16;
+    private javax.swing.JButton btn_bui_del17;
+    private javax.swing.JButton btn_bui_del18;
+    private javax.swing.JButton btn_bui_del19;
+    private javax.swing.JButton btn_bui_del2;
+    private javax.swing.JButton btn_bui_del20;
+    private javax.swing.JButton btn_bui_del21;
+    private javax.swing.JButton btn_bui_del22;
+    private javax.swing.JButton btn_bui_del23;
+    private javax.swing.JButton btn_bui_del24;
+    private javax.swing.JButton btn_bui_del25;
+    private javax.swing.JButton btn_bui_del26;
+    private javax.swing.JButton btn_bui_del27;
+    private javax.swing.JButton btn_bui_del28;
+    private javax.swing.JButton btn_bui_del29;
+    private javax.swing.JButton btn_bui_del3;
+    private javax.swing.JButton btn_bui_del30;
+    private javax.swing.JButton btn_bui_del31;
+    private javax.swing.JButton btn_bui_del32;
+    private javax.swing.JButton btn_bui_del33;
+    private javax.swing.JButton btn_bui_del34;
+    private javax.swing.JButton btn_bui_del35;
+    private javax.swing.JButton btn_bui_del36;
+    private javax.swing.JButton btn_bui_del37;
+    private javax.swing.JButton btn_bui_del38;
+    private javax.swing.JButton btn_bui_del39;
+    private javax.swing.JButton btn_bui_del4;
+    private javax.swing.JButton btn_bui_del40;
+    private javax.swing.JButton btn_bui_del41;
+    private javax.swing.JButton btn_bui_del42;
+    private javax.swing.JButton btn_bui_del43;
+    private javax.swing.JButton btn_bui_del44;
+    private javax.swing.JButton btn_bui_del45;
+    private javax.swing.JButton btn_bui_del46;
+    private javax.swing.JButton btn_bui_del5;
+    private javax.swing.JButton btn_bui_del6;
+    private javax.swing.JButton btn_bui_del7;
+    private javax.swing.JButton btn_bui_del8;
+    private javax.swing.JButton btn_bui_del9;
+    private javax.swing.JButton btn_bui_new;
+    private javax.swing.JButton btn_bui_new1;
+    private javax.swing.JButton btn_bui_new10;
+    private javax.swing.JButton btn_bui_new11;
+    private javax.swing.JButton btn_bui_new12;
+    private javax.swing.JButton btn_bui_new13;
+    private javax.swing.JButton btn_bui_new14;
+    private javax.swing.JButton btn_bui_new15;
+    private javax.swing.JButton btn_bui_new16;
+    private javax.swing.JButton btn_bui_new17;
+    private javax.swing.JButton btn_bui_new18;
+    private javax.swing.JButton btn_bui_new19;
+    private javax.swing.JButton btn_bui_new2;
+    private javax.swing.JButton btn_bui_new20;
+    private javax.swing.JButton btn_bui_new21;
+    private javax.swing.JButton btn_bui_new22;
+    private javax.swing.JButton btn_bui_new23;
+    private javax.swing.JButton btn_bui_new24;
+    private javax.swing.JButton btn_bui_new25;
+    private javax.swing.JButton btn_bui_new26;
+    private javax.swing.JButton btn_bui_new27;
+    private javax.swing.JButton btn_bui_new28;
+    private javax.swing.JButton btn_bui_new29;
+    private javax.swing.JButton btn_bui_new3;
+    private javax.swing.JButton btn_bui_new30;
+    private javax.swing.JButton btn_bui_new31;
+    private javax.swing.JButton btn_bui_new32;
+    private javax.swing.JButton btn_bui_new33;
+    private javax.swing.JButton btn_bui_new34;
+    private javax.swing.JButton btn_bui_new35;
+    private javax.swing.JButton btn_bui_new36;
+    private javax.swing.JButton btn_bui_new37;
+    private javax.swing.JButton btn_bui_new38;
+    private javax.swing.JButton btn_bui_new39;
+    private javax.swing.JButton btn_bui_new4;
+    private javax.swing.JButton btn_bui_new40;
+    private javax.swing.JButton btn_bui_new41;
+    private javax.swing.JButton btn_bui_new42;
+    private javax.swing.JButton btn_bui_new43;
+    private javax.swing.JButton btn_bui_new44;
+    private javax.swing.JButton btn_bui_new45;
+    private javax.swing.JButton btn_bui_new46;
+    private javax.swing.JButton btn_bui_new5;
+    private javax.swing.JButton btn_bui_new6;
+    private javax.swing.JButton btn_bui_new7;
+    private javax.swing.JButton btn_bui_new8;
+    private javax.swing.JButton btn_bui_new9;
+    private javax.swing.JButton btn_bui_update;
+    private javax.swing.JButton btn_bui_update1;
+    private javax.swing.JButton btn_bui_update10;
+    private javax.swing.JButton btn_bui_update11;
+    private javax.swing.JButton btn_bui_update12;
+    private javax.swing.JButton btn_bui_update13;
+    private javax.swing.JButton btn_bui_update14;
+    private javax.swing.JButton btn_bui_update15;
+    private javax.swing.JButton btn_bui_update16;
+    private javax.swing.JButton btn_bui_update17;
+    private javax.swing.JButton btn_bui_update18;
+    private javax.swing.JButton btn_bui_update19;
+    private javax.swing.JButton btn_bui_update2;
+    private javax.swing.JButton btn_bui_update20;
+    private javax.swing.JButton btn_bui_update21;
+    private javax.swing.JButton btn_bui_update22;
+    private javax.swing.JButton btn_bui_update23;
+    private javax.swing.JButton btn_bui_update24;
+    private javax.swing.JButton btn_bui_update25;
+    private javax.swing.JButton btn_bui_update26;
+    private javax.swing.JButton btn_bui_update27;
+    private javax.swing.JButton btn_bui_update28;
+    private javax.swing.JButton btn_bui_update29;
+    private javax.swing.JButton btn_bui_update3;
+    private javax.swing.JButton btn_bui_update30;
+    private javax.swing.JButton btn_bui_update31;
+    private javax.swing.JButton btn_bui_update32;
+    private javax.swing.JButton btn_bui_update33;
+    private javax.swing.JButton btn_bui_update34;
+    private javax.swing.JButton btn_bui_update35;
+    private javax.swing.JButton btn_bui_update36;
+    private javax.swing.JButton btn_bui_update37;
+    private javax.swing.JButton btn_bui_update38;
+    private javax.swing.JButton btn_bui_update39;
+    private javax.swing.JButton btn_bui_update4;
+    private javax.swing.JButton btn_bui_update40;
+    private javax.swing.JButton btn_bui_update41;
+    private javax.swing.JButton btn_bui_update42;
+    private javax.swing.JButton btn_bui_update43;
+    private javax.swing.JButton btn_bui_update44;
+    private javax.swing.JButton btn_bui_update45;
+    private javax.swing.JButton btn_bui_update46;
+    private javax.swing.JButton btn_bui_update5;
+    private javax.swing.JButton btn_bui_update6;
+    private javax.swing.JButton btn_bui_update7;
+    private javax.swing.JButton btn_bui_update8;
+    private javax.swing.JButton btn_bui_update9;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_update;
+    private javax.swing.JCheckBox ck_avai;
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
@@ -318,26 +630,494 @@ public class ServicesGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
+    private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
+    private javax.swing.JLabel jLabel118;
+    private javax.swing.JLabel jLabel119;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel120;
+    private javax.swing.JLabel jLabel121;
+    private javax.swing.JLabel jLabel122;
+    private javax.swing.JLabel jLabel123;
+    private javax.swing.JLabel jLabel124;
+    private javax.swing.JLabel jLabel125;
+    private javax.swing.JLabel jLabel126;
+    private javax.swing.JLabel jLabel127;
+    private javax.swing.JLabel jLabel128;
+    private javax.swing.JLabel jLabel129;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel130;
+    private javax.swing.JLabel jLabel131;
+    private javax.swing.JLabel jLabel132;
+    private javax.swing.JLabel jLabel133;
+    private javax.swing.JLabel jLabel134;
+    private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel136;
+    private javax.swing.JLabel jLabel137;
+    private javax.swing.JLabel jLabel138;
+    private javax.swing.JLabel jLabel139;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel140;
+    private javax.swing.JLabel jLabel141;
+    private javax.swing.JLabel jLabel142;
+    private javax.swing.JLabel jLabel143;
+    private javax.swing.JLabel jLabel144;
+    private javax.swing.JLabel jLabel145;
+    private javax.swing.JLabel jLabel146;
+    private javax.swing.JLabel jLabel147;
+    private javax.swing.JLabel jLabel148;
+    private javax.swing.JLabel jLabel149;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel150;
+    private javax.swing.JLabel jLabel151;
+    private javax.swing.JLabel jLabel152;
+    private javax.swing.JLabel jLabel153;
+    private javax.swing.JLabel jLabel154;
+    private javax.swing.JLabel jLabel155;
+    private javax.swing.JLabel jLabel156;
+    private javax.swing.JLabel jLabel157;
+    private javax.swing.JLabel jLabel158;
+    private javax.swing.JLabel jLabel159;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel160;
+    private javax.swing.JLabel jLabel161;
+    private javax.swing.JLabel jLabel162;
+    private javax.swing.JLabel jLabel163;
+    private javax.swing.JLabel jLabel164;
+    private javax.swing.JLabel jLabel165;
+    private javax.swing.JLabel jLabel166;
+    private javax.swing.JLabel jLabel167;
+    private javax.swing.JLabel jLabel168;
+    private javax.swing.JLabel jLabel169;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel170;
+    private javax.swing.JLabel jLabel171;
+    private javax.swing.JLabel jLabel172;
+    private javax.swing.JLabel jLabel173;
+    private javax.swing.JLabel jLabel174;
+    private javax.swing.JLabel jLabel175;
+    private javax.swing.JLabel jLabel176;
+    private javax.swing.JLabel jLabel177;
+    private javax.swing.JLabel jLabel178;
+    private javax.swing.JLabel jLabel179;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel180;
+    private javax.swing.JLabel jLabel181;
+    private javax.swing.JLabel jLabel182;
+    private javax.swing.JLabel jLabel183;
+    private javax.swing.JLabel jLabel184;
+    private javax.swing.JLabel jLabel185;
+    private javax.swing.JLabel jLabel186;
+    private javax.swing.JLabel jLabel187;
+    private javax.swing.JLabel jLabel188;
+    private javax.swing.JLabel jLabel189;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel190;
+    private javax.swing.JLabel jLabel191;
+    private javax.swing.JLabel jLabel192;
+    private javax.swing.JLabel jLabel193;
+    private javax.swing.JLabel jLabel194;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
+    private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
+    private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
+    private javax.swing.JPanel jPanel36;
+    private javax.swing.JPanel jPanel37;
+    private javax.swing.JPanel jPanel38;
+    private javax.swing.JPanel jPanel39;
+    private javax.swing.JPanel jPanel40;
+    private javax.swing.JPanel jPanel41;
+    private javax.swing.JPanel jPanel42;
+    private javax.swing.JPanel jPanel43;
+    private javax.swing.JPanel jPanel44;
+    private javax.swing.JPanel jPanel45;
+    private javax.swing.JPanel jPanel46;
+    private javax.swing.JPanel jPanel47;
+    private javax.swing.JPanel jPanel48;
+    private javax.swing.JPanel jPanel49;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel50;
+    private javax.swing.JPanel jPanel51;
+    private javax.swing.JPanel jPanel52;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
+    private javax.swing.JScrollPane jScrollPane23;
+    private javax.swing.JScrollPane jScrollPane24;
+    private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane26;
+    private javax.swing.JScrollPane jScrollPane27;
+    private javax.swing.JScrollPane jScrollPane28;
+    private javax.swing.JScrollPane jScrollPane29;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane30;
+    private javax.swing.JScrollPane jScrollPane31;
+    private javax.swing.JScrollPane jScrollPane32;
+    private javax.swing.JScrollPane jScrollPane33;
+    private javax.swing.JScrollPane jScrollPane34;
+    private javax.swing.JScrollPane jScrollPane35;
+    private javax.swing.JScrollPane jScrollPane36;
+    private javax.swing.JScrollPane jScrollPane37;
+    private javax.swing.JScrollPane jScrollPane38;
+    private javax.swing.JScrollPane jScrollPane39;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane40;
+    private javax.swing.JScrollPane jScrollPane41;
+    private javax.swing.JScrollPane jScrollPane42;
+    private javax.swing.JScrollPane jScrollPane43;
+    private javax.swing.JScrollPane jScrollPane44;
+    private javax.swing.JScrollPane jScrollPane45;
+    private javax.swing.JScrollPane jScrollPane46;
+    private javax.swing.JScrollPane jScrollPane47;
+    private javax.swing.JScrollPane jScrollPane48;
+    private javax.swing.JScrollPane jScrollPane49;
+    private javax.swing.JScrollPane jScrollPane50;
+    private javax.swing.JScrollPane jScrollPane51;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
-    private javax.swing.JTable tbl_services;
-    private javax.swing.JTextField tf_inputSearch;
-    private javax.swing.JTextField tf_inputSearch1;
+    private javax.swing.JTable tbl_service;
+    private javax.swing.JTextField tf_bui_Adres;
+    private javax.swing.JTextField tf_bui_Adres1;
+    private javax.swing.JTextField tf_bui_Adres10;
+    private javax.swing.JTextField tf_bui_Adres11;
+    private javax.swing.JTextField tf_bui_Adres12;
+    private javax.swing.JTextField tf_bui_Adres13;
+    private javax.swing.JTextField tf_bui_Adres14;
+    private javax.swing.JTextField tf_bui_Adres15;
+    private javax.swing.JTextField tf_bui_Adres16;
+    private javax.swing.JTextField tf_bui_Adres17;
+    private javax.swing.JTextField tf_bui_Adres18;
+    private javax.swing.JTextField tf_bui_Adres19;
+    private javax.swing.JTextField tf_bui_Adres2;
+    private javax.swing.JTextField tf_bui_Adres20;
+    private javax.swing.JTextField tf_bui_Adres21;
+    private javax.swing.JTextField tf_bui_Adres22;
+    private javax.swing.JTextField tf_bui_Adres23;
+    private javax.swing.JTextField tf_bui_Adres24;
+    private javax.swing.JTextField tf_bui_Adres25;
+    private javax.swing.JTextField tf_bui_Adres26;
+    private javax.swing.JTextField tf_bui_Adres27;
+    private javax.swing.JTextField tf_bui_Adres28;
+    private javax.swing.JTextField tf_bui_Adres29;
+    private javax.swing.JTextField tf_bui_Adres3;
+    private javax.swing.JTextField tf_bui_Adres30;
+    private javax.swing.JTextField tf_bui_Adres31;
+    private javax.swing.JTextField tf_bui_Adres32;
+    private javax.swing.JTextField tf_bui_Adres33;
+    private javax.swing.JTextField tf_bui_Adres34;
+    private javax.swing.JTextField tf_bui_Adres35;
+    private javax.swing.JTextField tf_bui_Adres36;
+    private javax.swing.JTextField tf_bui_Adres37;
+    private javax.swing.JTextField tf_bui_Adres38;
+    private javax.swing.JTextField tf_bui_Adres39;
+    private javax.swing.JTextField tf_bui_Adres4;
+    private javax.swing.JTextField tf_bui_Adres40;
+    private javax.swing.JTextField tf_bui_Adres41;
+    private javax.swing.JTextField tf_bui_Adres42;
+    private javax.swing.JTextField tf_bui_Adres43;
+    private javax.swing.JTextField tf_bui_Adres44;
+    private javax.swing.JTextField tf_bui_Adres45;
+    private javax.swing.JTextField tf_bui_Adres46;
+    private javax.swing.JTextField tf_bui_Adres5;
+    private javax.swing.JTextField tf_bui_Adres6;
+    private javax.swing.JTextField tf_bui_Adres7;
+    private javax.swing.JTextField tf_bui_Adres8;
+    private javax.swing.JTextField tf_bui_Adres9;
+    private javax.swing.JTextArea tf_bui_des;
+    private javax.swing.JTextArea tf_bui_des1;
+    private javax.swing.JTextArea tf_bui_des10;
+    private javax.swing.JTextArea tf_bui_des11;
+    private javax.swing.JTextArea tf_bui_des12;
+    private javax.swing.JTextArea tf_bui_des13;
+    private javax.swing.JTextArea tf_bui_des14;
+    private javax.swing.JTextArea tf_bui_des15;
+    private javax.swing.JTextArea tf_bui_des16;
+    private javax.swing.JTextArea tf_bui_des17;
+    private javax.swing.JTextArea tf_bui_des18;
+    private javax.swing.JTextArea tf_bui_des19;
+    private javax.swing.JTextArea tf_bui_des2;
+    private javax.swing.JTextArea tf_bui_des20;
+    private javax.swing.JTextArea tf_bui_des21;
+    private javax.swing.JTextArea tf_bui_des22;
+    private javax.swing.JTextArea tf_bui_des23;
+    private javax.swing.JTextArea tf_bui_des24;
+    private javax.swing.JTextArea tf_bui_des25;
+    private javax.swing.JTextArea tf_bui_des26;
+    private javax.swing.JTextArea tf_bui_des27;
+    private javax.swing.JTextArea tf_bui_des28;
+    private javax.swing.JTextArea tf_bui_des29;
+    private javax.swing.JTextArea tf_bui_des3;
+    private javax.swing.JTextArea tf_bui_des30;
+    private javax.swing.JTextArea tf_bui_des31;
+    private javax.swing.JTextArea tf_bui_des32;
+    private javax.swing.JTextArea tf_bui_des33;
+    private javax.swing.JTextArea tf_bui_des34;
+    private javax.swing.JTextArea tf_bui_des35;
+    private javax.swing.JTextArea tf_bui_des36;
+    private javax.swing.JTextArea tf_bui_des37;
+    private javax.swing.JTextArea tf_bui_des38;
+    private javax.swing.JTextArea tf_bui_des39;
+    private javax.swing.JTextArea tf_bui_des4;
+    private javax.swing.JTextArea tf_bui_des40;
+    private javax.swing.JTextArea tf_bui_des41;
+    private javax.swing.JTextArea tf_bui_des42;
+    private javax.swing.JTextArea tf_bui_des43;
+    private javax.swing.JTextArea tf_bui_des44;
+    private javax.swing.JTextArea tf_bui_des45;
+    private javax.swing.JTextArea tf_bui_des46;
+    private javax.swing.JTextArea tf_bui_des5;
+    private javax.swing.JTextArea tf_bui_des6;
+    private javax.swing.JTextArea tf_bui_des7;
+    private javax.swing.JTextArea tf_bui_des8;
+    private javax.swing.JTextArea tf_bui_des9;
+    private javax.swing.JTextField tf_bui_id;
+    private javax.swing.JTextField tf_bui_id1;
+    private javax.swing.JTextField tf_bui_id10;
+    private javax.swing.JTextField tf_bui_id11;
+    private javax.swing.JTextField tf_bui_id12;
+    private javax.swing.JTextField tf_bui_id13;
+    private javax.swing.JTextField tf_bui_id14;
+    private javax.swing.JTextField tf_bui_id15;
+    private javax.swing.JTextField tf_bui_id16;
+    private javax.swing.JTextField tf_bui_id17;
+    private javax.swing.JTextField tf_bui_id18;
+    private javax.swing.JTextField tf_bui_id19;
+    private javax.swing.JTextField tf_bui_id2;
+    private javax.swing.JTextField tf_bui_id20;
+    private javax.swing.JTextField tf_bui_id21;
+    private javax.swing.JTextField tf_bui_id22;
+    private javax.swing.JTextField tf_bui_id23;
+    private javax.swing.JTextField tf_bui_id24;
+    private javax.swing.JTextField tf_bui_id25;
+    private javax.swing.JTextField tf_bui_id26;
+    private javax.swing.JTextField tf_bui_id27;
+    private javax.swing.JTextField tf_bui_id28;
+    private javax.swing.JTextField tf_bui_id29;
+    private javax.swing.JTextField tf_bui_id3;
+    private javax.swing.JTextField tf_bui_id30;
+    private javax.swing.JTextField tf_bui_id31;
+    private javax.swing.JTextField tf_bui_id32;
+    private javax.swing.JTextField tf_bui_id33;
+    private javax.swing.JTextField tf_bui_id34;
+    private javax.swing.JTextField tf_bui_id35;
+    private javax.swing.JTextField tf_bui_id36;
+    private javax.swing.JTextField tf_bui_id37;
+    private javax.swing.JTextField tf_bui_id38;
+    private javax.swing.JTextField tf_bui_id39;
+    private javax.swing.JTextField tf_bui_id4;
+    private javax.swing.JTextField tf_bui_id40;
+    private javax.swing.JTextField tf_bui_id41;
+    private javax.swing.JTextField tf_bui_id42;
+    private javax.swing.JTextField tf_bui_id43;
+    private javax.swing.JTextField tf_bui_id44;
+    private javax.swing.JTextField tf_bui_id45;
+    private javax.swing.JTextField tf_bui_id46;
+    private javax.swing.JTextField tf_bui_id5;
+    private javax.swing.JTextField tf_bui_id6;
+    private javax.swing.JTextField tf_bui_id7;
+    private javax.swing.JTextField tf_bui_id8;
+    private javax.swing.JTextField tf_bui_id9;
+    private javax.swing.JTextField tf_bui_name;
+    private javax.swing.JTextField tf_bui_name1;
+    private javax.swing.JTextField tf_bui_name10;
+    private javax.swing.JTextField tf_bui_name11;
+    private javax.swing.JTextField tf_bui_name12;
+    private javax.swing.JTextField tf_bui_name13;
+    private javax.swing.JTextField tf_bui_name14;
+    private javax.swing.JTextField tf_bui_name15;
+    private javax.swing.JTextField tf_bui_name16;
+    private javax.swing.JTextField tf_bui_name17;
+    private javax.swing.JTextField tf_bui_name18;
+    private javax.swing.JTextField tf_bui_name19;
+    private javax.swing.JTextField tf_bui_name2;
+    private javax.swing.JTextField tf_bui_name20;
+    private javax.swing.JTextField tf_bui_name21;
+    private javax.swing.JTextField tf_bui_name22;
+    private javax.swing.JTextField tf_bui_name23;
+    private javax.swing.JTextField tf_bui_name24;
+    private javax.swing.JTextField tf_bui_name25;
+    private javax.swing.JTextField tf_bui_name26;
+    private javax.swing.JTextField tf_bui_name27;
+    private javax.swing.JTextField tf_bui_name28;
+    private javax.swing.JTextField tf_bui_name29;
+    private javax.swing.JTextField tf_bui_name3;
+    private javax.swing.JTextField tf_bui_name30;
+    private javax.swing.JTextField tf_bui_name31;
+    private javax.swing.JTextField tf_bui_name32;
+    private javax.swing.JTextField tf_bui_name33;
+    private javax.swing.JTextField tf_bui_name34;
+    private javax.swing.JTextField tf_bui_name35;
+    private javax.swing.JTextField tf_bui_name36;
+    private javax.swing.JTextField tf_bui_name37;
+    private javax.swing.JTextField tf_bui_name38;
+    private javax.swing.JTextField tf_bui_name39;
+    private javax.swing.JTextField tf_bui_name4;
+    private javax.swing.JTextField tf_bui_name40;
+    private javax.swing.JTextField tf_bui_name41;
+    private javax.swing.JTextField tf_bui_name42;
+    private javax.swing.JTextField tf_bui_name43;
+    private javax.swing.JTextField tf_bui_name44;
+    private javax.swing.JTextField tf_bui_name45;
+    private javax.swing.JTextField tf_bui_name46;
+    private javax.swing.JTextField tf_bui_name5;
+    private javax.swing.JTextField tf_bui_name6;
+    private javax.swing.JTextField tf_bui_name7;
+    private javax.swing.JTextField tf_bui_name8;
+    private javax.swing.JTextField tf_bui_name9;
+    private javax.swing.JTextArea tf_expli;
+    private javax.swing.JTextField tf_id;
+    private javax.swing.JTextField tf_name;
+    private javax.swing.JTextField tf_price;
     // End of variables declaration//GEN-END:variables
 }
