@@ -29,17 +29,16 @@ public class MainGUI extends javax.swing.JFrame {
         home = new HomeGUI();
         home.setBounds(0, 0, 1030, 720);
         home.setVisible(true);
-       // desktop.removeAll();
-        //desktop.add(home);
+        desktop.removeAll();
+        desktop.add(home);
        
     }
     public void openBuiding(){
         building = new BuildingsGUI();
         building.setBounds(0, 0, 1030, 720);
         building.setVisible(true);
-        //desktop.removeAll();
-       // desktop.add(building);
-       
+        desktop.removeAll();
+        desktop.add(building);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +73,7 @@ public class MainGUI extends javax.swing.JFrame {
         lb_sercurity = new javax.swing.JLabel();
         pnlLogout = new javax.swing.JPanel();
         lb_logout = new javax.swing.JLabel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        desktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -86,7 +85,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnl_menu.setBackground(new java.awt.Color(153, 102, 0));
 
         lblIconUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIconUser.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\user-secret-solid.png")); // NOI18N
         lblIconUser.setToolTipText("");
         lblIconUser.setMaximumSize(new java.awt.Dimension(250, 72));
         lblIconUser.setMinimumSize(new java.awt.Dimension(250, 72));
@@ -111,7 +109,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_Home.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_Home.setForeground(new java.awt.Color(255, 255, 255));
         lb_Home.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_Home.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\fort-awesome.png")); // NOI18N
         lb_Home.setText("Home");
         lb_Home.setToolTipText("");
         lb_Home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -148,7 +145,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_Building.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_Building.setForeground(new java.awt.Color(255, 255, 255));
         lb_Building.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_Building.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\building-solid.png")); // NOI18N
         lb_Building.setText("Buildings");
         lb_Building.setToolTipText("");
         lb_Building.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -185,7 +181,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_Apartment.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_Apartment.setForeground(new java.awt.Color(255, 255, 255));
         lb_Apartment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_Apartment.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\apartment-user-solid.png")); // NOI18N
         lb_Apartment.setText("Apartments");
         lb_Apartment.setToolTipText("");
         lb_Apartment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -222,7 +217,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_contract.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_contract.setForeground(new java.awt.Color(255, 255, 255));
         lb_contract.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_contract.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\cate-solid.png")); // NOI18N
         lb_contract.setText("Contracts");
         lb_contract.setToolTipText("");
         lb_contract.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -259,7 +253,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_customer.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_customer.setForeground(new java.awt.Color(255, 255, 255));
         lb_customer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_customer.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\people-group-solid.png")); // NOI18N
         lb_customer.setText("Customers");
         lb_customer.setToolTipText("");
         lb_customer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -296,7 +289,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_cate.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_cate.setForeground(new java.awt.Color(255, 255, 255));
         lb_cate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_cate.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\table-cells-row-lock-solid.png")); // NOI18N
         lb_cate.setText("Categories");
         lb_cate.setToolTipText("");
         lb_cate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -333,7 +325,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_service.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_service.setForeground(new java.awt.Color(255, 255, 255));
         lb_service.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_service.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\person-swimming-solid.png")); // NOI18N
         lb_service.setText("Services");
         lb_service.setToolTipText("");
         lb_service.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -370,7 +361,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_problem.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_problem.setForeground(new java.awt.Color(255, 255, 255));
         lb_problem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_problem.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\circle-info-solid.png")); // NOI18N
         lb_problem.setText("Problems");
         lb_problem.setToolTipText("");
         lb_problem.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -407,7 +397,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_sercurity.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_sercurity.setForeground(new java.awt.Color(255, 255, 255));
         lb_sercurity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_sercurity.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\key-solid.png")); // NOI18N
         lb_sercurity.setText("Sercurity");
         lb_sercurity.setToolTipText("");
         lb_sercurity.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -444,7 +433,6 @@ public class MainGUI extends javax.swing.JFrame {
         lb_logout.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
         lb_logout.setForeground(new java.awt.Color(255, 255, 255));
         lb_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_logout.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\right-from-bracket-solid.png")); // NOI18N
         lb_logout.setText("Log out");
         lb_logout.setToolTipText("");
         lb_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -469,14 +457,14 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlLogout);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 995, Short.MAX_VALUE)
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
+        desktop.setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1141, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -495,17 +483,17 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnl_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane1)
+                .addComponent(desktop)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+                    .addComponent(pnl_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jDesktopPane1)))
+                        .addComponent(desktop)))
                 .addContainerGap())
         );
 
@@ -590,7 +578,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
