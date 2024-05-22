@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.UIManager;
+
 
 /**
  *
@@ -25,7 +25,7 @@ public class ApartmentDAO {
     public List<ApartmentModel> readAll(){
         List<ApartmentModel> lstAp = new ArrayList<>();
         try {
-            String sql = "USP_GetAllApartment";
+            String sql = "select * from Apartments";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -46,6 +46,7 @@ public class ApartmentDAO {
         }
         return lstAp;
     }
+   
     public List<CustomerModel> getInfoCustomerByApartmentNumber(String idApart){
         List<CustomerModel> lstCus = new ArrayList<>();
         try {
