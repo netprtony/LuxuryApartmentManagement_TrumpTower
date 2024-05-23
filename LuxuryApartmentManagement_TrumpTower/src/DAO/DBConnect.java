@@ -7,20 +7,40 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
  * @author Administrator
  */
 public class DBConnect {
-    public static Connection openConnection() throws Exception{
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        System.out.println("Loading...");
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=LuxuryApartmentManagement_TrumpTowers;integratedSecurity=true;encrypt=true;trustServerCertificate=true";
-        String user = "sa";
-        String password = "123";
-        Connection con = DriverManager.getConnection(url, user, password);
-        System.out.println("Connected...");
-        return con;
+    public static Connection openConnection() throws Exception {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            System.out.println("Loading driver...");
+
+            String url = "jdbc:sqlserver://localhost\\netprtony\\LOCALDB#2A23D8A6;databaseName=LuxuryApartmentManagement_TrumpTowers;integratedSecurity=true;";
+            Connection con = DriverManager.getConnection(url);
+            System.out.println("Connected...");
+            return con;
+        } catch (ClassNotFoundException e) {
+            System.err.println("Driver not found. Please check the JDBC driver.");
+            e.printStackTrace();
+            throw e;
+        } catch (SQLException e) {
+            System.err.println("Failed to connect to the database.");
+            e.printStackTrace();
+            throw e;
+        }
+    }
+    
+    public static void main(String[] args) {
+        try {
+            Connection con = openConnection();
+            // Perform database operations
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
