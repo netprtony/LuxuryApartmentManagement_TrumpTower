@@ -43,7 +43,6 @@ public final class ContractGUI extends javax.swing.JFrame {
         loadCboCateContract();
         loadCboService();
         FillTableDataContract();
-        FillTableDataDetailContract();
     }
     public void loadCboCateContract(){
        lstCateCon = daoCateCon.readAll();
@@ -87,13 +86,13 @@ public final class ContractGUI extends javax.swing.JFrame {
         }
         tbl_Contract.setModel(tblModel);
     }
-     public void FillTableDataDetailContract() {
-        lstDetailCon = daoDetail.readAll();
+     public void FillTableDataDetailContractByIdContract(int id) {
+         
+        lstDetailCon = daoDetail.readAllByIdContract(id);
         tblModel = (DefaultTableModel) tbl_DetailContract.getModel();
         tblModel.setRowCount(0);
         for (DetailContractModel de : lstDetailCon) {
             Object[] r = new Object[]{
-               de.getContrID(),
                de.getSerID(),
                de.getQuantity()
             };
@@ -306,17 +305,17 @@ public final class ContractGUI extends javax.swing.JFrame {
         tbl_Contract.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         tbl_Contract.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Date", "Status", "Category", "Customer", "Apartment"
+                "ID", "Date", "Status", "Category", "Customer", "Apartment", "Service in user"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -369,22 +368,22 @@ public final class ContractGUI extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "All apartments"));
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Detail contract"));
 
         tbl_DetailContract.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         tbl_DetailContract.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "ContractID", "ServiceID", "Quantity"
+                "ServiceID", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -397,6 +396,8 @@ public final class ContractGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(tbl_DetailContract);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_detailAdd.setBackground(new java.awt.Color(102, 0, 0));
         btn_detailAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -512,8 +513,8 @@ public final class ContractGUI extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -580,6 +581,8 @@ public final class ContractGUI extends javax.swing.JFrame {
 
     private void tbl_ContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ContractMouseClicked
         showFromContract();
+        index = tbl_Contract.getSelectedRow();
+        FillTableDataDetailContractByIdContract(index);
     }//GEN-LAST:event_tbl_ContractMouseClicked
 
     private void btn_bui_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bui_searchActionPerformed
@@ -594,7 +597,7 @@ public final class ContractGUI extends javax.swing.JFrame {
         de.setQuantity(Integer.parseInt(tf_quantity.getValue().toString()));
         if(daoDetail.add(de) > 0){
             JOptionPane.showMessageDialog(this, "Thêm thành công");
-            FillTableDataDetailContract();
+            FillTableDataDetailContractByIdContract(index);
             clearForm();
         }else{
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
@@ -609,7 +612,7 @@ public final class ContractGUI extends javax.swing.JFrame {
         de.setQuantity(Integer.parseInt(tf_quantity.getValue().toString()));
         if(daoDetail.update(de) > 0){
             JOptionPane.showMessageDialog(this, "Sua thành công");
-            FillTableDataDetailContract();
+            FillTableDataDetailContractByIdContract(index);
             clearForm();
         }else{
             JOptionPane.showMessageDialog(this, "Sua thất bại");
@@ -619,7 +622,7 @@ public final class ContractGUI extends javax.swing.JFrame {
     private void btn_detailDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailDeleteActionPerformed
         DetailContractModel d = new DetailContractModel();
        if(daoDetail.delete(Integer.parseInt(tf_ConId.getText()), Integer.parseInt(cbo_SerID.getSelectedItem().toString())) > 0){
-            FillTableDataDetailContract();
+            FillTableDataDetailContractByIdContract(index);
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
         }else{
