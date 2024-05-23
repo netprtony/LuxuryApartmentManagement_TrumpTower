@@ -17,16 +17,19 @@ import java.util.List;
  * @author netprtony
  */
 public class DetailContractDAO {
-    public List<DetailContractModel> readAll(){
+    public List<DetailContractModel> readAllByIdContract(int id){
         List<DetailContractModel> lst = new ArrayList<>();
         try {
-            String  sql = "select * from DETAIL_CONTRACTS";
+            String  sql = "select s.Serv_Name, dc.quantity from DETAIL_CONTRACTS dc left join SERVICES s\n" +
+                            "on dc.Serv_ID = s.Serv_ID where dc.Contr_ID = ?";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setInt(1, id);
             ResultSet rs = stm.executeQuery(sql);
+            lst.clear();
             while (rs.next()) {                
                 DetailContractModel del = new DetailContractModel();
-                del.setContrID(rs.getInt("Contr_ID"));
                 del.setSerID(rs.getInt("Serv_ID"));
                 del.setQuantity(rs.getInt("quantity"));
                 lst.add(del);
