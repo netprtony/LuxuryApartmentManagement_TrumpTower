@@ -367,3 +367,31 @@ begin
 	where a.Apart_ID = @idAparment
 end
 go
+select con.Contr_ID, con.Contr_Date, con.Contr_Status, CateCon_Name, cus.Cus_Name, a.Apart_Number,
+(select count(*) from DETAIL_CONTRACTS where Contr_ID = ) as N'Dịch vụ đang sử dụng'
+from  CONTRACTS con left join CUSTOMERS cus 
+on con.Cus_ID = cus.Cus_ID left join CATEGORIZE_CONTRACTS cate
+on cate.CateCon_ID = con.CateCon_ID left join APARTMENTS a
+on a.Apart_ID = con.Apart_ID
+
+select count(*) from DETAIL_CONTRACTS where Contr_ID = 2
+go
+create proc USP_GetAllContract
+as
+begin
+	select con.Contr_ID, con.Contr_Date, con.Contr_Status, CateCon_Name, cus.Cus_Name, a.Apart_Number,
+	count(dc.Contr_ID) as N'Dịch vụ đang sử dụng'
+	from  CONTRACTS con left join CUSTOMERS cus 
+	on con.Cus_ID = cus.Cus_ID left join CATEGORIZE_CONTRACTS cate
+	on cate.CateCon_ID = con.CateCon_ID left join APARTMENTS a
+	on a.Apart_ID = con.Apart_ID left join DETAIL_CONTRACTS dc
+	on dc.Contr_ID = con.Contr_ID
+	GROUP BY 
+	con.Contr_ID,
+	con.Contr_Date,
+	con.Contr_Status,
+	CateCon_Name,
+	cus.Cus_Name,
+	a.Apart_Number
+end
+go
