@@ -395,3 +395,21 @@ begin
 	a.Apart_Number
 end
 go
+create proc USP_ChangeApartment
+@CustomerID varchar(20),
+@ApartmentIdOld int,
+@ApartmentIdNew varchar(100)
+as
+begin
+	update CONTRACTS
+	set  Apart_ID = @ApartmentIdNew
+	where Cus_ID = @CustomerID and Apart_ID = @ApartmentIdOld
+
+	update APARTMENTS
+	set Apart_Available = 1 
+	where Apart_ID =  @ApartmentIdNew
+
+	update APARTMENTS
+	set Apart_Available = 0 
+	where Apart_ID =  @ApartmentIdOld
+end
