@@ -33,20 +33,21 @@ public class ApartmentDAO {
             while (rs.next()) {                
                 ApartmentModel ap = new ApartmentModel();
                 ap.setId(rs.getInt(1));
-                ap.setAcreage(rs.getString(2));
-                ap.setAvaialbe(rs.getBoolean(3));
-                ap.setFloor(rs.getInt(4));
-                ap.setIdBuild(rs.getString(5));
-                ap.setNumber(rs.getString(6));
-                ap.setPrice(rs.getDouble(7));
-                ap.setView(rs.getBoolean(8));
+                ap.setNumber(rs.getString(2));
+                ap.setFloor(rs.getInt(3));
+                ap.setView(rs.getBoolean(4));
+                ap.setAcreage(rs.getString(5));
+                ap.setPrice(rs.getDouble(6));
+                ap.setDescribe(rs.getString(7));
+                ap.setAvaialbe(rs.getBoolean(8));
+                ap.setIdCate(rs.getInt(9));
+                ap.setIdBuild(rs.getString(10));
                 lstAp.add(ap);
             }
         } catch (Exception e) {
         }
         return lstAp;
-    }
-   
+    }    
     public List<CustomerModel> getInfoCustomerByApartmentNumber(String idApart){
         List<CustomerModel> lstCus = new ArrayList<>();
         try {
