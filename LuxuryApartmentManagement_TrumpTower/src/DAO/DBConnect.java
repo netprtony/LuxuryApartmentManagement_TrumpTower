@@ -19,7 +19,7 @@ public class DBConnect {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             System.out.println("Loading driver...");
 
-            String url = "jdbc:sqlserver://localhost\\netprtony\\LOCALDB#2A23D8A6;databaseName=LuxuryApartmentManagement_TrumpTowers;integratedSecurity=true;";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=LuxuryApartmentManagement_TrumpTowers;integratedSecurity=true;";
             Connection con = DriverManager.getConnection(url);
             System.out.println("Connected...");
             return con;
