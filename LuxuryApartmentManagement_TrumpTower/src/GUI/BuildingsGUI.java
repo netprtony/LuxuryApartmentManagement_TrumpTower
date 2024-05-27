@@ -44,19 +44,7 @@ public class BuildingsGUI extends javax.swing.JFrame {
         }
         tbl_buiDettail.setModel(tblModel);
     }
-    public void FillTableApartment(){
-        ApartmentDAO dao = new ApartmentDAO();
-        List<ApartmentModel> lst = new ArrayList<>();
-        ApartmentModel apr = new ApartmentModel();
-        lst = dao.readAll();
-        tblModel = (DefaultTableModel) tbl_BuiToApar.getModel();
-        tblModel.setRowCount(0);
-        for(BuildingModel b : lstBui){
-            Object[] r = new Object[]{b};
-            tblModel.addRow(r);
-        }
-        tbl_BuiToApar.setModel(tblModel);
-    }
+    
    
     public void clearForm(){
         tf_bui_id.setText("");
@@ -115,8 +103,6 @@ public class BuildingsGUI extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         tf_bui_inputSearch = new javax.swing.JTextField();
         btn_bui_search = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tbl_BuiToApar = new javax.swing.JTable();
 
         popupMenu1.setLabel("popupMenu1");
 
@@ -320,30 +306,6 @@ public class BuildingsGUI extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "All apartments"));
-
-        tbl_BuiToApar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        tbl_BuiToApar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Number", "Acreage", "Price", "Floor", "Available"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(tbl_BuiToApar);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -354,8 +316,7 @@ public class BuildingsGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,9 +326,8 @@ public class BuildingsGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -420,7 +380,8 @@ public class BuildingsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_bui_searchActionPerformed
 
     private void tbl_buiDettailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_buiDettailMouseClicked
-         FillTableApartment();
+        showForm();
+        
     }//GEN-LAST:event_tbl_buiDettailMouseClicked
 
     private void btn_bui_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bui_newActionPerformed
@@ -528,10 +489,8 @@ public class BuildingsGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private java.awt.PopupMenu popupMenu1;
-    private javax.swing.JTable tbl_BuiToApar;
     private javax.swing.JTable tbl_buiDettail;
     private javax.swing.JTextField tf_bui_Adres;
     private javax.swing.JTextArea tf_bui_des;
