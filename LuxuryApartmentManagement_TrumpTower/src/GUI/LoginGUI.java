@@ -150,7 +150,7 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 204));
         jLabel6.setText("Trump Tower");
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icon/donald-trump2.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon("E:\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\donald-trump2.png")); // NOI18N
         jLabel10.setToolTipText("");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icon/pngwing.com.png"))); // NOI18N
