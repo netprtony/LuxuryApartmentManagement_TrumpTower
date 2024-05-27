@@ -94,17 +94,17 @@ public class BuildingDAO {
     }
     public int update(BuildingModel bui){
         try{
-            String sql = "update buidlings set "
-                    + "build_id = ?,"
+            String sql = "update buildings set "
                     + "build_address = ?,"
                     + "build_name = ?,"
-                    + "build_describe = ?";
+                    + "build_describe = ?"
+                    +  " where build_id = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, bui.getId());
-            pstm.setString(2, bui.getAddress());
-            pstm.setString(3, bui.getName());
-            pstm.setString(4, bui.getDescribe());
+            pstm.setString(4, bui.getId());
+            pstm.setString(1, bui.getAddress());
+            pstm.setString(2, bui.getName());
+            pstm.setString(3, bui.getDescribe());
             return pstm.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();
