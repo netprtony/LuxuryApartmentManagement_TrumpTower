@@ -12,19 +12,27 @@ public class ApartmentModel {
     private int id;
     private String number;
     private int floor;
-    private boolean view;
+    private String view;
     private String acreage;
     private Double price;
     private String describe;
-    private boolean avaialbe;
+    private String avaialbe;
     private int idCate;
     private String idBuild; 
+    private String nameCate;
 
+    public void setNameCate(String nameCate) {
+        this.nameCate = nameCate;
+    }
+
+    public String getNameCate() {
+        return nameCate;
+    }
    
     public ApartmentModel() {
     }
 
-    public ApartmentModel(int id, String number, int floor, boolean view, String acreage, Double price, String describe, boolean avaialbe, int idCate, String idBuild) {
+    public ApartmentModel(int id, String number, int floor, String view, String acreage, Double price, String describe, String avaialbe, int idCate, String idBuild) {
         this.id = id;
         this.number = number;
         this.floor = floor;
@@ -49,7 +57,7 @@ public class ApartmentModel {
         return floor;
     }
 
-    public boolean isView() {
+    public String isView() {
         return view;
     }
 
@@ -65,7 +73,7 @@ public class ApartmentModel {
         return describe;
     }
 
-    public boolean isAvaialbe() {
+    public String isAvaialbe() {
         return avaialbe;
     }
 
@@ -89,7 +97,7 @@ public class ApartmentModel {
         this.floor = floor;
     }
 
-    public void setView(boolean view) {
+    public void setView(String view) {
         this.view = view;
     }
 
@@ -105,7 +113,7 @@ public class ApartmentModel {
         this.describe = describe;
     }
 
-    public void setAvaialbe(boolean avaialbe) {
+    public void setAvaialbe(String avaialbe) {
         this.avaialbe = avaialbe;
     }
 
