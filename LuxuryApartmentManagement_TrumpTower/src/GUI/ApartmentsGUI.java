@@ -18,6 +18,7 @@ import MODEL.ServiceModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,11 +48,9 @@ public class ApartmentsGUI extends javax.swing.JFrame {
      */
     public ApartmentsGUI() {
         initComponents();
-        loadCboCateApart();
-        loadCboBuild();
         loadCboBuildDetail();
-        loadCboCateDetail();
         FillTableData();
+        loadCboCateDetail();
     }   
 
     /**
@@ -65,33 +64,6 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        cbo_build = new javax.swing.JComboBox<>();
-        tf_priceFrom = new javax.swing.JTextField();
-        tf_priceTo = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        ck_isView = new javax.swing.JCheckBox();
-        tf_acreage = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        cbo_cateAp = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tf_des = new javax.swing.JTextArea();
-        ck_isVailable = new javax.swing.JCheckBox();
-        btn_find = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        btn_newFilter = new javax.swing.JButton();
-        tf_floor = new javax.swing.JTextField();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tbl_apartments = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
@@ -123,232 +95,11 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         btn_add = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         tbl_apartmentDetail = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        lb_aprNumber = new javax.swing.JLabel();
-        lb_datetimeRent = new javax.swing.JLabel();
-        lb_gender = new javax.swing.JLabel();
-        lb_renterName = new javax.swing.JLabel();
-        lb_renterID = new javax.swing.JLabel();
-        lb_hometower = new javax.swing.JLabel();
-        lb_phone = new javax.swing.JLabel();
-        lb_birth = new javax.swing.JLabel();
-        lb_contractID = new javax.swing.JLabel();
-        lb_email = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Filter"));
-
-        jLabel7.setText("From");
-
-        jLabel8.setText("To");
-
-        jLabel9.setText("Floor");
-
-        ck_isView.setText("View");
-
-        jLabel10.setText("Acreage");
-
-        jLabel11.setText("Build");
-
-        jLabel13.setText("Category");
-
-        jLabel14.setText("Describe");
-
-        tf_des.setColumns(20);
-        tf_des.setRows(5);
-        jScrollPane7.setViewportView(tf_des);
-
-        ck_isVailable.setSelected(true);
-        ck_isVailable.setText("Available");
-
-        btn_find.setText("Find");
-        btn_find.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_findActionPerformed(evt);
-            }
-        });
-
-        btn_newFilter.setText("New");
-        btn_newFilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_newFilterActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator4)
-                            .addComponent(jSeparator3)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addGap(105, 105, 105)
-                                        .addComponent(btn_newFilter))
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cbo_build, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel11))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel13)
-                                            .addComponent(cbo_cateAp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(ck_isVailable, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ck_isView, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tf_floor, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tf_acreage, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 8, Short.MAX_VALUE))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_priceTo)
-                                    .addComponent(tf_priceFrom)))))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_find)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbo_build, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbo_cateAp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(ck_isVailable)
-                .addGap(12, 12, 12)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(tf_priceFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tf_priceTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(tf_floor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ck_isView)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(tf_acreage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_find)
-                    .addComponent(btn_newFilter))
-                .addGap(15, 15, 15))
-        );
-
-        jScrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Apartments"));
-
-        tbl_apartments.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Number", "Floor", "View", "Acreage", "Price", "Category", "Build"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbl_apartments.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_apartmentsMouseClicked(evt);
-            }
-        });
-        jScrollPane6.setViewportView(tbl_apartments);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-
-        jTabbedPane2.addTab("Filter", jPanel5);
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Edit"));
 
@@ -552,20 +303,20 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
         tbl_apartmentDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Number", "Floor", "View", "Acreage", "Price", "Describe", "Available", "Category", "Build"
+                "Number", "Floor", "View", "Acreage", "Price", "Describe", "Available", "Category", "Build"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -592,180 +343,34 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 403, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane3.addTab("Detail", jPanel7);
-
-        jLabel1.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel1.setText("Renter ID:");
-
-        jLabel2.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel2.setText("Datetime of rent:");
-
-        jLabel3.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel3.setText("Renter:");
-
-        jLabel4.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel4.setText("Gender:");
-
-        jLabel21.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel21.setText("Phone:");
-
-        jLabel22.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel22.setText("Hometower:");
-
-        jLabel24.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel24.setText("Birth:");
-
-        jLabel25.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel25.setText("ContractID: ");
-
-        jLabel26.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel26.setText("Mail:");
-
-        jLabel27.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        jLabel27.setText("Apartment Number: ");
-
-        lb_aprNumber.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_aprNumber.setForeground(new java.awt.Color(102, 0, 0));
-        lb_aprNumber.setText("A102");
-
-        lb_datetimeRent.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_datetimeRent.setForeground(new java.awt.Color(102, 0, 0));
-        lb_datetimeRent.setText("A102");
-
-        lb_gender.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_gender.setForeground(new java.awt.Color(102, 0, 0));
-        lb_gender.setText("A102");
-
-        lb_renterName.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_renterName.setForeground(new java.awt.Color(102, 0, 0));
-        lb_renterName.setText("A102");
-
-        lb_renterID.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_renterID.setForeground(new java.awt.Color(102, 0, 0));
-        lb_renterID.setText("A102");
-
-        lb_hometower.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_hometower.setForeground(new java.awt.Color(102, 0, 0));
-        lb_hometower.setText("A102");
-
-        lb_phone.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_phone.setForeground(new java.awt.Color(102, 0, 0));
-        lb_phone.setText("A102");
-
-        lb_birth.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_birth.setForeground(new java.awt.Color(102, 0, 0));
-        lb_birth.setText("A102");
-
-        lb_contractID.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_contractID.setForeground(new java.awt.Color(102, 0, 0));
-        lb_contractID.setText("A102");
-
-        lb_email.setFont(new java.awt.Font("Sitka Heading", 3, 14)); // NOI18N
-        lb_email.setForeground(new java.awt.Color(102, 0, 0));
-        lb_email.setText("A102");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lb_datetimeRent)
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lb_aprNumber))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_renterName)
-                                .addGap(221, 221, 221)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_gender))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_renterID)
-                                .addGap(188, 188, 188)
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_hometower)))
-                        .addGap(169, 169, 169)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel24)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_birth))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_phone)))
-                        .addGap(103, 103, 103)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel25)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_contractID))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel26)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb_email)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane3)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel27)
-                    .addComponent(lb_aprNumber)
-                    .addComponent(lb_datetimeRent))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel26)
-                    .addComponent(lb_gender)
-                    .addComponent(lb_phone)
-                    .addComponent(lb_renterName)
-                    .addComponent(lb_email))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel25)
-                    .addComponent(lb_hometower)
-                    .addComponent(lb_birth)
-                    .addComponent(lb_contractID)
-                    .addComponent(lb_renterID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Properties", jPanel6);
@@ -790,24 +395,92 @@ public class ApartmentsGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void FillTableWasFilter(){
-//        ApartmentModel ap = new ApartmentModel();
-//        ap.setIdBuild(cbo_build.getSelectedObjects() + "");
-//        ap.setIdCate(cbo_cateAp.getSelectedIndex());
-//        Double pricefrom = Double.parseDouble(tf_priceFrom.getText());
-//        Double priceTo = Double.parseDouble(tf_priceTo.getText());
-//        ap.setAcreage(tf_acreage.getText());
-//        ap.setDescribe(tf_des.getText());
-//        ap.setAvaialbe(ck_isVailable.isSelected());
-//        ap.setView(ck_isView.isSelected());
-//        lst = apdao.Filter(ap, pricefrom, priceTo);
-        //FillTableData(tbl_apartments);
+
+    private void tbl_apartmentDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_apartmentDetailMouseClicked
+
+    }//GEN-LAST:event_tbl_apartmentDetailMouseClicked
+    public String returnIdComboBox(JComboBox cbo){
+       ComboBoxItem sel = (ComboBoxItem) cbo.getSelectedItem();
+       return sel != null ? sel.getId() :  "";
     }
+    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
+        ApartmentModel a = new ApartmentModel();
+        a.setAcreage(tf_detailAcrage.getText() + " " + cbo_km.getSelectedItem().toString());
+        //a.setAvaialbe(ck_isViewDetail.isSelected());
+        a.setDescribe(tf_detailDes.getText());
+        a.setFloor(Integer.parseInt(tf_detailFloor.getText()));
+        a.setIdBuild(returnIdComboBox(cbo_detailBuild));
+        a.setIdCate(Integer.parseInt(returnIdComboBox(cbo_detailCateAp)));
+        a.setNumber(tf_detailNumber.getText());
+        a.setPrice(CurrencyConverter(Double.parseDouble(tf_detailPrice.getText()), cbo_exchange.getSelectedItem().toString()));
+       // a.setView(ck_isViewDetail.isSelected());
+        int x = apdao.add(a);
+        if(x > 0){
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+            FillTableData();
+        }else{
+            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+        }
+    }//GEN-LAST:event_btn_addActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        ApartmentModel a = new ApartmentModel();
+        a.setAcreage(tf_detailAcrage.getText() + " " + cbo_km.getSelectedItem().toString());
+       // a.setAvaialbe(ck_isViewDetail.isSelected());
+        a.setDescribe(tf_detailDes.getText());
+        a.setFloor(Integer.parseInt(tf_detailFloor.getText()));
+        a.setIdBuild(returnIdComboBox(cbo_detailBuild));
+        a.setIdCate(Integer.parseInt(returnIdComboBox(cbo_detailCateAp)));
+        a.setNumber(tf_detailNumber.getText());
+        a.setPrice(CurrencyConverter(Double.parseDouble(tf_detailPrice.getText()), cbo_exchange.getSelectedItem().toString()));
+       // a.setView(ck_isViewDetail.isSelected());
+        if(apdao.add(a) > 0){
+            JOptionPane.showMessageDialog(this, "Đã sửa thành công");
+            FillTableData();
+        }else{
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
+        }
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
+        if(apdao.delete(tf_detailPrice.getText()) > 0){
+            FillTableData();
+            JOptionPane.showMessageDialog(this, "Đã xóa thành công");
+            clearForm();
+        }else{
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
+    }//GEN-LAST:event_btn_delActionPerformed
+
+    private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
+        clearForm2();
+    }//GEN-LAST:event_btn_newActionPerformed
+
+    private void ck_IsCusNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ck_IsCusNumberActionPerformed
+        if(ck_IsCusNumber.isSelected() == true){
+            tf_detailNumber.setEnabled(true);
+            btn_createNumberApr.setEnabled(false);
+        }
+        else{
+            tf_detailNumber.setEnabled(false);
+            btn_createNumberApr.setEnabled(true);
+        }
+    }//GEN-LAST:event_ck_IsCusNumberActionPerformed
+
+    private void ck_IsCusNumberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ck_IsCusNumberMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ck_IsCusNumberMouseClicked
+
+    private void btn_createNumberAprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createNumberAprActionPerformed
+        if(tf_detailNumber == null) tf_detailNumber.setText("");
+        tf_detailNumber.setText(create_apartment_number());
+    }//GEN-LAST:event_btn_createNumberAprActionPerformed
+
     public void FillTableData() {
         lst = apdao.readAll();
         tblModel = (DefaultTableModel) tbl_apartmentDetail.getModel();
@@ -822,7 +495,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 apr.getPrice(),
                 apr.getDescribe(),
                 apr.isAvaialbe(),
-                apr.getIdCate(),
+                apr.getNameCate(),
                 apr.getIdBuild(),
                 
             };
@@ -830,72 +503,27 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         }
         tbl_apartmentDetail.setModel(tblModel);
     }
-   
-    public void showFormProperties(){
-        index = tbl_apartmentDetail.getSelectedRow();
-        if(index < 0){
-            JOptionPane.showMessageDialog(this, "Please select random row in this table!");
-            return;
-        }else{
-            String idApart = lst.get(index) + "";
-            lstCus = apdao.getInfoCustomerByApartmentNumber(idApart);
-            CustomerModel cus = new CustomerModel();
-            lb_renterName.setText(cus.getName());
-            lb_renterID.setText(cus.getId());
-            lb_gender.setText(cus.getGender());
-            lb_hometower.setText(cus.getHomeTower());
-            lb_phone.setText(cus.getPhoneNumber());
-            lb_birth.setText(cus.getBirth());
-            lstContr = apdao.getInfoContractByApartmentNumber(idApart);
-            ContractModel con = new ContractModel();
-            lb_contractID.setText(con.getId() + "");
-            lb_datetimeRent.setText(con.getDate());
-        }
-        
-    }
     public void clearForm(){
-        tf_acreage.setText("");
-        tf_des.setText("");
-        tf_floor.setText("0");
-        tf_priceFrom.setText("0");
-        tf_priceTo.setText("0");
+        
     }
                 
      
-    public void loadCboCateApart(){
-       List<CategoryApartmentModel> lst = cateDapo.readAll();
-       CboModelCate.removeAllElements();
-       CboModelCate = (DefaultComboBoxModel) cbo_cateAp.getModel();
-        for (CategoryApartmentModel cate : lst) {
-            CboModelCate.addElement(cate.getId());
-        }
-        cbo_cateAp.setModel(CboModelCate);
-    }
-    public void loadCboCateDetail(){
-       List<CategoryApartmentModel> lst = cateDapo.readAll();
-       CboModelCate.removeAllElements();
-       CboModelCate = (DefaultComboBoxModel) cbo_cateAp.getModel();
-        for (CategoryApartmentModel cate : lst) {
-            CboModelCate.addElement(cate.getId());
-            
-        }
-        cbo_detailCateAp.setModel(CboModelCate);
-    }
-    public void loadCboBuild(){
-        BuildingDAO dao = new BuildingDAO();
-        List<BuildingModel> lst = dao.readAll();
-        for (BuildingModel bui : lst) {
-            CboModelBui.addElement(bui.getName());
-        }
-        cbo_build.setModel(CboModelBui);
-    }
+  
+  
     public void loadCboBuildDetail(){
         BuildingDAO dao = new BuildingDAO();
         List<BuildingModel> lst = dao.readAll();
         for (BuildingModel bui : lst) {
-            CboModelBui.addElement(bui.getName());
+            CboModelBui.addElement(new ComboBoxItem(bui.getId(), bui.getName()));
         }
         cbo_detailBuild.setModel(CboModelBui);
+    }
+    public void loadCboCateDetail(){
+        List<CategoryApartmentModel> lst = cateDapo.readAll();
+        for (CategoryApartmentModel cate : lst) {
+            CboModelCate.addElement(new ComboBoxItem(cate.getId() + "", cate.getName() ));
+        }
+        cbo_detailCateAp.setModel(CboModelCate);
     }
     public int findLargestValue(List<ApartmentModel> lst){
         int largestValue = 0;
@@ -927,95 +555,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 resultID = lastChar + floor + newID;
         }
         return resultID;
-    }
-    private void btn_findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_findActionPerformed
-        FillTableWasFilter();
-    }//GEN-LAST:event_btn_findActionPerformed
-
-    private void btn_newFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newFilterActionPerformed
-        clearForm();
-    }//GEN-LAST:event_btn_newFilterActionPerformed
-
-    private void tbl_apartmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_apartmentsMouseClicked
-        
-    }//GEN-LAST:event_tbl_apartmentsMouseClicked
-
-    private void tbl_apartmentDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_apartmentDetailMouseClicked
-        showFormProperties();
-    }//GEN-LAST:event_tbl_apartmentDetailMouseClicked
-
-    private void ck_IsCusNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ck_IsCusNumberActionPerformed
-        if(ck_IsCusNumber.isSelected() == true){
-            tf_detailNumber.setEnabled(true);
-            btn_createNumberApr.setEnabled(false);
-        }
-        else{
-            tf_detailNumber.setEnabled(false);
-            btn_createNumberApr.setEnabled(true);
-        }
-    }//GEN-LAST:event_ck_IsCusNumberActionPerformed
-
-    private void ck_IsCusNumberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ck_IsCusNumberMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ck_IsCusNumberMouseClicked
-
-    private void btn_createNumberAprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createNumberAprActionPerformed
-        if(tf_detailNumber == null) tf_detailNumber.setText("");
-        tf_detailNumber.setText(create_apartment_number());
-    }//GEN-LAST:event_btn_createNumberAprActionPerformed
-
-    private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
-        clearForm2();
-    }//GEN-LAST:event_btn_newActionPerformed
-
-    private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
-        if(apdao.delete(tf_detailPrice.getText()) > 0){
-            //FillTableData(tbl_apartmentDetail, apdao.readAll());
-            JOptionPane.showMessageDialog(this, "Đã xóa thành công");
-            clearForm();
-        }else{
-            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-        }
-    }//GEN-LAST:event_btn_delActionPerformed
-
-    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        ApartmentModel a = new ApartmentModel();
-        a.setAcreage(tf_detailAcrage.getText() + " " + cbo_km.getSelectedItem().toString());
-        a.setAvaialbe(ck_isViewDetail.isSelected());
-        a.setDescribe(tf_detailDes.getText());
-        a.setFloor(Integer.parseInt(tf_detailFloor.getText()));
-        a.setIdBuild(cbo_detailBuild.getSelectedItem() + "");
-        a.setIdCate(Integer.parseInt(cbo_detailCateAp.getSelectedItem().toString()));
-        a.setNumber(tf_detailNumber.getText());
-        a.setPrice(CurrencyConverter(Double.parseDouble(tf_detailPrice.getText()), cbo_exchange.getSelectedItem().toString()));
-        a.setView(ck_isViewDetail.isSelected());
-        if(apdao.add(a) > 0){
-            JOptionPane.showMessageDialog(this, "Đã sửa thành công");
-            //FillTableData(tbl_apartmentDetail, apdao.readAll());
-        }else{
-            JOptionPane.showMessageDialog(this, "Sửa thất bại");
-        }
-    }//GEN-LAST:event_btn_updateActionPerformed
-
-    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
-        ApartmentModel a = new ApartmentModel();
-        a.setAcreage(tf_detailAcrage.getText() + " " + cbo_km.getSelectedItem().toString());
-        a.setAvaialbe(ck_isViewDetail.isSelected());
-        a.setDescribe(tf_detailDes.getText());
-        a.setFloor(Integer.parseInt(tf_detailFloor.getText()));
-        a.setIdBuild(cbo_detailBuild.getSelectedItem() + "");
-        a.setIdCate(Integer.parseInt(cbo_detailCateAp.getSelectedItem().toString()));
-        a.setNumber(tf_detailNumber.getText());
-        a.setPrice(CurrencyConverter(Double.parseDouble(tf_detailPrice.getText()), cbo_exchange.getSelectedItem().toString()));
-        a.setView(ck_isViewDetail.isSelected());
-        if(apdao.add(a) > 0){
-            JOptionPane.showMessageDialog(this, "Thêm thành công");
-            //FillTableData(tbl_apartmentDetail, apdao.readAll());
-        }else{
-            JOptionPane.showMessageDialog(this, "Thêm thất bại");
-        }
-    }//GEN-LAST:event_btn_addActionPerformed
-    public double CurrencyConverter(double amount, String currency){
+    }    public double CurrencyConverter(double amount, String currency){
         double VND_TO_USD_RATE = 0.00003929;
         return currency.equals("USD") ? (amount / VND_TO_USD_RATE): amount;
     }     void clearForm2(){
@@ -1067,85 +607,38 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_add;
     private javax.swing.JButton btn_createNumberApr;
     private javax.swing.JButton btn_del;
-    private javax.swing.JButton btn_find;
     private javax.swing.JButton btn_new;
-    private javax.swing.JButton btn_newFilter;
     private javax.swing.JButton btn_update;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbo_build;
-    private javax.swing.JComboBox<String> cbo_cateAp;
     private javax.swing.JComboBox<String> cbo_detailBuild;
     private javax.swing.JComboBox<String> cbo_detailCateAp;
     private javax.swing.JComboBox<String> cbo_exchange;
     private javax.swing.JComboBox<String> cbo_km;
     private javax.swing.JCheckBox ck_IsCusNumber;
-    private javax.swing.JCheckBox ck_isVailable;
-    private javax.swing.JCheckBox ck_isView;
     private javax.swing.JCheckBox ck_isViewDetail;
     private javax.swing.JCheckBox ck_isvailableDetail1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JLabel lb_aprNumber;
-    private javax.swing.JLabel lb_birth;
-    private javax.swing.JLabel lb_contractID;
-    private javax.swing.JLabel lb_datetimeRent;
-    private javax.swing.JLabel lb_email;
-    private javax.swing.JLabel lb_gender;
-    private javax.swing.JLabel lb_hometower;
-    private javax.swing.JLabel lb_phone;
-    private javax.swing.JLabel lb_renterID;
-    private javax.swing.JLabel lb_renterName;
     private javax.swing.JTable tbl_apartmentDetail;
-    private javax.swing.JTable tbl_apartments;
-    private javax.swing.JTextField tf_acreage;
-    private javax.swing.JTextArea tf_des;
     private javax.swing.JTextField tf_detailAcrage;
     private javax.swing.JTextArea tf_detailDes;
     private javax.swing.JTextField tf_detailFloor;
     private javax.swing.JTextField tf_detailNumber;
     private javax.swing.JTextField tf_detailPrice;
-    private javax.swing.JTextField tf_floor;
-    private javax.swing.JTextField tf_priceFrom;
-    private javax.swing.JTextField tf_priceTo;
     // End of variables declaration//GEN-END:variables
 }
