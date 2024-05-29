@@ -21,18 +21,19 @@ public class ContractDAO {
     public List<ContractModel> readAll(){
         List<ContractModel> lst = new ArrayList<>();
         try {
-            String  sql = "select * from CONTRACTS";
+            String  sql = "exec USP_GetAllContract";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {                
                 ContractModel contr = new ContractModel();
-                contr.setId(Integer.parseInt("Contr_ID"));
+                contr.setId(rs.getInt("Contr_ID"));
                 contr.setDate(rs.getString("Contr_Date"));
                 contr.setStatus(rs.getBoolean("Contr_Status"));
-                contr.setIdCate(Integer.parseInt("CateCon_ID"));
-                contr.setIdCus(rs.getString("Cus_ID"));
-                contr.setIdAprt(Integer.parseInt("Apart_ID"));
+                contr.setCateName(rs.getString("CateCon_Name"));
+                contr.setNameCus(rs.getString("Cus_Name"));
+                contr.setNumberApart(rs.getString("Apart_Number"));
+                contr.setServiceInUser(rs.getInt("Dịch vụ đang sử dụng"));
                 lst.add(contr);
             }
         } catch (Exception e) {
@@ -42,26 +43,26 @@ public class ContractDAO {
     }
     public List<ContractModel> FindByID(String ID){
         List<ContractModel> lst = new ArrayList<>();
-        try {
-            String sql = "select * from CONTRACTS where Contr_ID like %?%";
-            Connection con = DBConnect.openConnection();
-            PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, ID);
-            ResultSet rs = pstm.executeQuery();
-            lst.clear();
-            while(rs.next()){
-                ContractModel contr = new ContractModel();
-                contr.setId(Integer.parseInt("Contr_ID"));
-                contr.setDate(rs.getString("Contr_Date"));
-                contr.setStatus(rs.getBoolean("Contr_Status"));
-                contr.setIdCate(Integer.parseInt("CateCon_ID"));
-                contr.setIdCus(rs.getString("Cus_ID"));
-                contr.setIdAprt(Integer.parseInt("Apart_ID"));
-                lst.add(contr);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String sql = "select * from CONTRACTS where Contr_ID like %?%";
+//            Connection con = DBConnect.openConnection();
+//            PreparedStatement pstm = con.prepareStatement(sql);
+//            pstm.setString(1, ID);
+//            ResultSet rs = pstm.executeQuery();
+//            lst.clear();
+//            while(rs.next()){
+//                ContractModel contr = new ContractModel();
+//                contr.setId(Integer.parseInt("Contr_ID"));
+//                contr.setDate(rs.getString("Contr_Date"));
+//                contr.setStatus(rs.getBoolean("Contr_Status"));
+//                contr.setIdCate(Integer.parseInt("CateCon_ID"));
+//                contr.setIdCus(rs.getString("Cus_ID"));
+//                contr.setIdAprt(Integer.parseInt("Apart_ID"));
+//                lst.add(contr);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return lst;
     }
     public int add(ContractModel s){

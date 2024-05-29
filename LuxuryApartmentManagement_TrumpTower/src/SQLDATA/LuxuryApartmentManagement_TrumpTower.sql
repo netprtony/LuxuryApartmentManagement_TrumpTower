@@ -413,3 +413,7 @@ begin
 	set Apart_Available = 0 
 	where Apart_ID =  @ApartmentIdOld
 end
+go
+select * from CONTRACTS c left join DETAIL_CONTRACTS dc
+on c.Contr_ID = dc.Contr_ID inner join SERVICES s
+on s.Serv_ID = dc.Serv_ID

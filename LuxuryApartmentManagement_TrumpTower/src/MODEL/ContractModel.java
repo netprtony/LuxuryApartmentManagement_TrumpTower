@@ -16,8 +16,43 @@ public class ContractModel {
     private boolean status;
     private int idCate;
     private String idCus;
+    private String nameCus;
     private int idAprt;
+    private String numberApart;
+    private int ServiceInUser;
+    private String cateName; 
 
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
+    }
+
+    public String getCateName() {
+        return cateName;
+    }
+    public void setNameCus(String nameCus) {
+        this.nameCus = nameCus;
+    }
+
+    public void setNumberApart(String numberApart) {
+        this.numberApart = numberApart;
+    }
+
+    public String getNameCus() {
+        return nameCus;
+    }
+
+    public String getNumberApart() {
+        return numberApart;
+    }
+    
+
+    public void setServiceInUser(int ServiceInUser) {
+        this.ServiceInUser = ServiceInUser;
+    }
+
+    public int getServiceInUser() {
+        return ServiceInUser;
+    }
     public ContractModel() {
     }
 

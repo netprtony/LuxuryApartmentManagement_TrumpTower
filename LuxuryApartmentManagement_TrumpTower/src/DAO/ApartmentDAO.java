@@ -196,11 +196,11 @@ public class ApartmentDAO {
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, a.getNumber());
             pstm.setInt(2, a.getFloor());
-            pstm.setString(3, a.isView());
+            pstm.setBoolean(3,  "Có".equals(a.isView()));
             pstm.setString(4, a.getAcreage());
             pstm.setDouble(5, a.getPrice());
             pstm.setString(6, a.getDescribe());
-            pstm.setString(7, a.isAvaialbe());
+            pstm.setBoolean(7,  "Có người".equals(a.isAvaialbe()));
             pstm.setInt(8, a.getIdCate());
             pstm.setString(9, a.getIdBuild());
             return pstm.executeUpdate();
@@ -224,7 +224,7 @@ public class ApartmentDAO {
     }
     public int update(ApartmentModel a){
         try{
-            String sql = "update buidlings set "
+            String sql = "update APARTMENTS set "
                     + "Apart_Number = ?, "
                     + "Apart_Floor = ?, "
                     + "Apart_View = ?, "
@@ -239,11 +239,11 @@ public class ApartmentDAO {
             PreparedStatement pstm = con.prepareStatement(sql);
            pstm.setString(1, a.getNumber());
             pstm.setInt(2, a.getFloor());
-            pstm.setString(3, a.isView());
+            pstm.setBoolean(3, "Có".equals(a.isView()));
             pstm.setString(4, a.getAcreage());
             pstm.setDouble(5, a.getPrice());
             pstm.setString(6, a.getDescribe());
-            pstm.setString(7, a.isAvaialbe());
+            pstm.setBoolean(7, "Có người".equals(a.isAvaialbe()));
             pstm.setInt(8, a.getIdCate());
             pstm.setString(9, a.getIdBuild());
             pstm.setInt(10, a.getId());
