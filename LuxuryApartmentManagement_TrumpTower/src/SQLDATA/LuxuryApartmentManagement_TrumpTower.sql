@@ -367,15 +367,6 @@ begin
 	where a.Apart_ID = @idAparment
 end
 go
-select con.Contr_ID, con.Contr_Date, con.Contr_Status, CateCon_Name, cus.Cus_Name, a.Apart_Number,
-(select count(*) from DETAIL_CONTRACTS where Contr_ID = ) as N'Dịch vụ đang sử dụng'
-from  CONTRACTS con left join CUSTOMERS cus 
-on con.Cus_ID = cus.Cus_ID left join CATEGORIZE_CONTRACTS cate
-on cate.CateCon_ID = con.CateCon_ID left join APARTMENTS a
-on a.Apart_ID = con.Apart_ID
-
-select count(*) from DETAIL_CONTRACTS where Contr_ID = 2
-go
 create proc USP_GetAllContract
 as
 begin
@@ -414,6 +405,3 @@ begin
 	where Apart_ID =  @ApartmentIdOld
 end
 go
-select * from CONTRACTS c left join DETAIL_CONTRACTS dc
-on c.Contr_ID = dc.Contr_ID inner join SERVICES s
-on s.Serv_ID = dc.Serv_ID
