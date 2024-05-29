@@ -9,12 +9,14 @@ import DAO.ContractDAO;
 import DAO.DetailContractDAO;
 import DAO.ServiceDAO;
 import MODEL.CategoryContractModel;
+import MODEL.ComboBoxItem;
 import MODEL.ContractModel;
 import MODEL.DetailContractModel;
 import MODEL.ServiceModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,30 +46,43 @@ public final class ContractGUI extends javax.swing.JFrame {
         loadCboService();
         FillTableDataContract();
     }
+    public String returnIdComboBox(JComboBox cbo){
+       ComboBoxItem sel = (ComboBoxItem) cbo.getSelectedItem();
+       return sel != null ? sel.getId() :  "";
+    }
     public void loadCboCateContract(){
        lstCateCon = daoCateCon.readAll();
        CboContractCate.removeAllElements();
-       CboContractCate = (DefaultComboBoxModel) cbo_cate.getModel();
+      
         for (CategoryContractModel cate : lstCateCon) {
-            CboContractCate.addElement(cate.getName());      
+            CboContractCate.addElement(new ComboBoxItem(cate.getId() + "", cate.getName()));      
+        }
+        cbo_cate.setModel(CboContractCate);
+    }
+    public void loadCboCustomer(){
+       lstCateCon = daoCateCon.readAll();
+       CboContractCate.removeAllElements();
+      
+        for (CategoryContractModel cate : lstCateCon) {
+            CboContractCate.addElement(new ComboBoxItem(cate.getId() + "", cate.getName()));      
         }
         cbo_cate.setModel(CboContractCate);
     }
     public void loadCboService(){
        lstService = daoService.readAll();
        CboService.removeAllElements();
-       CboService = (DefaultComboBoxModel) cbo_SerID.getModel();
         for (ServiceModel s : lstService) {
-            CboService.addElement(s.getName());      
+            CboService.addElement(new ComboBoxItem(s.getId() + "", s.getName()));      
         }
         cbo_SerID.setModel(CboService);
     }
     public void clearForm(){
         tf_ConId.setText("");
-        tf_conApartment.setText("");
-        tf_conCustomer.setText("");
         tf_conDate.setText("");
-           
+        cbo_customer.setSelectedItem(null);
+        cbo_Apartment.setSelectedItem(null);
+        cbo_SerID.setSelectedItem(null);
+        cbo_cate.setSelectedItem(null);
     }
     public void FillTableDataContract() {
         lstContract = daoCon.readAll();
@@ -108,8 +123,8 @@ public final class ContractGUI extends javax.swing.JFrame {
             ContractModel con = new ContractModel();
             con = lstContract.get(index);
             tf_ConId.setText(con.getId() + "");
-            tf_conApartment.setText(con.getIdAprt() + "");
-            tf_conCustomer.setText(con.getIdCus() + "");
+            cbo_Apartment.setSelectedItem(con.getIdAprt());
+            cbo_customer.setSelectedItem(con.getNameCus());
             tf_conDate.setText(con.getDate());
             cbo_cate.setSelectedItem(con.getIdCate());
         }
@@ -122,7 +137,6 @@ public final class ContractGUI extends javax.swing.JFrame {
         }else{
             DetailContractModel de = new DetailContractModel();
             de = lstDetailCon.get(index);
-            tf_ConId.setText(de.getContrID() + "");
             cbo_SerID.setSelectedItem(de.getSerID());
             tf_quantity.setValue(de.getQuantity());
         }
@@ -144,16 +158,16 @@ public final class ContractGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tf_ConId = new javax.swing.JTextField();
-        tf_conCustomer = new javax.swing.JTextField();
         btn_conAdd = new javax.swing.JButton();
         btn_conUpdate = new javax.swing.JButton();
         btn_conDelete = new javax.swing.JButton();
         tf_conDate = new javax.swing.JFormattedTextField();
         ck_status = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-        tf_conApartment = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cbo_cate = new javax.swing.JComboBox<>();
+        cbo_customer = new javax.swing.JComboBox<>();
+        cbo_Apartment = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_Contract = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -181,13 +195,10 @@ public final class ContractGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Date");
 
-        jLabel3.setText("CustomerID");
+        jLabel3.setText("Customer");
 
         tf_ConId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
         tf_ConId.setCaretColor(new java.awt.Color(102, 0, 0));
-
-        tf_conCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tf_conCustomer.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
 
         btn_conAdd.setBackground(new java.awt.Color(102, 0, 0));
         btn_conAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -227,14 +238,18 @@ public final class ContractGUI extends javax.swing.JFrame {
 
         ck_status.setText("Status");
 
-        jLabel5.setText("ApartmentID");
-
-        tf_conApartment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tf_conApartment.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
+        jLabel5.setText("Apartment Number");
 
         jLabel4.setText("Category");
 
         cbo_cate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_cate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
+
+        cbo_customer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_customer.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
+
+        cbo_Apartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_Apartment.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -243,6 +258,7 @@ public final class ContractGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbo_Apartment, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ck_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -250,7 +266,6 @@ public final class ContractGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbo_cate, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5)
-                    .addComponent(tf_conApartment, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -259,11 +274,11 @@ public final class ContractGUI extends javax.swing.JFrame {
                         .addComponent(btn_conUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_conDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tf_conCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                        .addComponent(tf_conDate)
-                        .addComponent(jLabel3)
-                        .addComponent(tf_ConId)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cbo_customer, javax.swing.GroupLayout.Alignment.LEADING, 0, 260, Short.MAX_VALUE)
+                        .addComponent(tf_ConId, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tf_conDate, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -280,12 +295,12 @@ public final class ContractGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_conCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbo_customer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addGap(8, 8, 8)
-                .addComponent(tf_conApartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbo_Apartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(ck_status)
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -397,6 +412,7 @@ public final class ContractGUI extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tbl_DetailContract);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_detailAdd.setBackground(new java.awt.Color(102, 0, 0));
@@ -435,8 +451,11 @@ public final class ContractGUI extends javax.swing.JFrame {
         jLabel7.setText("ServiceID");
 
         cbo_SerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_SerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
 
         jLabel6.setText("Quantity");
+
+        tf_quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -473,7 +492,7 @@ public final class ContractGUI extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_SerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_detailAdd)
                     .addComponent(btn_detailUpdate)
@@ -539,10 +558,10 @@ public final class ContractGUI extends javax.swing.JFrame {
     private void btn_conAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conAddActionPerformed
         ContractModel c = new ContractModel();
         c.setDate(tf_conDate.getText());
-        c.setIdAprt(Integer.parseInt(tf_conApartment.getText()));
-        c.setIdCate(Integer.parseInt(cbo_cate.getSelectedItem().toString()));
+        c.setIdAprt(Integer.parseInt(returnIdComboBox(cbo_Apartment)));
+        c.setIdCate(Integer.parseInt(returnIdComboBox(cbo_cate)));
         c.setStatus(ck_status.isSelected());
-        c.setIdCus(tf_conCustomer.getText());
+        c.setIdCus(returnIdComboBox(cbo_customer));
         if(daoCon.add(c) > 0){
             JOptionPane.showMessageDialog(this, "Thêm thành công");
             FillTableDataContract();
@@ -555,10 +574,10 @@ public final class ContractGUI extends javax.swing.JFrame {
     private void btn_conUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conUpdateActionPerformed
         ContractModel c = new  ContractModel();
         c.setDate(tf_conDate.getText());
-        c.setIdAprt(Integer.parseInt(tf_conApartment.getText()));
-        c.setIdCate(Integer.parseInt(cbo_cate.getSelectedItem().toString()));
+        c.setIdAprt(Integer.parseInt(returnIdComboBox(cbo_Apartment)));
+        c.setIdCate(Integer.parseInt(returnIdComboBox(cbo_cate)));
         c.setStatus(ck_status.isSelected());
-        c.setIdCus(tf_conCustomer.getText());
+        c.setIdCus(returnIdComboBox(cbo_customer));
         if(daoCon.update(c) > 0){
             JOptionPane.showMessageDialog(this, "Sua thành công");
             FillTableDataContract();
@@ -593,7 +612,7 @@ public final class ContractGUI extends javax.swing.JFrame {
     private void btn_detailAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailAddActionPerformed
         DetailContractModel de = new DetailContractModel();
         de.setContrID(Integer.parseInt(tf_ConId.getText()));
-        de.setSerID(Integer.parseInt(cbo_SerID.getSelectedItem().toString()));
+        de.setSerID(Integer.parseInt(returnIdComboBox(cbo_SerID)));
         de.setQuantity(Integer.parseInt(tf_quantity.getValue().toString()));
         if(daoDetail.add(de) > 0){
             JOptionPane.showMessageDialog(this, "Thêm thành công");
@@ -608,7 +627,7 @@ public final class ContractGUI extends javax.swing.JFrame {
     private void btn_detailUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailUpdateActionPerformed
         DetailContractModel de = new DetailContractModel();
         de.setContrID(Integer.parseInt(tf_ConId.getText()));
-        de.setSerID(Integer.parseInt(cbo_SerID.getSelectedItem().toString()));
+        de.setSerID(Integer.parseInt(returnIdComboBox(cbo_SerID)));
         de.setQuantity(Integer.parseInt(tf_quantity.getValue().toString()));
         if(daoDetail.update(de) > 0){
             JOptionPane.showMessageDialog(this, "Sua thành công");
@@ -621,7 +640,7 @@ public final class ContractGUI extends javax.swing.JFrame {
 
     private void btn_detailDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailDeleteActionPerformed
         DetailContractModel d = new DetailContractModel();
-       if(daoDetail.delete(Integer.parseInt(tf_ConId.getText()), Integer.parseInt(cbo_SerID.getSelectedItem().toString())) > 0){
+       if(daoDetail.delete(Integer.parseInt(tf_ConId.getText()), Integer.parseInt(returnIdComboBox(cbo_SerID))) > 0){
             FillTableDataDetailContractByIdContract(index);
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
@@ -677,8 +696,10 @@ public final class ContractGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_detailAdd;
     private javax.swing.JButton btn_detailDelete;
     private javax.swing.JButton btn_detailUpdate;
+    private javax.swing.JComboBox<String> cbo_Apartment;
     private javax.swing.JComboBox<String> cbo_SerID;
     private javax.swing.JComboBox<String> cbo_cate;
+    private javax.swing.JComboBox<String> cbo_customer;
     private javax.swing.JCheckBox ck_status;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -697,8 +718,6 @@ public final class ContractGUI extends javax.swing.JFrame {
     private javax.swing.JTable tbl_Contract;
     private javax.swing.JTable tbl_DetailContract;
     private javax.swing.JTextField tf_ConId;
-    private javax.swing.JTextField tf_conApartment;
-    private javax.swing.JTextField tf_conCustomer;
     private javax.swing.JFormattedTextField tf_conDate;
     private javax.swing.JSpinner tf_quantity;
     private javax.swing.JTextField tf_searchIDContract;

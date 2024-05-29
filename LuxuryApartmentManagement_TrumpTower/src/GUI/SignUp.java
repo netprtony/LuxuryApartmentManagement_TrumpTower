@@ -56,7 +56,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 204));
         jLabel6.setText("Trump Tower");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\donald-trump2.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\donald-trump2.png")); // NOI18N
         jLabel2.setToolTipText("");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icon/pngwing.com.png"))); // NOI18N
