@@ -15,6 +15,15 @@ public class ProblemModel {
     private String status;
     private String dateOccur;
     private int idAprt;
+    private String numberApart;
+
+    public void setNumberApart(String numberApart) {
+        this.numberApart = numberApart;
+    }
+
+    public String getNumberApart() {
+        return numberApart;
+    }
 
     public ProblemModel() {
     }

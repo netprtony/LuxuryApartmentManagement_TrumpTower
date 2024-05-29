@@ -20,7 +20,7 @@ public class ProblemsDAO {
     public List<ProblemModel> readAll(){
         List<ProblemModel> lst = new ArrayList<>();
         try {
-            String  sql = "select * from PROBLEMS";
+            String  sql = "exec USP_readAllProblems";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -31,7 +31,7 @@ public class ProblemsDAO {
                 pro.setNote(rs.getString("Prob_Note"));
                 pro.setStatus(rs.getString("Prob_Status"));
                 pro.setDateOccur(rs.getString("Prob_DateOccur"));
-                pro.setIdAprt(rs.getInt("Apart_ID"));
+                pro.setNumberApart(rs.getString("Apart_Number"));
                 lst.add(pro);
             }
         } catch (Exception e) {

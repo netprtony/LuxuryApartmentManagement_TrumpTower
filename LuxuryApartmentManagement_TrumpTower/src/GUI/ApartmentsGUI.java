@@ -334,8 +334,8 @@ public class ApartmentsGUI extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(130, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 424, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Detail", jPanel7);
@@ -418,7 +418,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         a.setNumber(tf_detailNumber.getText());
         a.setPrice(CurrencyConverter(Double.parseDouble(tf_detailPrice.getText()), cbo_exchange.getSelectedItem().toString()));
         a.setView(ck_isViewDetail.isSelected() ? "Có" : "Không có");
-        if(apdao.add(a) > 0){
+        if(apdao.update(a) > 0){
             JOptionPane.showMessageDialog(this, "Đã sửa thành công");
             FillTableData();
         }else{

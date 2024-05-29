@@ -212,7 +212,7 @@ public class ApartmentDAO {
     public int delete(String name){
         try {
             String sql = "delete APARTMENTS "
-                    + "where Apart_name = ?";
+                    + "where Apart_Number = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, name);

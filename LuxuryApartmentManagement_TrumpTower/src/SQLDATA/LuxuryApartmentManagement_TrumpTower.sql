@@ -405,3 +405,10 @@ begin
 	where Apart_ID =  @ApartmentIdOld
 end
 go
+create proc USP_readAllProblems
+as
+begin
+	select Prob_ID, Prob_Describe, Prob_Note, Prob_Status, a.Apart_Number from PROBLEMS p left join apartments a
+	on p.apart_id = a.apart_id
+end
+go
