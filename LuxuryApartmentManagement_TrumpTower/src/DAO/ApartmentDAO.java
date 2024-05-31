@@ -25,33 +25,32 @@ public class ApartmentDAO {
     public List<ApartmentModel> readAll(){
         List<ApartmentModel> lstAp = new ArrayList<>();
         try {
-            String sql = "select Apart_Number,\n" +
-                            "Apart_Floor,\n" +
-                            "case when Apart_View = 1 then N'Có' else N'Không' end as 'View',\n" +
-                            "Apart_Acreage,\n" +
-                            "Apart_Price,\n" +
-                            "Apart_Describe,\n" +
-                            "case when Apart_Available = 1 then N'Trống' else N'Có người' end as 'Available',\n" +
-                            "cate.CateApart_Name,\n" +
-                            "Build_ID\n" +
-                            "from Apartments a left join CATEGORIZE_APARTMENTS cate\n" +
-                            "on a.CateApart_ID = cate.CateApart_ID";
+            String sql = "select Apart_Number, \n" +
+                        "Apart_Floor,\n" +
+                        "Apart_View,\n" +
+                        "Apart_Acreage,\n" +
+                        "Apart_Price,\n" +
+                        "Apart_Describe,\n" +
+                        "Apart_Available,\n" +
+                        "cate.CateApart_Name,\n" +
+                        "a.Build_ID \n" +
+                        "from Apartments a left join CATEGORIZE_APARTMENTS cate \n" +
+                        "on a.CateApart_ID = cate.CateApart_ID";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             lstAp.clear();
             while (rs.next()) {                
                 ApartmentModel ap = new ApartmentModel();
-                ap.setId(rs.getInt(1));
-                ap.setNumber(rs.getString(2));
-                ap.setFloor(rs.getInt(3));
-                ap.setView(rs.getString(4));
-                ap.setAcreage(rs.getString(5));
-                ap.setPrice(rs.getDouble(6));
-                ap.setDescribe(rs.getString(7));
-                ap.setAvaialbe(rs.getString(8));
-                ap.setNameCate(rs.getString(9));
-                ap.setIdBuild(rs.getString(10));
+                ap.setNumber(rs.getString(1));
+                ap.setFloor(rs.getInt(2));
+                ap.setView(rs.getBoolean(3));
+                ap.setAcreage(rs.getString(4));
+                ap.setPrice(rs.getDouble(5));
+                ap.setDescribe(rs.getString(6));
+                ap.setAvaialbe(rs.getBoolean(7));
+                ap.setNameCate(rs.getString(8));
+                ap.setIdBuild(rs.getString(9));
                 lstAp.add(ap);
             }
         } catch (Exception e) {
@@ -116,14 +115,14 @@ public class ApartmentDAO {
                 ApartmentModel a = new ApartmentModel();
                 a.setId(rs.getInt("Apart_id"));
                 a.setAcreage(rs.getString("Apart_acreage"));
-                a.setAvaialbe(rs.getString("available"));
+                a.setAvaialbe(rs.getBoolean("available"));
                 a.setDescribe(rs.getString("Apart_describe"));
                 a.setFloor(rs.getInt("Apart_floor"));
                 a.setIdBuild(rs.getString("Build_ID"));
                 a.setIdCate(rs.getInt("CateApart_ID"));
                 a.setPrice(rs.getDouble("Apart_Price"));
                 a.setNumber(rs.getString("Apart_Number"));
-                a.setView(rs.getString("View"));
+                a.setView(rs.getBoolean("View"));
                 
                 lst.add(a);
             }
@@ -149,11 +148,11 @@ public class ApartmentDAO {
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, ap.getIdBuild());
             pstm.setInt(2, ap.getIdCate());
-            pstm.setString(3, ap.isAvaialbe());
+            pstm.setBoolean(3, ap.isAvaialbe());
             pstm.setDouble(4, priceFrom);
             pstm.setDouble(5, priceTo);
             pstm.setInt(6, ap.getFloor());
-            pstm.setString(7, ap.isView());
+            pstm.setBoolean(7, ap.isView());
             pstm.setString(8, ap.getAcreage());
             pstm.setString(9, ap.getDescribe()  );
             ResultSet rs = pstm.executeQuery();
@@ -162,14 +161,14 @@ public class ApartmentDAO {
                 ApartmentModel a = new ApartmentModel();
                 a.setId(rs.getInt("Apart_id"));
                 a.setAcreage(rs.getString("Apart_acreage"));
-                a.setAvaialbe(rs.getString("available"));
+                a.setAvaialbe(rs.getBoolean("available"));
                 a.setDescribe(rs.getString("Apart_describe"));
                 a.setFloor(rs.getInt("Apart_floor"));
                 a.setIdBuild(rs.getString("Build_ID"));
                 a.setIdCate(rs.getInt("CateApart_ID"));
                 a.setPrice(rs.getDouble("Apart_Price"));
                 a.setNumber(rs.getString("Apart_Number"));
-                a.setView(rs.getString("View"));
+                a.setView(rs.getBoolean("View"));
                 
                 lst.add(a);
             }
@@ -196,11 +195,11 @@ public class ApartmentDAO {
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, a.getNumber());
             pstm.setInt(2, a.getFloor());
-            pstm.setBoolean(3,  "Có".equals(a.isView()));
+            pstm.setBoolean(3, a.isView());
             pstm.setString(4, a.getAcreage());
             pstm.setDouble(5, a.getPrice());
             pstm.setString(6, a.getDescribe());
-            pstm.setBoolean(7,  "Có người".equals(a.isAvaialbe()));
+            pstm.setBoolean(7, a.isAvaialbe());
             pstm.setInt(8, a.getIdCate());
             pstm.setString(9, a.getIdBuild());
             return pstm.executeUpdate();
@@ -222,10 +221,10 @@ public class ApartmentDAO {
         }
         return -1;
     }
+    
     public int update(ApartmentModel a){
         try{
             String sql = "update APARTMENTS set "
-                    + "Apart_Number = ?, "
                     + "Apart_Floor = ?, "
                     + "Apart_View = ?, "
                     + "Apart_Acreage = ?, "
@@ -234,19 +233,18 @@ public class ApartmentDAO {
                     + "Apart_Available = ?, "
                     + "CateApart_ID = ?,"
                     + "Build_ID = ?"
-                    + " where Apart_id = ?";
+                    + " where Apart_Number = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-           pstm.setString(1, a.getNumber());
-            pstm.setInt(2, a.getFloor());
-            pstm.setBoolean(3, "Có".equals(a.isView()));
-            pstm.setString(4, a.getAcreage());
-            pstm.setDouble(5, a.getPrice());
-            pstm.setString(6, a.getDescribe());
-            pstm.setBoolean(7, "Có người".equals(a.isAvaialbe()));
-            pstm.setInt(8, a.getIdCate());
-            pstm.setString(9, a.getIdBuild());
-            pstm.setInt(10, a.getId());
+            pstm.setInt(1, a.getFloor());
+            pstm.setBoolean(2, a.isView());
+            pstm.setString(3, a.getAcreage());
+            pstm.setDouble(4, a.getPrice());
+            pstm.setString(5, a.getDescribe());
+            pstm.setBoolean(6, a.isAvaialbe());
+            pstm.setInt(7, a.getIdCate());
+            pstm.setString(8, a.getIdBuild());
+            pstm.setString(9, a.getNumber());
             return pstm.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();

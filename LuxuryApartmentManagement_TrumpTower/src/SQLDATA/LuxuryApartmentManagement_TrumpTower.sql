@@ -121,7 +121,8 @@ CREATE TABLE CUSTOMERS
 	Cus_PhoneNumber VARCHAR(11) UNIQUE,
 	Cus_Mail VARCHAR(50) UNIQUE,
 	Cus_Note NVARCHAR(255) DEFAULT  N'Không có chú thích',
-	Cus_Relative VARCHAR(20)
+	Cus_Relative VARCHAR(20),
+        CONSTRAINT FK_Customer_Relative FOREIGN KEY (Cus_Relative) REFERENCES CUSTOMERS(Cus_ID),
 )
 
 
@@ -412,4 +413,4 @@ begin
 	on p.apart_id = a.apart_id
 end
 go
-
+--alter table CUSTOMERS add constraint CUSTOMERS foreign key (Cus_Relative) references CUSTOMERS(Cus_ID)

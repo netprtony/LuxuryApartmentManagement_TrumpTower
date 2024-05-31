@@ -6,13 +6,9 @@ import MODEL.ComboBoxItem;
 import DAO.ApartmentDAO;
 import DAO.BuildingDAO;
 import DAO.CategoryApartmentDAO;
-import DAO.ServiceDAO;
 import MODEL.ApartmentModel;
 import MODEL.BuildingModel;
 import MODEL.CategoryApartmentModel;
-import MODEL.ContractModel;
-import MODEL.CustomerModel;
-import MODEL.ServiceModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -24,15 +20,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class ApartmentsGUI extends javax.swing.JFrame {
     List<ApartmentModel> lst = new ArrayList<>();
-    List<ContractModel> lstContr = new ArrayList<>();
-    List<CustomerModel> lstCus = new ArrayList<>();
-    List<ServiceModel> lstSer = new ArrayList<>();
     DefaultTableModel tblModel  = new DefaultTableModel();
-    DefaultComboBoxModel CboModelCate = new DefaultComboBoxModel();
-    DefaultComboBoxModel CboModelBui = new DefaultComboBoxModel();
+    
+    BuildingDAO daoBui = new BuildingDAO();
     ApartmentDAO apdao = new ApartmentDAO();
     CategoryApartmentDAO cateDapo = new CategoryApartmentDAO();
-    ServiceDAO Serdao = new ServiceDAO();
     int index = 0;
  
     public ApartmentsGUI() {
@@ -233,7 +225,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cbo_km, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbo_exchange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +289,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
@@ -324,7 +316,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -334,7 +326,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 424, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
 
@@ -384,20 +376,20 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_apartmentDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_apartmentDetailMouseClicked
-
+        showForm();
     }//GEN-LAST:event_tbl_apartmentDetailMouseClicked
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         ApartmentModel a = new ApartmentModel();
         a.setAcreage(tf_detailAcrage.getText() + " " + cbo_km.getSelectedItem().toString());
-        a.setAvaialbe(ck_isViewDetail.isSelected() ? "Có người" : "Trống");
+        a.setAvaialbe(ck_isViewDetail.isSelected());
         a.setDescribe(tf_detailDes.getText());
         a.setFloor(Integer.parseInt(tf_detailFloor.getText()));
         a.setIdBuild(returnIdComboBox(cbo_detailBuild));
         a.setIdCate(Integer.parseInt(returnIdComboBox(cbo_detailCateAp)));
         a.setNumber(tf_detailNumber.getText());
         a.setPrice(CurrencyConverter(Double.parseDouble(tf_detailPrice.getText()), cbo_exchange.getSelectedItem().toString()));
-        a.setView(ck_isViewDetail.isSelected() ? "Có" : "Không có");
+        a.setView(ck_isViewDetail.isSelected());
         int x = apdao.add(a);
         if(x > 0){
             JOptionPane.showMessageDialog(this, "Thêm thành công");
@@ -410,15 +402,16 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         ApartmentModel a = new ApartmentModel();
         a.setAcreage(tf_detailAcrage.getText() + " " + cbo_km.getSelectedItem().toString());
-        a.setAvaialbe(ck_isViewDetail.isSelected() ? "Có người" : "Trống");
+        a.setAvaialbe(ck_isViewDetail.isSelected());
         a.setDescribe(tf_detailDes.getText());
         a.setFloor(Integer.parseInt(tf_detailFloor.getText()));
         a.setIdBuild(returnIdComboBox(cbo_detailBuild));
         a.setIdCate(Integer.parseInt(returnIdComboBox(cbo_detailCateAp)));
         a.setNumber(tf_detailNumber.getText());
         a.setPrice(CurrencyConverter(Double.parseDouble(tf_detailPrice.getText()), cbo_exchange.getSelectedItem().toString()));
-        a.setView(ck_isViewDetail.isSelected() ? "Có" : "Không có");
-        if(apdao.update(a) > 0){
+        a.setView(ck_isViewDetail.isSelected());
+        int x = apdao.update(a);
+        if(x > 0){
             JOptionPane.showMessageDialog(this, "Đã sửa thành công");
             FillTableData();
         }else{
@@ -427,7 +420,8 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
-        if(apdao.delete(tf_detailPrice.getText()) > 0){
+        int x = apdao.delete(tf_detailNumber.getText());
+        if(x > 0){
             FillTableData();
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
@@ -461,16 +455,54 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_newActionPerformed
     public String returnIdComboBox(JComboBox cbo){
        ComboBoxItem sel = (ComboBoxItem) cbo.getSelectedItem();
-       return sel != null ? sel.getId() :  "";
+       return sel != null ? sel.getId() :  null;
     }
-    
+    public void selectItemByName(JComboBox cbo, String name){
+        DefaultComboBoxModel<ComboBoxItem> model = (DefaultComboBoxModel<ComboBoxItem>) cbo.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            ComboBoxItem item = model.getElementAt(i);
+            if (item.getName().equals(name)) {
+                cbo.setSelectedItem(item);
+                break;
+            }
+        }
+    }
+    public void selectItemByID(JComboBox cbo, String id){
+        DefaultComboBoxModel<ComboBoxItem> model = (DefaultComboBoxModel<ComboBoxItem>) cbo.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            ComboBoxItem item = model.getElementAt(i);
+            if (item.getId().equals(id)) {
+                cbo.setSelectedItem(item);
+                break;
+            }
+        }
+    }
+    public void showForm(){
+        index = tbl_apartmentDetail.getSelectedRow();
+        
+        if(index  < 0 ){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn 1 dòng trên bảng này!");
+        }else{
+            ApartmentModel a = new ApartmentModel();
+            a = lst.get(index);
+            tf_detailAcrage.setText(a.getAcreage());
+            tf_detailDes.setText(a.getDescribe());
+            tf_detailFloor.setText(a.getFloor() + "");
+            tf_detailNumber.setText(a.getNumber());
+            tf_detailPrice.setText(a.getPrice() +  "");
+            ck_isViewDetail.setSelected(a.isView());
+            ck_isvailableDetail1.setSelected(a.isAvaialbe());
+            selectItemByID(cbo_detailBuild, a.getIdBuild());
+            selectItemByName(cbo_detailCateAp, a.getNameCate());
+        }
+    }
     public void FillTableData() {
-        lst = apdao.readAll();
+        ApartmentDAO dao = new ApartmentDAO();
+        lst = dao.readAll();
         tblModel = (DefaultTableModel) tbl_apartmentDetail.getModel();
         tblModel.setRowCount(0);
         for (ApartmentModel apr : lst) {
             Object[] r = new Object[]{
-                apr.getId(),
                 apr.getNumber(),
                 apr.getFloor(),
                 apr.isView(),
@@ -498,22 +530,27 @@ public class ApartmentsGUI extends javax.swing.JFrame {
   
   
     public void loadCboBuildDetail(){
-        BuildingDAO dao = new BuildingDAO();
-        List<BuildingModel> lst = dao.readAll();
-        CboModelBui.removeAllElements();
-        for (BuildingModel bui : lst) {
-            CboModelBui.addElement(new ComboBoxItem(bui.getId(), bui.getName()));
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_detailBuild.getModel();
+        List<BuildingModel> lstBUi = daoBui.readAll();
+        model.removeAllElements();
+        for (BuildingModel bui : lstBUi) {
+            model.addElement(new ComboBoxItem(bui.getId(), bui.getName()));
+           
         }
-        cbo_detailBuild.setModel(CboModelBui);
     }
     public void loadCboCateDetail(){
-        List<CategoryApartmentModel> lst = cateDapo.readAll();
-        CboModelCate.removeAllElements();
-        for (CategoryApartmentModel cate : lst) {
-            CboModelCate.addElement(new ComboBoxItem(cate.getId() + "", cate.getName() ));
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_detailCateAp.getModel();
+        List<CategoryApartmentModel> lstcateAp = cateDapo.readAll();
+        model.removeAllElements();
+        for (CategoryApartmentModel cate : lstcateAp) {
+            model.addElement(new ComboBoxItem(cate.getId() + "", cate.getName()));
         }
-        cbo_detailCateAp.setModel(CboModelCate);
     }
+     public String getSelectedBuildingId() {
+        ComboBoxItem selectedItem = (ComboBoxItem) cbo_detailBuild.getSelectedItem();
+        return selectedItem != null ? selectedItem.getId() : null;
+    }      
+
     public int findLargestValue(List<ApartmentModel> lst){
         int largestValue = 0;
         if(lst == null) return 0;

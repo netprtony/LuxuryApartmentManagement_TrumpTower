@@ -4,13 +4,17 @@
  */
 package GUI;
 
+import DAO.ApartmentDAO;
 import DAO.CategoryContractDAO;
 import DAO.ContractDAO;
+import DAO.CustomerDAO;
 import DAO.DetailContractDAO;
 import DAO.ServiceDAO;
+import MODEL.ApartmentModel;
 import MODEL.CategoryContractModel;
 import MODEL.ComboBoxItem;
 import MODEL.ContractModel;
+import MODEL.CustomerModel;
 import MODEL.DetailContractModel;
 import MODEL.ServiceModel;
 import java.util.ArrayList;
@@ -25,25 +29,25 @@ import javax.swing.table.DefaultTableModel;
  * @author netprtony
  */
 public final class ContractGUI extends javax.swing.JFrame {
-    DefaultTableModel tblModel  = new DefaultTableModel();
-    List<ContractModel> lstContract = new ArrayList<>();
-    List<DetailContractModel> lstDetailCon = new ArrayList<>();
-    List<CategoryContractModel> lstCateCon = new ArrayList<>();
-    List<ServiceModel> lstService = new ArrayList<>();
     int index = 0;
     
+    DefaultTableModel tblModel = new DefaultTableModel();
     ContractDAO daoCon = new ContractDAO();
     DetailContractDAO daoDetail = new DetailContractDAO();
     CategoryContractDAO daoCateCon = new CategoryContractDAO();
     ServiceDAO daoService = new ServiceDAO();
+    ApartmentDAO daoAp = new ApartmentDAO();
+    CustomerDAO daoCus = new CustomerDAO();
+    List<ContractModel> lstGet = new ArrayList<>();
+    List<DetailContractModel> lstCateGet = new ArrayList<>();
     
-    DefaultComboBoxModel CboContractCate = new DefaultComboBoxModel();
-    DefaultComboBoxModel CboService = new DefaultComboBoxModel();
     
     public ContractGUI() {
         initComponents();
         loadCboCateContract();
         loadCboService();
+        loadCboApartmentNumber();
+        loadCboCustomer();
         FillTableDataContract();
     }
     public String returnIdComboBox(JComboBox cbo){
@@ -51,30 +55,36 @@ public final class ContractGUI extends javax.swing.JFrame {
        return sel != null ? sel.getId() :  "";
     }
     public void loadCboCateContract(){
-       lstCateCon = daoCateCon.readAll();
-       CboContractCate.removeAllElements();
-      
-        for (CategoryContractModel cate : lstCateCon) {
-            CboContractCate.addElement(new ComboBoxItem(cate.getId() + "", cate.getName()));      
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_cate.getModel();
+        List<CategoryContractModel> lst = daoCateCon.readAll();
+        model.removeAllElements();
+        for (CategoryContractModel cate : lst) {
+            model.addElement(new ComboBoxItem(cate.getId() + "", cate.getName()));      
         }
-        cbo_cate.setModel(CboContractCate);
     }
     public void loadCboCustomer(){
-       lstCateCon = daoCateCon.readAll();
-       CboContractCate.removeAllElements();
-      
-        for (CategoryContractModel cate : lstCateCon) {
-            CboContractCate.addElement(new ComboBoxItem(cate.getId() + "", cate.getName()));      
+      DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_customer.getModel();
+       List<CustomerModel> lst = daoCus.readAll();
+       model.removeAllElements();
+        for (CustomerModel c : lst) {
+            model.addElement(new ComboBoxItem(c.getId(), c.getName()));      
         }
-        cbo_cate.setModel(CboContractCate);
     }
     public void loadCboService(){
-       lstService = daoService.readAll();
-       CboService.removeAllElements();
-        for (ServiceModel s : lstService) {
-            CboService.addElement(new ComboBoxItem(s.getId() + "", s.getName()));      
+       List<ServiceModel> lst = daoService.readAll();
+       DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_SerID.getModel();
+       model.removeAllElements();
+        for (ServiceModel s : lst) {
+            model.addElement(new ComboBoxItem(s.getId() + "", s.getName()));      
         }
-        cbo_SerID.setModel(CboService);
+    }
+    public void loadCboApartmentNumber(){
+       List<ApartmentModel>  lst = daoAp.readAll();
+       DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_SerID.getModel();
+       model.removeAllElements();
+        for (ApartmentModel a : lst) {
+            model.addElement(a);      
+        }
     }
     public void clearForm(){
         tf_ConId.setText("");
@@ -85,28 +95,30 @@ public final class ContractGUI extends javax.swing.JFrame {
         cbo_cate.setSelectedItem(null);
     }
     public void FillTableDataContract() {
-        lstContract = daoCon.readAll();
+        
+        List<ContractModel> lst = daoCon.readAll();
         tblModel = (DefaultTableModel) tbl_Contract.getModel();
         tblModel.setRowCount(0);
-        for (ContractModel con : lstContract) {
+        for (ContractModel con : lst) {
             Object[] r = new Object[]{
                con.getId(),
                con.getDate(),
                con.isStatus(),
-               con.getIdCate(),
-               con.getIdCus(),
-               con.getIdAprt()
+               con.getCateName(),
+               con.getNameCus(),
+               con.getNumberApart(),
+               con.getServiceInUser(),
             };
             tblModel.addRow(r);                 
         }
         tbl_Contract.setModel(tblModel);
     }
-     public void FillTableDataDetailContractByIdContract(int id) {
+     public void FillDetailContractByIdContract(int id) {
          
-        lstDetailCon = daoDetail.readAllByIdContract(id);
+        List<DetailContractModel> lst = daoDetail.readAllByIdContract(id);
         tblModel = (DefaultTableModel) tbl_DetailContract.getModel();
         tblModel.setRowCount(0);
-        for (DetailContractModel de : lstDetailCon) {
+        for (DetailContractModel de : lst) {
             Object[] r = new Object[]{
                de.getSerID(),
                de.getQuantity()
@@ -120,13 +132,14 @@ public final class ContractGUI extends javax.swing.JFrame {
         if(index < 0){
             JOptionPane.showMessageDialog(this, "Please select random row in this table!");
         }else{
+            
             ContractModel con = new ContractModel();
-            con = lstContract.get(index);
+            con = lstGet.get(index);
             tf_ConId.setText(con.getId() + "");
-            cbo_Apartment.setSelectedItem(con.getIdAprt());
-            cbo_customer.setSelectedItem(con.getNameCus());
+            selectItemByName(cbo_Apartment, con.getNumberApart());
+            selectItemByName(cbo_customer, con.getIdCus());
             tf_conDate.setText(con.getDate());
-            cbo_cate.setSelectedItem(con.getIdCate());
+            selectItemByName(cbo_cate, con.getCateName());
         }
         
     }
@@ -136,17 +149,31 @@ public final class ContractGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select random row in this table!");
         }else{
             DetailContractModel de = new DetailContractModel();
-            de = lstDetailCon.get(index);
-            cbo_SerID.setSelectedItem(de.getSerID());
+            de = lstCateGet.get(index);
+            selectItemByID(cbo_SerID, de.getSerID() + "");
             tf_quantity.setValue(de.getQuantity());
         }
-        
     }
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+    public void selectItemByName(JComboBox cbo, String name){
+        DefaultComboBoxModel<ComboBoxItem> model = (DefaultComboBoxModel<ComboBoxItem>) cbo.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            ComboBoxItem item = model.getElementAt(i);
+            if (item.getName().equals(name)) {
+                cbo.setSelectedItem(item);
+                break;
+            }
+        }
+    }
+    public void selectItemByID(JComboBox cbo, String id){
+        DefaultComboBoxModel<ComboBoxItem> model = (DefaultComboBoxModel<ComboBoxItem>) cbo.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            ComboBoxItem item = model.getElementAt(i);
+            if (item.getId().equals(id)) {
+                cbo.setSelectedItem(item);
+                break;
+            }
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -601,7 +628,7 @@ public final class ContractGUI extends javax.swing.JFrame {
     private void tbl_ContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ContractMouseClicked
         showFromContract();
         index = tbl_Contract.getSelectedRow();
-        FillTableDataDetailContractByIdContract(index);
+        FillDetailContractByIdContract(index);
     }//GEN-LAST:event_tbl_ContractMouseClicked
 
     private void btn_bui_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bui_searchActionPerformed
@@ -616,7 +643,7 @@ public final class ContractGUI extends javax.swing.JFrame {
         de.setQuantity(Integer.parseInt(tf_quantity.getValue().toString()));
         if(daoDetail.add(de) > 0){
             JOptionPane.showMessageDialog(this, "Thêm thành công");
-            FillTableDataDetailContractByIdContract(index);
+            FillDetailContractByIdContract(index);
             clearForm();
         }else{
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
@@ -630,18 +657,18 @@ public final class ContractGUI extends javax.swing.JFrame {
         de.setSerID(Integer.parseInt(returnIdComboBox(cbo_SerID)));
         de.setQuantity(Integer.parseInt(tf_quantity.getValue().toString()));
         if(daoDetail.update(de) > 0){
-            JOptionPane.showMessageDialog(this, "Sua thành công");
-            FillTableDataDetailContractByIdContract(index);
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+            FillDetailContractByIdContract(index);
             clearForm();
         }else{
-            JOptionPane.showMessageDialog(this, "Sua thất bại");
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
         }
     }//GEN-LAST:event_btn_detailUpdateActionPerformed
 
     private void btn_detailDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailDeleteActionPerformed
         DetailContractModel d = new DetailContractModel();
        if(daoDetail.delete(Integer.parseInt(tf_ConId.getText()), Integer.parseInt(returnIdComboBox(cbo_SerID))) > 0){
-            FillTableDataDetailContractByIdContract(index);
+            FillDetailContractByIdContract(index);
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
         }else{

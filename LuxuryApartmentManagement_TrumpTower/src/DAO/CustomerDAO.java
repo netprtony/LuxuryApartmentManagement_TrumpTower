@@ -34,6 +34,7 @@ public class CustomerDAO {
                 cus.setPhoneNumber(rs.getString("Cus_PhoneNumber"));
                 cus.setMail(rs.getString("Cus_Mail"));
                 cus.setNote(rs.getString("Cus_Note"));
+                cus.setNameRelative(rs.getString("Relative"));
                 lst.add(cus);
             }
         } catch (Exception e) {

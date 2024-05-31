@@ -12,15 +12,22 @@ package MODEL;
  */
 public class ContractModel {
     private int id;
+    
     private String date;
+    
     private boolean status;
+    
     private int idCate;
+    private String cateName; 
+    
     private String idCus;
     private String nameCus;
+    
     private int idAprt;
     private String numberApart;
+    
     private int ServiceInUser;
-    private String cateName; 
+    
 
     public void setCateName(String cateName) {
         this.cateName = cateName;

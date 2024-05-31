@@ -18,6 +18,15 @@ public class CustomerModel {
     private String mail;
     private String note;
     private String relative;
+    private String nameRelative;
+
+    public void setNameRelative(String nameRelative) {
+        this.nameRelative = nameRelative;
+    }
+
+    public String getNameRelative() {
+        return nameRelative;
+    }
     public CustomerModel() {
     }
 

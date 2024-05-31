@@ -56,10 +56,9 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 204));
         jLabel6.setText("Trump Tower");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\donald-trump2.png")); // NOI18N
         jLabel2.setToolTipText("");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icon/pngwing.com.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("E:\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\pngwing.com.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -90,15 +89,13 @@ public class SignUp extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
@@ -272,7 +269,7 @@ public class SignUp extends javax.swing.JFrame {
         String username = tf_username.getText();
         String pass  = String.valueOf(pf_pass.getPassword());
         String retypePass = String.valueOf(pf_pass2.getPassword());
-        if(pass != retypePass) {
+        if(!pass.equals(retypePass)) {
             JOptionPane.showMessageDialog(null, "Nhập lại mật khẩu không khớp nhau. Hãy thử lại!");
             return;
         }

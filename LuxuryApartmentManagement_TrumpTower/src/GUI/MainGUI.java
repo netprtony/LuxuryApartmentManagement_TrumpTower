@@ -24,7 +24,7 @@ public class MainGUI extends javax.swing.JFrame {
     Color Default, Click;
     public MainGUI() {
         initComponents();
-        setLocationRelativeTo(this);
+        setLocationRelativeTo(null);
         Default = new Color(153,102,0);
         Click = new Color(255,204,102);
         pnlApartment.setBackground(Default);

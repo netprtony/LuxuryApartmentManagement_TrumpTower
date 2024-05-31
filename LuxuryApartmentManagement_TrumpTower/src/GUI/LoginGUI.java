@@ -32,8 +32,6 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
@@ -150,11 +148,6 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 204));
         jLabel6.setText("Trump Tower");
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\donald-trump2.png")); // NOI18N
-        jLabel10.setToolTipText("");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icon/pngwing.com.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -166,33 +159,18 @@ public class LoginGUI extends javax.swing.JFrame {
                         .addComponent(jLabel9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(390, 390, 390)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel8)))
                 .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116))))
+                .addGap(0, 118, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(jLabel8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(364, 364, 364)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
@@ -239,11 +217,11 @@ public class LoginGUI extends javax.swing.JFrame {
         String user = tf_username.getText();
         String pass = String.valueOf(pf_pass.getPassword());
         AccountModel ac1 = ac.Login(user, pass);
-        if(ac1 != null){
+        if(ac1 == null){
             JOptionPane.showMessageDialog(null, "Nhập tài khoản hoặc mật khẩu không đúng");
         }else{
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
-            HomeGUI show = new HomeGUI();
+            MainGUI show = new MainGUI();
             show.setVisible(true);
             this.dispose();
         }
@@ -259,11 +237,9 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_login;
     private javax.swing.JButton btn_signUp;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

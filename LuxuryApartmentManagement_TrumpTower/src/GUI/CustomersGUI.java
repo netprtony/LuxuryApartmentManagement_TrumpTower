@@ -19,6 +19,7 @@ public class CustomersGUI extends javax.swing.JFrame {
      */
     public CustomersGUI() {
         initComponents();
+        
     }
 
     /**
