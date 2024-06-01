@@ -20,7 +20,7 @@ public class DetailContractDAO {
     public List<DetailContractModel> readAllByIdContract(int id){
         List<DetailContractModel> lst = new ArrayList<>();
         try {
-            String  sql = "select s.Serv_Name, dc.quantity from DETAIL_CONTRACTS dc left join SERVICES s\n" +
+            String  sql = "select s.Serv_Name, dc.quantity from DETAIL_CONTRACTS dc left join SERVICES s \n" +
                             "on dc.Serv_ID = s.Serv_ID where dc.Contr_ID = ?";
             Connection con = DBConnect.openConnection();
             Statement stm = con.createStatement();
@@ -30,7 +30,7 @@ public class DetailContractDAO {
             lst.clear();
             while (rs.next()) {                
                 DetailContractModel del = new DetailContractModel();
-                del.setSerID(rs.getInt("Serv_ID"));
+                del.setSerID(rs.getInt("Serv_Name"));
                 del.setQuantity(rs.getInt("quantity"));
                 lst.add(del);
             }

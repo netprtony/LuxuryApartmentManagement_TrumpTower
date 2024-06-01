@@ -17,20 +17,12 @@ public class CustomerModel {
     private String phoneNumber;
     private String mail;
     private String note;
-    private String relative;
-    private String nameRelative;
 
-    public void setNameRelative(String nameRelative) {
-        this.nameRelative = nameRelative;
-    }
-
-    public String getNameRelative() {
-        return nameRelative;
-    }
+    
     public CustomerModel() {
     }
 
-    public CustomerModel(String id, String name, String birth, String homeTower, String gender, String phoneNumber, String mail, String note, String relative) {
+    public CustomerModel(String id, String name, String birth, String homeTower, String gender, String phoneNumber, String mail, String note) {
         this.id = id;
         this.name = name;
         this.birth = birth;
@@ -39,15 +31,7 @@ public class CustomerModel {
         this.phoneNumber = phoneNumber;
         this.mail = mail;
         this.note = note;
-        this.relative = relative;
-    }
 
-    public void setRelative(String relative) {
-        this.relative = relative;
-    }
-
-    public String getRelative() {
-        return relative;
     }
 
     public String getId() {

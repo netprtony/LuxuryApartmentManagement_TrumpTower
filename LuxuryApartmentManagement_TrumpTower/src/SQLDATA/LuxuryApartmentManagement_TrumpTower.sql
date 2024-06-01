@@ -85,30 +85,32 @@ CREATE TABLE APARTMENTS
 	CONSTRAINT FK_Aparts_Cate FOREIGN KEY (CateApart_ID) REFERENCES CATEGORIZE_APARTMENTS(CateApart_ID),
 )
 GO
-INSERT INTO APARTMENTS (Apart_Number, Apart_Floor, Apart_Acreage, Apart_Price, CateApart_ID, Build_ID)
-VAlUES	('A001', 1, '1,092 ft²', 3150000, 1, 'A'),
-		('A002',1, '1,092 ft²', 3150000, 6, 'C'),
-		('A003',3, '1,092 ft²', 3150000, 3, 'B'),
-		('A004',1, '1,092 ft²', 3150000, 2, 'A'),
-		('A005',14, '1,092 ft²', 3150000, 1, 'C'),
-		('A006',1, '1,092 ft²', 3150000, 1, 'A'),
-		('A007',22, '1,092 ft²', 3150000, 6, 'C'),
-		('A008',1, '1,092 ft²', 3150000, 7, 'A'),
-		('A009',11, '1,092 ft²', 3150000, 8, 'A'),
-		('A101',14, '1,092 ft²', 3150000, 3, 'B'),
-		('A102',15, '1,092 ft²', 3150000, 4, 'G'),
-		('A103',16, '1,092 ft²', 3150000, 1, 'H'),
-		('A104',17, '1,092 ft²', 3150000, 1, 'A'),
-		('A105',18, '1,092 ft²', 3150000, 2, 'E'),
-		('A106',15, '1,092 ft²', 3150000, 1, 'A'),
-		('A107',13, '1,092 ft²', 3150000, 1, 'G'),
-		('A108',13, '1,092 ft²', 3150000, 1, 'A'),
-		('A109',14, '1,092 ft²', 3150000, 2, 'A'),
-		('A111',11, '1,092 ft²', 3150000, 1, 'E'),
-		('A112',12, '1,092 ft²', 3150000, 5, 'D'),
-		('A113',13, '1,092 ft²', 3150000, 1, 'C'),
-		('A114',14, '1,092 ft²', 3150000, 1, 'A'),
-		('A115',15, '1,092 ft²', 3150000, 2, 'A')
+INSERT INTO APARTMENTS (Apart_Number, Apart_Floor, Apart_Acreage, Apart_Price, CateApart_ID, Build_ID, Apart_Available)
+VAlUES	('A001', 1, '1,092 ft²', 3150000, 1, 'A', 1),
+		('A002',1, '1,092 ft²', 3150000, 6, 'C', 1),
+		('A003',3, '1,092 ft²', 3150000, 3, 'B', 1),
+		('A004',1, '1,092 ft²', 3150000, 2, 'A', 1),
+		('A005',14, '1,092 ft²', 3150000, 1, 'C', 1),
+		('A006',1, '1,092 ft²', 3150000, 1, 'A', 1),
+		('A007',22, '1,092 ft²', 3150000, 6, 'C', 1),
+		('A008',1, '1,092 ft²', 3150000, 7, 'A', 1),
+		('A009',11, '1,092 ft²', 3150000, 8, 'A', 1),
+		('A101',14, '1,092 ft²', 3150000, 3, 'B', 1),
+		('A102',15, '1,092 ft²', 3150000, 4, 'G', 1),
+		('A103',16, '1,092 ft²', 3150000, 1, 'H', 1),
+		('A104',17, '1,092 ft²', 3150000, 1, 'A', 1),
+		('A105',18, '1,092 ft²', 3150000, 2, 'E', 1),
+		('A106',15, '1,092 ft²', 3150000, 1, 'A', 1),
+		('A107',13, '1,092 ft²', 3150000, 1, 'G', 1),
+		('A108',13, '1,092 ft²', 3150000, 1, 'A', 1),
+		('A109',14, '1,092 ft²', 3150000, 2, 'A', 1),
+		('A111',11, '1,092 ft²', 3150000, 1, 'E', 1),
+		('A112',12, '1,092 ft²', 3150000, 5, 'D', 1),
+		('A113',13, '1,092 ft²', 3150000, 1, 'C', 1),
+		('A114',14, '1,092 ft²', 3150000, 1, 'A', 1),
+		('A115',15, '1,092 ft²', 3150000, 2, 'A', 1),
+		('A116',15, '1,092 ft²', 3150000, 2, 'A', 0),
+		('A117',15, '1,092 ft²', 3150000, 2, 'A', 0)
 GO
 --===================================================================================================
 CREATE TABLE CUSTOMERS
@@ -121,8 +123,6 @@ CREATE TABLE CUSTOMERS
 	Cus_PhoneNumber VARCHAR(11) UNIQUE,
 	Cus_Mail VARCHAR(50) UNIQUE,
 	Cus_Note NVARCHAR(255) DEFAULT  N'Không có chú thích',
-	Cus_Relative VARCHAR(20),
-        CONSTRAINT FK_Customer_Relative FOREIGN KEY (Cus_Relative) REFERENCES CUSTOMERS(Cus_ID),
 )
 
 
@@ -145,6 +145,12 @@ INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, 
 ('079203020002', N'Huỳnh Nguyễn Tường Vy', '21/01/2005', N'Nhị Bình', N'Nữ', '0359369010', 'Hongnhoi10@gmail.com')
 INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
 ('079203020003', N'Huỳnh Mai Tường Vy', '23/12/2005', N'Nhị Bình', N'Nữ', '0359369012', 'Hongnhoi12@gmail.com')
+GO
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('0792030216907', N'Huỳnh Vĩ Khang', '28/05/2003', N'Hóc Môn', N'Nam', '0767487840', 'huynhvikhang913@gmail.com')
+GO
+INSERT INTO CUSTOMERS(Cus_ID, Cus_Name, Cus_BirDate, Cus_HomeTower, Cus_Gender, Cus_PhoneNumber,Cus_Mail) VAlUES
+('0792030216908', N'Đào Quí Mùi', '15/06/2003', N'Vĩnh Lộc', N'Nam', '0767487841', 'muidao156@gmail.com')
 GO
 --===================================================================================================
 CREATE TABLE CATEGORIZE_CONTRACTS
@@ -413,4 +419,16 @@ begin
 	on p.apart_id = a.apart_id
 end
 go
---alter table CUSTOMERS add constraint CUSTOMERS foreign key (Cus_Relative) references CUSTOMERS(Cus_ID)
+create proc USP_readApartmentEmpty
+as
+begin
+	select Apart_ID, Apart_Number from APARTMENTS where Apart_Available = 0
+end
+go
+create proc USP_readAllCustomerHaveNoContract
+as
+begin
+	select * from CUSTOMERS cus left join CONTRACTS con on cus.Cus_ID = con.Cus_ID where con.Cus_ID is null
+end
+go
+

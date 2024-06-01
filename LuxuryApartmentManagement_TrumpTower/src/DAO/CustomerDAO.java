@@ -34,7 +34,24 @@ public class CustomerDAO {
                 cus.setPhoneNumber(rs.getString("Cus_PhoneNumber"));
                 cus.setMail(rs.getString("Cus_Mail"));
                 cus.setNote(rs.getString("Cus_Note"));
-                cus.setNameRelative(rs.getString("Relative"));
+                lst.add(cus);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lst;
+    }
+    public List<CustomerModel> readAllCustomerHaveNoContract(){
+        List<CustomerModel> lst = new ArrayList<>();
+        try {
+            String  sql = "exec USP_readAllCustomerHaveNoContract";
+            Connection con = DBConnect.openConnection();
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {                
+                CustomerModel cus = new CustomerModel();
+                cus.setId(rs.getString("Cus_ID"));
+                cus.setName(rs.getString("Cus_Name"));
                 lst.add(cus);
             }
         } catch (Exception e) {

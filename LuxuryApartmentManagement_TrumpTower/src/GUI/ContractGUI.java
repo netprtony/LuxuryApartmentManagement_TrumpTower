@@ -38,9 +38,9 @@ public final class ContractGUI extends javax.swing.JFrame {
     ServiceDAO daoService = new ServiceDAO();
     ApartmentDAO daoAp = new ApartmentDAO();
     CustomerDAO daoCus = new CustomerDAO();
-    List<ContractModel> lstGet = new ArrayList<>();
-    List<DetailContractModel> lstCateGet = new ArrayList<>();
     
+    List<DetailContractModel> lstCateGet = new ArrayList<>();
+    List<ContractModel> lstget = new ArrayList<>();
     
     public ContractGUI() {
         initComponents();
@@ -64,7 +64,7 @@ public final class ContractGUI extends javax.swing.JFrame {
     }
     public void loadCboCustomer(){
       DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_customer.getModel();
-       List<CustomerModel> lst = daoCus.readAll();
+       List<CustomerModel> lst = daoCus.readAllCustomerHaveNoContract();
        model.removeAllElements();
         for (CustomerModel c : lst) {
             model.addElement(new ComboBoxItem(c.getId(), c.getName()));      
@@ -79,11 +79,11 @@ public final class ContractGUI extends javax.swing.JFrame {
         }
     }
     public void loadCboApartmentNumber(){
-       List<ApartmentModel>  lst = daoAp.readAll();
-       DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_SerID.getModel();
+       List<ApartmentModel>  lst = daoAp.getAllApartmentEmpty();
+       DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_Apartment.getModel();
        model.removeAllElements();
         for (ApartmentModel a : lst) {
-            model.addElement(a);      
+            model.addElement(new ComboBoxItem(a.getId() + "", a.getNumber()));      
         }
     }
     public void clearForm(){
@@ -129,17 +129,19 @@ public final class ContractGUI extends javax.swing.JFrame {
     }
     void showFromContract(){
         index = tbl_Contract.getSelectedRow();
+        
         if(index < 0){
             JOptionPane.showMessageDialog(this, "Please select random row in this table!");
         }else{
             
             ContractModel con = new ContractModel();
-            con = lstGet.get(index);
-            tf_ConId.setText(con.getId() + "");
+            con = lstget.get(index);
+            tf_ConId.setText(con.getId()+ "");
             selectItemByName(cbo_Apartment, con.getNumberApart());
             selectItemByName(cbo_customer, con.getIdCus());
             tf_conDate.setText(con.getDate());
             selectItemByName(cbo_cate, con.getCateName());
+            ck_status.setSelected(con.isStatus());
         }
         
     }
@@ -195,6 +197,8 @@ public final class ContractGUI extends javax.swing.JFrame {
         cbo_cate = new javax.swing.JComboBox<>();
         cbo_customer = new javax.swing.JComboBox<>();
         cbo_Apartment = new javax.swing.JComboBox<>();
+        btn_AparmentReload = new javax.swing.JButton();
+        btn_reloadCus = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_Contract = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -278,6 +282,20 @@ public final class ContractGUI extends javax.swing.JFrame {
         cbo_Apartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbo_Apartment.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
 
+        btn_AparmentReload.setText("Load Empty");
+        btn_AparmentReload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AparmentReloadActionPerformed(evt);
+            }
+        });
+
+        btn_reloadCus.setText("Refresh");
+        btn_reloadCus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reloadCusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -285,7 +303,6 @@ public final class ContractGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbo_Apartment, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ck_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -301,11 +318,18 @@ public final class ContractGUI extends javax.swing.JFrame {
                         .addComponent(btn_conUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_conDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(cbo_customer, javax.swing.GroupLayout.Alignment.LEADING, 0, 260, Short.MAX_VALUE)
-                        .addComponent(tf_ConId, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tf_conDate, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tf_ConId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_conDate, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbo_customer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_reloadCus))
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbo_Apartment, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_AparmentReload)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -322,12 +346,16 @@ public final class ContractGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbo_customer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbo_customer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_reloadCus))
+                .addGap(16, 16, 16)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbo_Apartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbo_Apartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_AparmentReload))
+                .addGap(10, 10, 10)
                 .addComponent(ck_status)
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -338,7 +366,7 @@ public final class ContractGUI extends javax.swing.JFrame {
                     .addComponent(btn_conAdd)
                     .addComponent(btn_conUpdate)
                     .addComponent(btn_conDelete))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -489,37 +517,35 @@ public final class ContractGUI extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(btn_detailAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_detailUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_detailUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_detailDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbo_SerID, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_quantity))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_detailDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbo_SerID, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6))
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbo_SerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(cbo_SerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(12, 12, 12)
+                .addComponent(tf_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_detailAdd)
                     .addComponent(btn_detailUpdate)
@@ -627,8 +653,7 @@ public final class ContractGUI extends javax.swing.JFrame {
 
     private void tbl_ContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ContractMouseClicked
         showFromContract();
-        index = tbl_Contract.getSelectedRow();
-        FillDetailContractByIdContract(index);
+        //FillDetailContractByIdContract(index);
     }//GEN-LAST:event_tbl_ContractMouseClicked
 
     private void btn_bui_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bui_searchActionPerformed
@@ -680,6 +705,14 @@ public final class ContractGUI extends javax.swing.JFrame {
         showFromDetail();
     }//GEN-LAST:event_tbl_DetailContractMouseClicked
 
+    private void btn_AparmentReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AparmentReloadActionPerformed
+        loadCboApartmentNumber();
+    }//GEN-LAST:event_btn_AparmentReloadActionPerformed
+
+    private void btn_reloadCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadCusActionPerformed
+        loadCboCustomer();
+    }//GEN-LAST:event_btn_reloadCusActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -716,6 +749,7 @@ public final class ContractGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_AparmentReload;
     private javax.swing.JButton btn_bui_search;
     private javax.swing.JButton btn_conAdd;
     private javax.swing.JButton btn_conDelete;
@@ -723,6 +757,7 @@ public final class ContractGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_detailAdd;
     private javax.swing.JButton btn_detailDelete;
     private javax.swing.JButton btn_detailUpdate;
+    private javax.swing.JButton btn_reloadCus;
     private javax.swing.JComboBox<String> cbo_Apartment;
     private javax.swing.JComboBox<String> cbo_SerID;
     private javax.swing.JComboBox<String> cbo_cate;

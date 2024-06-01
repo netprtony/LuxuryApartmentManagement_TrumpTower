@@ -57,6 +57,24 @@ public class ApartmentDAO {
         }
         return lstAp;
     }    
+    public List<ApartmentModel> getAllApartmentEmpty(){
+        List<ApartmentModel> lst = new ArrayList<>();
+        try {
+            String sql = "exec USP_readApartmentEmpty";
+            Connection con = DBConnect.openConnection();
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            lst.clear();
+            while (rs.next()) {                
+                ApartmentModel ap = new ApartmentModel();
+                ap.setId(rs.getInt("Apart_ID"));
+                ap.setNumber(rs.getString("Apart_Number"));
+                lst.add(ap);
+            }
+        } catch (Exception e) {
+        }
+        return lst;
+    }
     public List<CustomerModel> getInfoCustomerByApartmentNumber(String idApart){
         List<CustomerModel> lstCus = new ArrayList<>();
         try {
