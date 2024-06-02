@@ -345,7 +345,8 @@ public class CustomersGUI extends javax.swing.JFrame {
         c.setPhoneNumber(tb_phone.getText());
         c.setNote(tb_note.getText());
         c.setId(tb_id.getText());
-        if(cusDAO.add(c)>0){
+        int x = cusDAO.add(c);
+        if(x > 0){
             JOptionPane.showMessageDialog(this, "Thêm thành công");
             clearForm();
             FillTableData();

@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ProblemGUI extends javax.swing.JFrame {
     DefaultTableModel tblModel  = new DefaultTableModel();
-    DefaultComboBoxModel cboApart = new DefaultComboBoxModel();
+    DefaultComboBoxModel model = new DefaultComboBoxModel();
     ProblemsDAO dao = new ProblemsDAO();
     public ProblemGUI() {
         initComponents();
@@ -30,11 +30,10 @@ public class ProblemGUI extends javax.swing.JFrame {
     public void loadCboApartment(){
         ApartmentDAO dao = new ApartmentDAO();
         List<ApartmentModel> lst = dao.readAll();
-        cboApart.removeAllElements();
+        model.removeAllElements();
         for (ApartmentModel a : lst) {
-            cboApart.addElement(new ComboBoxItem(a.getId() + "", a.getNumber()));
+            model.addElement(new ComboBoxItem(a.getId() + "", a.getNumber()));
         }
-        cbo_apartment.setModel(cboApart);
     }
     void clearForm(){
         tf_date.setText("");

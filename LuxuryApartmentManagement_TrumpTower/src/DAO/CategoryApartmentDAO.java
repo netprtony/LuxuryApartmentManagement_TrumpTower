@@ -60,9 +60,9 @@ public class CategoryApartmentDAO {
     public int add(CategoryApartmentModel s){
         try {
             String sql=  "insert into CATEGORIZE_APARTMENTS"
-                    + "(CateApart_Name, CateApart_Price, CateApart_Explication) "
+                    + "(CateApart_Name, CateApart_Explication) "
                     + "values "
-                    + "( ?, ?)";
+                    + "(?, ?)";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, s.getName());
