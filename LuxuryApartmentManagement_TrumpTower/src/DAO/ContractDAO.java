@@ -70,7 +70,8 @@ public class ContractDAO {
             String sql=  "insert into CONTRACTS"
                     + "(Contr_Date, Contr_Status, CateCon_ID, Cus_ID, Apart_ID) "
                     + "values "
-                    + "(?, ?, ?, ?, ?)";
+                    + "(?, ?, ?, ?, ?) "
+                    + "exec USP_setApartmentAvailable ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, s.getDate());
@@ -78,18 +79,21 @@ public class ContractDAO {
             pstm.setInt(3, s.getIdCate());
             pstm.setString(4, s.getIdCus());
             pstm.setInt(5, s.getIdAprt());
+            pstm.setInt(6, s.getIdAprt());
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
     }
-    public int delete(int id){
+    public int delete(int id, String idApart){
         try {
-            String sql = "delete CONTRACTS where Contr_ID = ?";
+            String sql = "delete CONTRACTS where Contr_ID = ? "
+                    + "update Apartment set apart_avaiable = 0 where apart_id = ?";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setInt(1, id);
+            pstm.setString(2, idApart);
             return pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,21 +102,28 @@ public class ContractDAO {
     }
     public int update(ContractModel contr){
         try{
-            String sql = "update CONTRACTS set "
+            String sql = "USP_ChangeApartmentAvaiable ?, ?" 
+                    + "update CONTRACTS set "
                     + "Contr_Date = ?,"
                     + "Contr_Status = ?,"
                     + "CateCon_ID = ?,"
                     + "Cus_ID = ?,"
                     + "Apart_ID = ?"
-                    + " where Contr_ID = ?";
+                    + " where Contr_ID = ? ";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, contr.getDate());
-            pstm.setBoolean(2, contr.isStatus());
-            pstm.setInt(3, contr.getIdCate());
-            pstm.setString(4, contr.getIdCus());
-            pstm.setInt(5, contr.getIdAprt());
-            pstm.setInt(6, contr.getId());
+            pstm.setString(1, contr.getIdCus());
+            pstm.setString(2, contr.getIdCus());
+            pstm.setInt(3, contr.getIdAprt());
+            pstm.setString(4, contr.getDate());
+            pstm.setBoolean(5, contr.isStatus());
+            pstm.setInt(6, contr.getIdCate());
+            pstm.setString(7, contr.getIdCus());
+            pstm.setInt(8, contr.getIdAprt());
+            pstm.setInt(9, contr.getId());
+            
+            pstm.setString(8, contr.getIdCus());
+            pstm.setString(9, contr.getIdCus());
             return pstm.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();

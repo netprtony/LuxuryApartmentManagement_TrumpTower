@@ -393,12 +393,14 @@ begin
 	a.Apart_Number
 end
 go
-create proc USP_ChangeApartment
+create proc USP_ChangeApartmentAvaiable
 @CustomerID varchar(20),
-@ApartmentIdOld int,
-@ApartmentIdNew varchar(100)
+@ApartmentIdNew int
 as
-begin
+begin   
+	DECLARE @ApartmentIdOld int
+    set @ApartmentIdOld = (select Apart_ID from CONTRACTS where cus_ID = @CustomerID) 
+
 	update CONTRACTS
 	set  Apart_ID = @ApartmentIdNew
 	where Cus_ID = @CustomerID and Apart_ID = @ApartmentIdOld
@@ -429,6 +431,13 @@ create proc USP_readAllCustomerHaveNoContract
 as
 begin
 	select * from CUSTOMERS cus left join CONTRACTS con on cus.Cus_ID = con.Cus_ID where con.Cus_ID is null
+end
+go
+create proc USP_setApartmentAvailable
+@numberApartment int
+as
+begin
+    update APARTMENTS set Apart_Avaiable = 1 where Apart_Number = @numberApartment
 end
 go
 

@@ -632,17 +632,17 @@ public final class ContractGUI extends javax.swing.JFrame {
         c.setStatus(ck_status.isSelected());
         c.setIdCus(returnIdComboBox(cbo_customer));
         if(daoCon.update(c) > 0){
-            JOptionPane.showMessageDialog(this, "Sua thành công");
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
             FillTableDataContract();
             clearForm();
         }else{
-            JOptionPane.showMessageDialog(this, "Sua thất bại");
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
         }
     }//GEN-LAST:event_btn_conUpdateActionPerformed
 
     private void btn_conDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conDeleteActionPerformed
        ContractModel c = new ContractModel();
-       if(daoCon.delete(Integer.parseInt(tf_ConId.getText())) > 0){
+       if(daoCon.delete(Integer.parseInt(tf_ConId.getText()), returnIdComboBox(cbo_Apartment) + "") > 0){
             FillTableDataContract();
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
