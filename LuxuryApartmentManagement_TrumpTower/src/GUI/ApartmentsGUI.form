@@ -121,7 +121,7 @@
                                   <Component id="jScrollPane10" min="-2" pref="403" max="-2" attributes="0"/>
                                   <Component id="jPanel12" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="109" max="32767" attributes="0"/>
+                              <EmptySpace pref="10" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -410,6 +410,9 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tf_detailNumberFocusLost"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btn_createNumberApr">
                           <Properties>
@@ -429,6 +432,9 @@
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="tf_detailFloor">
+                          <Events>
+                            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tf_detailFloorFocusLost"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JCheckBox" name="ck_isvailableDetail1">
                           <Properties>

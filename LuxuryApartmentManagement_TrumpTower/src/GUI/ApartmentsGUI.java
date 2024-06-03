@@ -110,6 +110,11 @@ public class ApartmentsGUI extends javax.swing.JFrame {
 
         tf_detailNumber.setEditable(false);
         tf_detailNumber.setEnabled(false);
+        tf_detailNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tf_detailNumberFocusLost(evt);
+            }
+        });
 
         btn_createNumberApr.setText("Create");
         btn_createNumberApr.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +132,12 @@ public class ApartmentsGUI extends javax.swing.JFrame {
         ck_IsCusNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ck_IsCusNumberActionPerformed(evt);
+            }
+        });
+
+        tf_detailFloor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tf_detailFloorFocusLost(evt);
             }
         });
 
@@ -327,7 +338,7 @@ public class ApartmentsGUI extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Detail", jPanel7);
@@ -453,9 +464,40 @@ public class ApartmentsGUI extends javax.swing.JFrame {
     private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
         clearForm();
     }//GEN-LAST:event_btn_newActionPerformed
+
+    private void tf_detailNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_detailNumberFocusLost
+        if(ck_IsCusNumber.isSelected() == true){
+            String number = tf_detailNumber.getText();
+            String reg = "^[A-Z][0-9]+$";
+            if(number.length() > 0){
+               if(!number.matches(reg)){
+                    JOptionPane.showMessageDialog(rootPane, "Số phòng không cho phép, sai định dạng \n VD: A101, B123");
+                    tf_detailNumber.requestFocus();
+                }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Không được trống số phòng\n Tự động tạo số phòng bên dưới");
+                tf_detailNumber.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_tf_detailNumberFocusLost
+
+    private void tf_detailFloorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_detailFloorFocusLost
+        if(!isNumeric(tf_detailFloor.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Phải là ký tự số cho số lầu");
+            tf_detailFloor.requestFocus();
+        }
+    }//GEN-LAST:event_tf_detailFloorFocusLost
     public String returnIdComboBox(JComboBox cbo){
        ComboBoxItem sel = (ComboBoxItem) cbo.getSelectedItem();
        return sel != null ? sel.getId() :  null;
+    }
+    public static boolean isNumeric(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
     public void selectItemByName(JComboBox cbo, String name){
         DefaultComboBoxModel<ComboBoxItem> model = (DefaultComboBoxModel<ComboBoxItem>) cbo.getModel();
