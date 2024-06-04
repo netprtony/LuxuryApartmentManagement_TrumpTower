@@ -12,12 +12,12 @@ public class AccountModel {
     private String user;
     private String name;
     private String password;
-    private String role;
+    private Boolean role;
 
     public AccountModel() {
     }
 
-    public AccountModel(String user, String name, String password, String role) {
+    public AccountModel(String user, String name, String password, Boolean role) {
         this.user = user;
         this.name = name;
         this.password = password;
@@ -36,7 +36,7 @@ public class AccountModel {
         return password;
     }
 
-    public String getRole() {
+    public Boolean isRole() {
         return role;
     }
 
@@ -52,7 +52,7 @@ public class AccountModel {
         this.password = password;
     }
 
-    public void setRole(String role) {
+    public void setRole(Boolean role) {
         this.role = role;
     }
     

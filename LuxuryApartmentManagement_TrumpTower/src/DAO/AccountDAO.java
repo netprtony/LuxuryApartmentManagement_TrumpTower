@@ -11,12 +11,26 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author netprtony
  */
 public class AccountDAO {
+    public int Check_resemble_username(String username){
+        try {
+            String sql = "select * from Accounts where Acc_User = ?";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, username);
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return -1;
+    }
     public  AccountModel Login(String user, String password){
         AccountModel acc = null;
         try {
@@ -31,11 +45,11 @@ public class AccountDAO {
                 acc.setUser(r.getString("Acc_User"));
                 acc.setName(r.getString("Acc_NameOwner"));
                 acc.setPassword(r.getString("Acc_Password"));
-                acc.setRole(r.getString("Acc_Role"));
+                acc.setRole(r.getBoolean("Acc_Role"));
             }
             con.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return acc;
     }
@@ -52,10 +66,11 @@ public class AccountDAO {
                 ac.setUser(rs.getString(1));
                 ac.setName(rs.getString(2));
                 ac.setPassword(rs.getString(3));
-                ac.setRole(rs.getString(4));
+                ac.setRole(rs.getBoolean(4));
                 lstAc.add(ac);
             }
         } catch (Exception e) {
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lstAc;
     }
@@ -69,10 +84,10 @@ public class AccountDAO {
             pstm.setString(1, ac.getUser());
             pstm.setString(2, ac.getName());
             pstm.setString(3, ac.getPassword());
-            pstm.setString(4, ac.getRole());
+            pstm.setBoolean(4, ac.isRole());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -84,12 +99,12 @@ public class AccountDAO {
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, ac.getPassword());
             pstm.setString(2, ac.getName());
-            pstm.setString(3, ac.getRole());
+            pstm.setBoolean(3, ac.isRole());
             pstm.setString(4, ac.getUser());
             return pstm.executeUpdate();
             
         }catch(Exception e){
-            e.printStackTrace();
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -103,7 +118,7 @@ public class AccountDAO {
             pstm.setString(3, passNew);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -115,7 +130,7 @@ public class AccountDAO {
             pstm.setString(1, id);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -133,11 +148,11 @@ public class AccountDAO {
                 ac.setUser(rs.getString(1));
                 ac.setName(rs.getString(2));
                 ac.setPassword(rs.getString(3));
-                ac.setRole(rs.getString(4));
+                ac.setRole(rs.getBoolean(4));
                 lstAc.add(ac);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lstAc;
     }

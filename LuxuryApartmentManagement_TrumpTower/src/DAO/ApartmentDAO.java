@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -54,6 +56,7 @@ public class ApartmentDAO {
                 lstAp.add(ap);
             }
         } catch (Exception e) {
+            
         }
         return lstAp;
     }    
@@ -72,6 +75,7 @@ public class ApartmentDAO {
                 lst.add(ap);
             }
         } catch (Exception e) {
+            
         }
         return lst;
     }
@@ -95,7 +99,7 @@ public class ApartmentDAO {
                 lstCus.add(c);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lstCus;
     }
@@ -115,7 +119,7 @@ public class ApartmentDAO {
                 lstContr.add(c);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lstContr;
     }
@@ -145,7 +149,7 @@ public class ApartmentDAO {
                 lst.add(a);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -191,7 +195,7 @@ public class ApartmentDAO {
                 lst.add(a);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -222,7 +226,7 @@ public class ApartmentDAO {
             pstm.setString(9, a.getIdBuild());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -235,7 +239,7 @@ public class ApartmentDAO {
             pstm.setString(1, name);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -265,7 +269,7 @@ public class ApartmentDAO {
             pstm.setString(9, a.getNumber());
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }

@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +39,7 @@ public class ContractDAO {
                 lst.add(contr);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -61,7 +63,7 @@ public class ContractDAO {
 //                lst.add(contr);
 //            }
 //        } catch (Exception e) {
-//            e.printStackTrace();
+//            Logger.getLogger(ContractModel.class.getName()).log(Level.SEVERE, null, e);
 //        }
         return lst;
     }
@@ -82,7 +84,7 @@ public class ContractDAO {
             pstm.setInt(6, s.getIdAprt());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -96,7 +98,7 @@ public class ContractDAO {
             pstm.setString(2, idApart);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -126,7 +128,7 @@ public class ContractDAO {
             pstm.setString(9, contr.getIdCus());
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(ContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }

@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +35,7 @@ public class BuildingDAO {
                 lst.add(b);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(BuildingModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -57,7 +59,7 @@ public class BuildingDAO {
                 lst.add(b);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(BuildingModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -75,7 +77,7 @@ public class BuildingDAO {
             pstm.setString(4, bui.getDescribe());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(BuildingModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -88,7 +90,7 @@ public class BuildingDAO {
             pstm.setString(1, id);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(BuildingModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -107,7 +109,7 @@ public class BuildingDAO {
             pstm.setString(3, bui.getDescribe());
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(BuildingModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }

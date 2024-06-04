@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package GUI;
 
+package GUI;
 import DAO.ApartmentDAO;
 import DAO.CustomerDAO;
 import MODEL.ApartmentModel;
@@ -11,18 +7,22 @@ import MODEL.CustomerModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author netprtony
  */
-public class CustomersGUI extends javax.swing.JFrame {
-    CustomerDAO cusDAO = new CustomerDAO();
+public class CustomerGUI extends javax.swing.JInternalFrame {
+
+     CustomerDAO cusDAO = new CustomerDAO();
     List<CustomerModel> lst = new ArrayList<>();
     DefaultTableModel tblModel  = new DefaultTableModel();
     int index = 0;
-    public CustomersGUI() {
+    public CustomerGUI() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
         FillTableData();
     }
@@ -46,14 +46,37 @@ public class CustomersGUI extends javax.swing.JFrame {
         }
         tbl_customer.setModel(tblModel);
     }
+    public void clearForm(){
+        tb_name.setText("");
+        tb_birth.setText("");
+        tb_hometower.setText("");
+        tb_email.setText("");
+        tb_phone.setText("");
+        tb_note.setText("");
+        tb_id.setText("");
+    }
+    void showForm(){
+        index = tbl_customer.getSelectedRow();
+        if(index  < 0 ){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn 1 dòng trên bảng này!");
+        }else{
+            CustomerModel c = new CustomerModel();
+            c = lst.get(index);
+            tb_id.setText(c.getId());
+            tb_name.setText(c.getName());
+            tb_birth.setText(c.getBirth());
+            tb_email.setText(c.getMail());
+            tb_hometower.setText(c.getHomeTower());
+            tb_note.setText(c.getNote());
+            tb_phone.setText(c.getPhoneNumber());
+            tb_note.setText(c.getNote());
+            cb_gender.setSelectedIndex("Nam".equals(c.getGender()) ? 0 : 1);
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -76,18 +99,8 @@ public class CustomersGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tb_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         tbl_customer = new javax.swing.JTable();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
 
@@ -232,7 +245,7 @@ public class CustomersGUI extends javax.swing.JFrame {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel63)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 28, Short.MAX_VALUE)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_add)
                     .addComponent(bt_delete)
@@ -240,7 +253,7 @@ public class CustomersGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Customers"));
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Customers"));
 
         tbl_customer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -266,57 +279,32 @@ public class CustomersGUI extends javax.swing.JFrame {
                 tbl_customerMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbl_customer);
+        jScrollPane3.setViewportView(tbl_customer);
 
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jMenu3.setText("File");
-        jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
-
-        setJMenuBar(jMenuBar2);
+        jScrollPane1.setViewportView(jScrollPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1317, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 13, Short.MAX_VALUE)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 13, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 37, Short.MAX_VALUE)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 38, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -329,15 +317,17 @@ public class CustomersGUI extends javax.swing.JFrame {
     private void tb_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tb_emailActionPerformed
-    public void clearForm(){
-        tb_name.setText("");
-        tb_birth.setText("");
-        tb_hometower.setText("");
-        tb_email.setText("");
-        tb_phone.setText("");
-        tb_note.setText("");
-        tb_id.setText("");
-    }
+
+    private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
+        if(cusDAO.delete(tb_id.getText()) > 0){
+            JOptionPane.showMessageDialog(this, "Đã xóa thành công");
+            clearForm();
+            FillTableData();
+        }else{
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
+    }//GEN-LAST:event_bt_deleteActionPerformed
+
     private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
         CustomerModel c = new CustomerModel();
         c.setName(tb_name.getText());
@@ -356,35 +346,8 @@ public class CustomersGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
         }
-        
+
     }//GEN-LAST:event_bt_addActionPerformed
-    void showForm(){
-        index = tbl_customer.getSelectedRow();
-        if(index  < 0 ){
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn 1 dòng trên bảng này!");
-        }else{
-            CustomerModel c = new CustomerModel();
-            c = lst.get(index);
-            tb_id.setText(c.getId());
-            tb_name.setText(c.getName());
-            tb_birth.setText(c.getBirth());
-            tb_email.setText(c.getMail());
-            tb_hometower.setText(c.getHomeTower());
-            tb_note.setText(c.getNote());
-            tb_phone.setText(c.getPhoneNumber());
-            tb_note.setText(c.getNote());
-            cb_gender.setSelectedIndex("Nam".equals(c.getGender()) ? 0 : 1);
-        }
-    }
-    private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
-        if(cusDAO.delete(tb_id.getText()) > 0){
-            JOptionPane.showMessageDialog(this, "Đã xóa thành công");
-            clearForm();
-            FillTableData();
-        }else{
-            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-        }
-    }//GEN-LAST:event_bt_deleteActionPerformed
 
     private void bt_changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_changeActionPerformed
         CustomerModel c = new CustomerModel();
@@ -406,43 +369,9 @@ public class CustomersGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_changeActionPerformed
 
     private void tbl_customerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_customerMouseClicked
-       showForm();
+        showForm();
     }//GEN-LAST:event_tbl_customerMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomersGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomersGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomersGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomersGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomersGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add;
@@ -457,16 +386,10 @@ public class CustomersGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JFormattedTextField tb_birth;
     private javax.swing.JTextField tb_email;
     private javax.swing.JTextField tb_hometower;

@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +37,7 @@ public class ProblemsDAO {
                 lst.add(pro);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ProblemModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -62,7 +64,7 @@ public class ProblemsDAO {
                 lst.add(pro);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ProblemModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -81,7 +83,7 @@ public class ProblemsDAO {
             pstm.setInt(5, pro.getIdAprt());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ProblemModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -93,7 +95,7 @@ public class ProblemsDAO {
             pstm.setInt(1, id);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ProblemModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -116,7 +118,7 @@ public class ProblemsDAO {
             pstm.setInt(6, de.getId());
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(ProblemModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }

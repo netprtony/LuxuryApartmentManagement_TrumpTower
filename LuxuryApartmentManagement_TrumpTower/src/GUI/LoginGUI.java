@@ -2,18 +2,19 @@
 package GUI;
 
 import DAO.AccountDAO;
-import MODEL.AccountModel;
+import MODEL.Auth;
 import javax.swing.JOptionPane;
 
 
 public class LoginGUI extends javax.swing.JFrame {
 
-  
+    String name = "";
     public LoginGUI() {
         initComponents();
+        lb_promptPass.setVisible(false);
+        lb_promptUserName.setVisible(false);
     }
-
- 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,6 +29,8 @@ public class LoginGUI extends javax.swing.JFrame {
         btn_signUp = new javax.swing.JButton();
         tf_username = new javax.swing.JTextField();
         pf_pass = new javax.swing.JPasswordField();
+        lb_promptUserName = new javax.swing.JLabel();
+        lb_promptPass = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -80,15 +83,31 @@ public class LoginGUI extends javax.swing.JFrame {
         tf_username.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         tf_username.setText("netprtony");
         tf_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        tf_username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tf_usernameFocusLost(evt);
+            }
+        });
 
         pf_pass.setForeground(new java.awt.Color(51, 0, 0));
         pf_pass.setText("123");
         pf_pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        pf_pass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pf_passFocusLost(evt);
+            }
+        });
         pf_pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pf_passActionPerformed(evt);
             }
         });
+
+        lb_promptUserName.setForeground(new java.awt.Color(255, 0, 0));
+        lb_promptUserName.setText("You can't be left email or username blank!");
+
+        lb_promptPass.setForeground(new java.awt.Color(255, 0, 0));
+        lb_promptPass.setText("You can't be left password blank!");
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
@@ -101,16 +120,19 @@ public class LoginGUI extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(LeftLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addGroup(LeftLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_signUp))
-                            .addComponent(tf_username, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                            .addComponent(pf_pass)
-                            .addComponent(btn_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_promptUserName)
+                            .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(tf_username, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                                .addComponent(pf_pass)
+                                .addComponent(btn_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(LeftLayout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btn_signUp)))
+                            .addComponent(lb_promptPass))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         LeftLayout.setVerticalGroup(
@@ -122,17 +144,21 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(15, 15, 15)
+                .addComponent(lb_promptUserName)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pf_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lb_promptPass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(btn_signUp))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanel1.add(Left);
@@ -193,14 +219,13 @@ public class LoginGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_signUpActionPerformed
-        
         SignUp SignUpFrame = new SignUp();
         SignUpFrame.setVisible(true);
         SignUpFrame.pack();
@@ -214,18 +239,35 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         AccountDAO ac = new AccountDAO();
-        String user = tf_username.getText();
+        String username = tf_username.getText();
         String pass = String.valueOf(pf_pass.getPassword());
-        AccountModel ac1 = ac.Login(user, pass);
-        if(ac1 == null){
+        Auth.user = ac.Login(username, pass);
+        if(Auth.user == null){
             JOptionPane.showMessageDialog(null, "Nhập tài khoản hoặc mật khẩu không đúng");
         }else{
+            name = Auth.user.getName();
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
             MainGUI show = new MainGUI();
             show.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void tf_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_usernameFocusLost
+        if(tf_username.getText().equals("")){
+            lb_promptUserName.setVisible(true);
+        }else{
+            lb_promptUserName.setVisible(false);
+        }
+    }//GEN-LAST:event_tf_usernameFocusLost
+
+    private void pf_passFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pf_passFocusLost
+        if(pf_pass.getPassword().equals("")){
+            lb_promptPass.setVisible(true);
+        }else{
+            lb_promptPass.setVisible(false);
+        }
+    }//GEN-LAST:event_pf_passFocusLost
 
     /**
      * @param args the command line arguments
@@ -245,6 +287,8 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lb_promptPass;
+    private javax.swing.JLabel lb_promptUserName;
     private javax.swing.JPasswordField pf_pass;
     private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables

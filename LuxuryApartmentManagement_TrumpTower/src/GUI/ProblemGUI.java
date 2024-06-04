@@ -1,6 +1,5 @@
 
 package GUI;
-
 import DAO.ApartmentDAO;
 import DAO.ProblemsDAO;
 import MODEL.ApartmentModel;
@@ -11,18 +10,26 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+/**
+ *
+ * @author netprtony
+ */
+public class ProblemGUI extends javax.swing.JInternalFrame {
 
-
-public class ProblemGUI extends javax.swing.JFrame {
     DefaultTableModel tblModel  = new DefaultTableModel();
     DefaultComboBoxModel model = new DefaultComboBoxModel();
     ProblemsDAO dao = new ProblemsDAO();
     public ProblemGUI() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
         loadCboApartment();
         FillTableData();
     }
+
     public String returnIdComboBox(JComboBox cbo){
        ComboBoxItem sel = (ComboBoxItem) cbo.getSelectedItem();
        return sel != null ? sel.getId() :  "";
@@ -84,9 +91,8 @@ public class ProblemGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         tf_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         tbl_problem = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
 
@@ -229,7 +235,9 @@ public class ProblemGUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbl_problem);
+        jScrollPane4.setViewportView(tbl_problem);
+
+        jScrollPane1.setViewportView(jScrollPane4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,19 +247,15 @@ public class ProblemGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane1)))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -266,7 +270,7 @@ public class ProblemGUI extends javax.swing.JFrame {
         p.setNote(tf_note.getText());
         p.setStatus(tf_status.getText());
         if(dao.add(p) > 0){
-        JOptionPane.showMessageDialog(this, "Thêm thành công");
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
             FillTableData();
         }else{
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
@@ -299,34 +303,6 @@ public class ProblemGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_delActionPerformed
 
-    
-    public static void main(String args[]) {
-       
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProblemGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProblemGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProblemGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProblemGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProblemGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
@@ -343,6 +319,7 @@ public class ProblemGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tbl_problem;
     private javax.swing.JFormattedTextField tf_date;
     private javax.swing.JTextArea tf_des;

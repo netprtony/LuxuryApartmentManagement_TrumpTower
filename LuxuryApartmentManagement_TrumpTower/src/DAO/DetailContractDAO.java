@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +37,7 @@ public class DetailContractDAO {
                 lst.add(del);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(DetailContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -57,7 +59,7 @@ public class DetailContractDAO {
                 lst.add(del);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(DetailContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -74,7 +76,7 @@ public class DetailContractDAO {
             pstm.setInt(3, de.getQuantity());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(DetailContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -87,7 +89,7 @@ public class DetailContractDAO {
             pstm.setInt(2, idSer);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(DetailContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -104,7 +106,7 @@ public class DetailContractDAO {
             pstm.setInt(3, de.getContrID());
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(DetailContractModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }

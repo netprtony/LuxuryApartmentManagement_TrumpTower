@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package GUI;
 
+package GUI;
 import DAO.CategoryApartmentDAO;
 import DAO.CategoryContractDAO;
 import MODEL.CategoryApartmentModel;
@@ -12,13 +8,13 @@ import MODEL.CustomerModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author netprtony
  */
-public class CategoryGUI extends javax.swing.JFrame {
+public class CategoryGUI extends javax.swing.JInternalFrame {
     CategoryApartmentDAO cateApDAO = new CategoryApartmentDAO();
     CategoryContractDAO cateConDAO = new CategoryContractDAO();
     List<CategoryApartmentModel> lstCateAp = new ArrayList<>();
@@ -26,10 +22,14 @@ public class CategoryGUI extends javax.swing.JFrame {
     DefaultTableModel tblModel  = new DefaultTableModel();
     int index = 0;
     public CategoryGUI() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
         FillTableDataCateApartment();
         FillTableDataCateContract();
     }
+
     void showFormAparment(){
         index = tbl_cateApart.getSelectedRow();
         if(index < 0){
@@ -87,7 +87,6 @@ public class CategoryGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton4 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -113,10 +112,6 @@ public class CategoryGUI extends javax.swing.JFrame {
         btn_newCon = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_contractCate = new javax.swing.JTable();
-
-        jButton4.setText("jButton1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Category Apartment"));
 
@@ -224,7 +219,7 @@ public class CategoryGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_updateApart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_addApart, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,7 +238,7 @@ public class CategoryGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -316,7 +311,7 @@ public class CategoryGUI extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tf_NameCateCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_updateCon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_addCon, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -361,7 +356,7 @@ public class CategoryGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -399,18 +394,16 @@ public class CategoryGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tbl_contractCateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_contractCateMouseClicked
-         showFormContract();
-    }//GEN-LAST:event_tbl_contractCateMouseClicked
-
     private void tbl_cateApartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_cateApartMouseClicked
-         showFormAparment();
+        showFormAparment();
     }//GEN-LAST:event_tbl_cateApartMouseClicked
 
     private void btn_addApartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addApartActionPerformed
@@ -433,7 +426,7 @@ public class CategoryGUI extends javax.swing.JFrame {
         a.setName(tf_NameCateApr.getText());
         a.setExp(tf_explication.getText());
         if(cateApDAO.update(a)>0){
-        JOptionPane.showMessageDialog(this, "Đã sửa thành công");
+            JOptionPane.showMessageDialog(this, "Đã sửa thành công");
             clearForm();
             FillTableDataCateApartment();
         }else{
@@ -475,7 +468,7 @@ public class CategoryGUI extends javax.swing.JFrame {
         c = lstCateCon.get(index);
         c.setName(tf_NameCateCon.getText());
         if(cateConDAO.update(c)>0){
-        JOptionPane.showMessageDialog(this, "Đã sửa thành công");
+            JOptionPane.showMessageDialog(this, "Đã sửa thành công");
             clearForm();
             FillTableDataCateApartment();
         }else{
@@ -495,38 +488,10 @@ public class CategoryGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_delConActionPerformed
 
-   
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CategoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CategoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CategoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CategoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void tbl_contractCateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_contractCateMouseClicked
+        showFormContract();
+    }//GEN-LAST:event_tbl_contractCateMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CategoryGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addApart;
@@ -537,7 +502,6 @@ public class CategoryGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_newCon;
     private javax.swing.JButton btn_updateApart;
     private javax.swing.JButton btn_updateCon;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

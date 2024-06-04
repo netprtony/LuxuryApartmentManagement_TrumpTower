@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +34,7 @@ public class CategoryApartmentDAO {
                 lst.add(cate);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CategoryApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -53,7 +55,7 @@ public class CategoryApartmentDAO {
                 lst.add(cate);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CategoryApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -69,7 +71,7 @@ public class CategoryApartmentDAO {
             pstm.setString(2, s.getExp());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CategoryApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -81,7 +83,7 @@ public class CategoryApartmentDAO {
             pstm.setInt(1, ID);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CategoryApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -98,7 +100,7 @@ public class CategoryApartmentDAO {
             pstm.setInt(3, cate.getId());
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(CategoryApartmentModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }

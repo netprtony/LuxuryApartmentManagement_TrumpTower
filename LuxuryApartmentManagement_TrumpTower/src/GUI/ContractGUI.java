@@ -1,9 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package GUI;
-
 import DAO.ApartmentDAO;
 import DAO.CategoryContractDAO;
 import DAO.ContractDAO;
@@ -22,15 +21,15 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author netprtony
  */
-public final class ContractGUI extends javax.swing.JFrame {
+public class ContractGUI extends javax.swing.JInternalFrame {
+
     int index = 0;
-    
     DefaultTableModel tblModel = new DefaultTableModel();
     ContractDAO daoCon = new ContractDAO();
     DetailContractDAO daoDetail = new DetailContractDAO();
@@ -38,11 +37,12 @@ public final class ContractGUI extends javax.swing.JFrame {
     ServiceDAO daoService = new ServiceDAO();
     ApartmentDAO daoAp = new ApartmentDAO();
     CustomerDAO daoCus = new CustomerDAO();
-    
     List<DetailContractModel> lstCateGet = new ArrayList<>();
     List<ContractModel> lstget = new ArrayList<>();
-    
     public ContractGUI() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
         loadCboCateContract();
         loadCboService();
@@ -50,7 +50,8 @@ public final class ContractGUI extends javax.swing.JFrame {
         loadCboCustomer();
         FillTableDataContract();
     }
-    public String returnIdComboBox(JComboBox cbo){
+
+     public String returnIdComboBox(JComboBox cbo){
        ComboBoxItem sel = (ComboBoxItem) cbo.getSelectedItem();
        return sel != null ? sel.getId() :  "";
     }
@@ -214,8 +215,6 @@ public final class ContractGUI extends javax.swing.JFrame {
         cbo_SerID = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         tf_quantity = new javax.swing.JSpinner();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 0, 0)), "Contract", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(102, 0, 0))); // NOI18N
 
@@ -566,7 +565,7 @@ public final class ContractGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -596,7 +595,7 @@ public final class ContractGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -641,8 +640,8 @@ public final class ContractGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_conUpdateActionPerformed
 
     private void btn_conDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conDeleteActionPerformed
-       ContractModel c = new ContractModel();
-       if(daoCon.delete(Integer.parseInt(tf_ConId.getText()), returnIdComboBox(cbo_Apartment) + "") > 0){
+        ContractModel c = new ContractModel();
+        if(daoCon.delete(Integer.parseInt(tf_ConId.getText()), returnIdComboBox(cbo_Apartment) + "") > 0){
             FillTableDataContract();
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
@@ -651,6 +650,14 @@ public final class ContractGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_conDeleteActionPerformed
 
+    private void btn_AparmentReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AparmentReloadActionPerformed
+        loadCboApartmentNumber();
+    }//GEN-LAST:event_btn_AparmentReloadActionPerformed
+
+    private void btn_reloadCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadCusActionPerformed
+        loadCboCustomer();
+    }//GEN-LAST:event_btn_reloadCusActionPerformed
+
     private void tbl_ContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ContractMouseClicked
         showFromContract();
         //FillDetailContractByIdContract(index);
@@ -658,8 +665,12 @@ public final class ContractGUI extends javax.swing.JFrame {
 
     private void btn_bui_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bui_searchActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btn_bui_searchActionPerformed
+
+    private void tbl_DetailContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DetailContractMouseClicked
+        showFromDetail();
+    }//GEN-LAST:event_tbl_DetailContractMouseClicked
 
     private void btn_detailAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailAddActionPerformed
         DetailContractModel de = new DetailContractModel();
@@ -673,7 +684,7 @@ public final class ContractGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
         }
-        
+
     }//GEN-LAST:event_btn_detailAddActionPerformed
 
     private void btn_detailUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailUpdateActionPerformed
@@ -692,7 +703,7 @@ public final class ContractGUI extends javax.swing.JFrame {
 
     private void btn_detailDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailDeleteActionPerformed
         DetailContractModel d = new DetailContractModel();
-       if(daoDetail.delete(Integer.parseInt(tf_ConId.getText()), Integer.parseInt(returnIdComboBox(cbo_SerID))) > 0){
+        if(daoDetail.delete(Integer.parseInt(tf_ConId.getText()), Integer.parseInt(returnIdComboBox(cbo_SerID))) > 0){
             FillDetailContractByIdContract(index);
             JOptionPane.showMessageDialog(this, "Đã xóa thành công");
             clearForm();
@@ -701,52 +712,6 @@ public final class ContractGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_detailDeleteActionPerformed
 
-    private void tbl_DetailContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DetailContractMouseClicked
-        showFromDetail();
-    }//GEN-LAST:event_tbl_DetailContractMouseClicked
-
-    private void btn_AparmentReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AparmentReloadActionPerformed
-        loadCboApartmentNumber();
-    }//GEN-LAST:event_btn_AparmentReloadActionPerformed
-
-    private void btn_reloadCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadCusActionPerformed
-        loadCboCustomer();
-    }//GEN-LAST:event_btn_reloadCusActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ContractGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ContractGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ContractGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ContractGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ContractGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AparmentReload;

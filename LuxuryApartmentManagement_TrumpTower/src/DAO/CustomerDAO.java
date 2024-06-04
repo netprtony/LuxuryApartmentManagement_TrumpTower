@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +39,7 @@ public class CustomerDAO {
                 lst.add(cus);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -55,7 +57,7 @@ public class CustomerDAO {
                 lst.add(cus);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -81,7 +83,7 @@ public class CustomerDAO {
                 lst.add(cus);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -103,7 +105,7 @@ public class CustomerDAO {
             pstm.setString(8, s.getNote());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -115,7 +117,7 @@ public class CustomerDAO {
             pstm.setString(1, id);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -142,7 +144,7 @@ public class CustomerDAO {
             pstm.setString(8, cus.getId());
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }

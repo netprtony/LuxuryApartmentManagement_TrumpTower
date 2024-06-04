@@ -5,26 +5,25 @@
 package GUI;
 
 import java.awt.Color;
-import java.util.Locale;
-
+import MODEL.Auth;
 
 public class MainGUI extends javax.swing.JFrame {
-    
     HomeGUI home;
-    ApartmentsGUI apartment;
-    BuildingsGUI building;
+    ApartmentGUI apartment;
+    BuildingGUI building;
     ChangePasswordGUI changePass;
     ContractGUI contract;
     LoginGUI login;
-    ServicesGUI service;
-    CustomersGUI customer;
+    ServiceGUI service;
+    CustomerGUI customer;
     CategoryGUI category;
     ProblemGUI problem;
-    ChangePasswordGUI security;
+    ChangePasswordGUI changpass;
     Color Default, Click;
     public MainGUI() {
+        
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(this);
         Default = new Color(153,102,0);
         Click = new Color(255,204,102);
         pnlApartment.setBackground(Default);
@@ -42,67 +41,52 @@ public class MainGUI extends javax.swing.JFrame {
     public void openHome(){
         home = new HomeGUI();
         home.setBounds(0, 0, 1030, 720);
-        home.setVisible(true);
         desktop.removeAll();
-        desktop.add(home);
+        desktop.add(home).setVisible(true);
        
     }
     public void openBuiding(){
-        building = new BuildingsGUI();
+        building = new BuildingGUI();
         building.setBounds(0, 0, 1030, 720);
-        building.setVisible(true);
         desktop.removeAll();
-        desktop.add(building);
+        desktop.add(building).setVisible(true);
     }
     public void openCategory(){
         category = new CategoryGUI();
         category.setBounds(0, 0, 1030, 720);
-        category.setVisible(true);
         desktop.removeAll();
-        desktop.add(building);
+        desktop.add(category);
     }
     public void openContract(){
         contract = new ContractGUI();
         contract.setBounds(0, 0, 1030, 720);
-        contract.setVisible(true);
         desktop.removeAll();
-        desktop.add(building);
+        desktop.add(contract).setVisible(true);
     }
     public void openCustomer(){
-        customer = new CustomersGUI();
+        customer = new CustomerGUI();
         customer.setBounds(0, 0, 1030, 720);
-        customer.setVisible(true);
         desktop.removeAll();
-        desktop.add(building);
+        desktop.add(customer).setVisible(true);
     }
     
-    public void openSercurity(){
-        security = new ChangePasswordGUI();
-        security.setBounds(0, 0, 1030, 720);
-        security.setVisible(true);
-        desktop.removeAll();
-        desktop.add(building);
-    }
     public void openProblem(){
         problem = new ProblemGUI();
         problem.setBounds(0, 0, 1030, 720);
-        problem.setVisible(true);
         desktop.removeAll();
-        desktop.add(building);
+        desktop.add(problem).setVisible(true);
     }
     public void openService(){
-        service = new ServicesGUI();
+        service = new ServiceGUI();
         service.setBounds(0, 0, 1030, 720);
-        service.setVisible(true);
         desktop.removeAll();
-        desktop.add(building);
+        desktop.add(service).setVisible(true);
     }
     public void openApartment(){
-        apartment = new ApartmentsGUI();
+        apartment = new ApartmentGUI();
         apartment.setBounds(0, 0, 1030, 720);
-        apartment.setVisible(true);
         desktop.removeAll();
-        desktop.add(building);
+        desktop.add(apartment).setVisible(true);
     }
     
     @SuppressWarnings("unchecked")
@@ -110,9 +94,11 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         pnl_menu = new javax.swing.JPanel();
+        lb_menuName1 = new javax.swing.JLabel();
         lblIconUser = new javax.swing.JLabel();
         pnlHome = new javax.swing.JPanel();
         lb_Home = new javax.swing.JLabel();
+        lb_menuName = new javax.swing.JLabel();
         pnlBuilding = new javax.swing.JPanel();
         lb_Building = new javax.swing.JLabel();
         pnlApartment = new javax.swing.JPanel();
@@ -140,6 +126,18 @@ public class MainGUI extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         pnl_menu.setBackground(new java.awt.Color(153, 102, 0));
+
+        lb_menuName1.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        lb_menuName1.setForeground(new java.awt.Color(255, 255, 255));
+        lb_menuName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_menuName1.setText("Hello");
+        lb_menuName1.setToolTipText("");
+        lb_menuName1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lb_menuName1.setFocusable(false);
+        lb_menuName1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lb_menuName1.setName(""); // NOI18N
+        lb_menuName1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pnl_menu.add(lb_menuName1);
 
         lblIconUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIconUser.setToolTipText("");
@@ -171,19 +169,36 @@ public class MainGUI extends javax.swing.JFrame {
         lb_Home.setName(""); // NOI18N
         lb_Home.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        lb_menuName.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        lb_menuName.setForeground(new java.awt.Color(255, 255, 255));
+        lb_menuName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_menuName.setText("NULL");
+        lb_menuName.setToolTipText("");
+        lb_menuName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lb_menuName.setFocusable(false);
+        lb_menuName.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lb_menuName.setName(""); // NOI18N
+        lb_menuName.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout pnlHomeLayout = new javax.swing.GroupLayout(pnlHome);
         pnlHome.setLayout(pnlHomeLayout);
         pnlHomeLayout.setHorizontalGroup(
             pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(lb_Home, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlHomeLayout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(lb_Home, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlHomeLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(lb_menuName)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         pnlHomeLayout.setVerticalGroup(
             pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addComponent(lb_menuName)
+                .addGap(18, 18, 18)
                 .addComponent(lb_Home, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
         );
 
@@ -544,11 +559,11 @@ public class MainGUI extends javax.swing.JFrame {
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1141, Short.MAX_VALUE)
+            .addGap(0, 1031, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 855, Short.MAX_VALUE)
         );
 
         jMenu2.setText("File");
@@ -573,157 +588,32 @@ public class MainGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_menu, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
-                    .addComponent(desktop))
+                    .addComponent(desktop)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnl_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pnlHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHomeMouseClicked
-        openHome();
- 
-    }//GEN-LAST:event_pnlHomeMouseClicked
-
-    private void pnlBuildingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuildingMouseClicked
-         openBuiding();
-    }//GEN-LAST:event_pnlBuildingMouseClicked
-
-    private void pnlApartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlApartmentMouseClicked
-    }//GEN-LAST:event_pnlApartmentMouseClicked
-
-    private void pnlContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlContractMouseClicked
-        openContract();
-    }//GEN-LAST:event_pnlContractMouseClicked
-
-    private void pnlCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCustomerMouseClicked
-       openCustomer();
-    }//GEN-LAST:event_pnlCustomerMouseClicked
-
-    private void pnlCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoryMouseClicked
-        openCategory();
-    }//GEN-LAST:event_pnlCategoryMouseClicked
-
-    private void pnlServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiceMouseClicked
-        openService();
-    }//GEN-LAST:event_pnlServiceMouseClicked
-
-    private void pnlProblemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProblemMouseClicked
-       openProblem();
-    }//GEN-LAST:event_pnlProblemMouseClicked
-
-    private void pnlSercurityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSercurityMouseClicked
-       openSercurity();
-    }//GEN-LAST:event_pnlSercurityMouseClicked
+    private void pnlLogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMousePressed
+        pnlApartment.setBackground(Default);
+        pnlBuilding.setBackground(Default);
+        pnlCategory.setBackground(Default);
+        pnlContract.setBackground(Default);
+        pnlCustomer.setBackground(Default);
+        pnlHome.setBackground(Default);
+        pnlLogout.setBackground(Click);
+        pnlProblem.setBackground(Default);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Default);
+    }//GEN-LAST:event_pnlLogoutMousePressed
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
-       
+        
     }//GEN-LAST:event_pnlLogoutMouseClicked
-
-    private void pnlHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHomeMousePressed
-        pnlApartment.setBackground(Default);
-        pnlBuilding.setBackground(Default);
-        pnlCategory.setBackground(Default);
-        pnlContract.setBackground(Default);
-        pnlCustomer.setBackground(Default);
-        pnlHome.setBackground(Click);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Default);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlHomeMousePressed
-
-    private void pnlBuildingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuildingMousePressed
-        pnlApartment.setBackground(Default);
-        pnlBuilding.setBackground(Click);
-        pnlCategory.setBackground(Default);
-        pnlContract.setBackground(Default);
-        pnlCustomer.setBackground(Default);
-        pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Default);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlBuildingMousePressed
-
-    private void pnlApartmentMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlApartmentMousePressed
-        pnlApartment.setBackground(Click);
-        pnlBuilding.setBackground(Default);
-        pnlCategory.setBackground(Default);
-        pnlContract.setBackground(Default);
-        pnlCustomer.setBackground(Default);
-        pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Default);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlApartmentMousePressed
-
-    private void pnlContractMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlContractMousePressed
-        pnlApartment.setBackground(Default);
-        pnlBuilding.setBackground(Default);
-        pnlCategory.setBackground(Default);
-        pnlContract.setBackground(Click);
-        pnlCustomer.setBackground(Default);
-        pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Default);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlContractMousePressed
-
-    private void pnlCustomerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCustomerMousePressed
-        pnlApartment.setBackground(Default);
-        pnlBuilding.setBackground(Default);
-        pnlCategory.setBackground(Default);
-        pnlContract.setBackground(Default);
-        pnlCustomer.setBackground(Click);
-        pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Default);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlCustomerMousePressed
-
-    private void pnlCategoryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoryMousePressed
-        pnlApartment.setBackground(Default);
-        pnlBuilding.setBackground(Default);
-        pnlCategory.setBackground(Click);
-        pnlContract.setBackground(Default);
-        pnlCustomer.setBackground(Default);
-        pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Default);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlCategoryMousePressed
-
-    private void pnlServiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiceMousePressed
-        pnlApartment.setBackground(Default);
-        pnlBuilding.setBackground(Default);
-        pnlCategory.setBackground(Default);
-        pnlContract.setBackground(Default);
-        pnlCustomer.setBackground(Default);
-        pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Default);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Click);
-    }//GEN-LAST:event_pnlServiceMousePressed
-
-    private void pnlProblemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProblemMousePressed
-        pnlApartment.setBackground(Default);
-        pnlBuilding.setBackground(Default);
-        pnlCategory.setBackground(Default);
-        pnlContract.setBackground(Default);
-        pnlCustomer.setBackground(Default);
-        pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Default);
-        pnlProblem.setBackground(Click);
-        pnlSercurity.setBackground(Default);
-        pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlProblemMousePressed
 
     private void pnlSercurityMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSercurityMousePressed
         pnlApartment.setBackground(Default);
@@ -738,18 +628,153 @@ public class MainGUI extends javax.swing.JFrame {
         pnlService.setBackground(Default);
     }//GEN-LAST:event_pnlSercurityMousePressed
 
-    private void pnlLogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMousePressed
+    private void pnlSercurityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSercurityMouseClicked
+        new ChangePasswordGUI(this, true).setVisible(true);
+    }//GEN-LAST:event_pnlSercurityMouseClicked
+
+    private void pnlProblemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProblemMousePressed
         pnlApartment.setBackground(Default);
         pnlBuilding.setBackground(Default);
         pnlCategory.setBackground(Default);
         pnlContract.setBackground(Default);
         pnlCustomer.setBackground(Default);
         pnlHome.setBackground(Default);
-        pnlLogout.setBackground(Click);
+        pnlLogout.setBackground(Default);
+        pnlProblem.setBackground(Click);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Default);
+        lb_menuName.setText("Home");
+    }//GEN-LAST:event_pnlProblemMousePressed
+
+    private void pnlProblemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProblemMouseClicked
+        openProblem();
+    }//GEN-LAST:event_pnlProblemMouseClicked
+
+    private void pnlServiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiceMousePressed
+        pnlApartment.setBackground(Default);
+        pnlBuilding.setBackground(Default);
+        pnlCategory.setBackground(Default);
+        pnlContract.setBackground(Default);
+        pnlCustomer.setBackground(Default);
+        pnlHome.setBackground(Default);
+        pnlLogout.setBackground(Default);
+        pnlProblem.setBackground(Default);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Click);
+        lb_menuName.setText("Service");
+    }//GEN-LAST:event_pnlServiceMousePressed
+
+    private void pnlServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiceMouseClicked
+        openService();
+    }//GEN-LAST:event_pnlServiceMouseClicked
+
+    private void pnlCategoryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoryMousePressed
+        pnlApartment.setBackground(Default);
+        pnlBuilding.setBackground(Default);
+        pnlCategory.setBackground(Click);
+        pnlContract.setBackground(Default);
+        pnlCustomer.setBackground(Default);
+        pnlHome.setBackground(Default);
+        pnlLogout.setBackground(Default);
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-    }//GEN-LAST:event_pnlLogoutMousePressed
+        lb_menuName.setText("Category");
+    }//GEN-LAST:event_pnlCategoryMousePressed
+
+    private void pnlCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoryMouseClicked
+        openCategory();
+    }//GEN-LAST:event_pnlCategoryMouseClicked
+
+    private void pnlCustomerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCustomerMousePressed
+        pnlApartment.setBackground(Default);
+        pnlBuilding.setBackground(Default);
+        pnlCategory.setBackground(Default);
+        pnlContract.setBackground(Default);
+        pnlCustomer.setBackground(Click);
+        pnlHome.setBackground(Default);
+        pnlLogout.setBackground(Default);
+        pnlProblem.setBackground(Default);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Default);
+        lb_menuName.setText("Customer");
+    }//GEN-LAST:event_pnlCustomerMousePressed
+
+    private void pnlCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCustomerMouseClicked
+        openCustomer();
+    }//GEN-LAST:event_pnlCustomerMouseClicked
+
+    private void pnlContractMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlContractMousePressed
+        pnlApartment.setBackground(Default);
+        pnlBuilding.setBackground(Default);
+        pnlCategory.setBackground(Default);
+        pnlContract.setBackground(Click);
+        pnlCustomer.setBackground(Default);
+        pnlHome.setBackground(Default);
+        pnlLogout.setBackground(Default);
+        pnlProblem.setBackground(Default);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Default);
+        lb_menuName.setText("Contract");
+    }//GEN-LAST:event_pnlContractMousePressed
+
+    private void pnlContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlContractMouseClicked
+        openContract();
+    }//GEN-LAST:event_pnlContractMouseClicked
+
+    private void pnlApartmentMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlApartmentMousePressed
+        pnlApartment.setBackground(Click);
+        pnlBuilding.setBackground(Default);
+        pnlCategory.setBackground(Default);
+        pnlContract.setBackground(Default);
+        pnlCustomer.setBackground(Default);
+        pnlHome.setBackground(Default);
+        pnlLogout.setBackground(Default);
+        pnlProblem.setBackground(Default);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Default);
+        lb_menuName.setText("Apartment");
+    }//GEN-LAST:event_pnlApartmentMousePressed
+
+    private void pnlApartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlApartmentMouseClicked
+        openApartment();
+    }//GEN-LAST:event_pnlApartmentMouseClicked
+
+    private void pnlBuildingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuildingMousePressed
+        pnlApartment.setBackground(Default);
+        pnlBuilding.setBackground(Click);
+        pnlCategory.setBackground(Default);
+        pnlContract.setBackground(Default);
+        pnlCustomer.setBackground(Default);
+        pnlHome.setBackground(Default);
+        pnlLogout.setBackground(Default);
+        pnlProblem.setBackground(Default);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Default);
+        lb_menuName.setText("Building");
+    }//GEN-LAST:event_pnlBuildingMousePressed
+
+    private void pnlBuildingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuildingMouseClicked
+        openBuiding();
+    }//GEN-LAST:event_pnlBuildingMouseClicked
+
+    private void pnlHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHomeMousePressed
+        pnlApartment.setBackground(Default);
+        pnlBuilding.setBackground(Default);
+        pnlCategory.setBackground(Default);
+        pnlContract.setBackground(Default);
+        pnlCustomer.setBackground(Default);
+        pnlHome.setBackground(Click);
+        pnlLogout.setBackground(Default);
+        pnlProblem.setBackground(Default);
+        pnlSercurity.setBackground(Default);
+        pnlService.setBackground(Default);
+        lb_menuName.setText("Home");
+    }//GEN-LAST:event_pnlHomeMousePressed
+
+    private void pnlHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHomeMouseClicked
+        openHome();
+    }//GEN-LAST:event_pnlHomeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -798,6 +823,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lb_contract;
     private javax.swing.JLabel lb_customer;
     private javax.swing.JLabel lb_logout;
+    private javax.swing.JLabel lb_menuName;
+    private javax.swing.JLabel lb_menuName1;
     private javax.swing.JLabel lb_problem;
     private javax.swing.JLabel lb_sercurity;
     private javax.swing.JLabel lb_service;

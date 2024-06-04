@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +38,7 @@ public class ServiceDAO {
                 lst.add(s);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ServiceModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -60,7 +62,7 @@ public class ServiceDAO {
                 lst.add(s);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ServiceModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return lst;
     }
@@ -79,7 +81,7 @@ public class ServiceDAO {
             pstm.setBoolean(4, s.isAvailable());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ServiceModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -97,7 +99,7 @@ public class ServiceDAO {
             pstm.setBoolean(4, s.isAvailable());
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ServiceModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -109,7 +111,7 @@ public class ServiceDAO {
             pstm.setInt(1, id);
             return pstm.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ServiceModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
@@ -131,7 +133,7 @@ public class ServiceDAO {
 
             return pstm.executeUpdate();
         } catch (Exception e){
-            e.printStackTrace();
+            Logger.getLogger(ServiceModel.class.getName()).log(Level.SEVERE, null, e);
         }
         return -1;
     }
