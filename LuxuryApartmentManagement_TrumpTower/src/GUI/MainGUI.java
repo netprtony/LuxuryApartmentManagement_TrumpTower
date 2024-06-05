@@ -6,12 +6,12 @@ package GUI;
 
 import java.awt.Color;
 import MODEL.Auth;
+import MODEL.DialogMessage;
 
 public class MainGUI extends javax.swing.JFrame {
     HomeGUI home;
     ApartmentGUI apartment;
     BuildingGUI building;
-    ChangePasswordGUI changePass;
     ContractGUI contract;
     LoginGUI login;
     ServiceGUI service;
@@ -21,9 +21,9 @@ public class MainGUI extends javax.swing.JFrame {
     ChangePasswordGUI changpass;
     Color Default, Click;
     public MainGUI() {
-        
         initComponents();
-        setLocationRelativeTo(this);
+        lb_userCurrent.setText("Welcome " + Auth.user.getName());
+        setLocationRelativeTo(null);
         Default = new Color(153,102,0);
         Click = new Color(255,204,102);
         pnlApartment.setBackground(Default);
@@ -36,6 +36,7 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
+        openHome();
         
     }
     public void openHome(){
@@ -43,7 +44,13 @@ public class MainGUI extends javax.swing.JFrame {
         home.setBounds(0, 0, 1030, 720);
         desktop.removeAll();
         desktop.add(home).setVisible(true);
-       
+    }
+    public void openLogin(){
+        login = new LoginGUI();
+        login.setVisible(true);
+        login.pack();
+        login.setLocationRelativeTo(null); 
+        this.dispose();
     }
     public void openBuiding(){
         building = new BuildingGUI();
@@ -94,11 +101,9 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         pnl_menu = new javax.swing.JPanel();
-        lb_menuName1 = new javax.swing.JLabel();
-        lblIconUser = new javax.swing.JLabel();
+        lb_userCurrent = new javax.swing.JLabel();
         pnlHome = new javax.swing.JPanel();
         lb_Home = new javax.swing.JLabel();
-        lb_menuName = new javax.swing.JLabel();
         pnlBuilding = new javax.swing.JPanel();
         lb_Building = new javax.swing.JLabel();
         pnlApartment = new javax.swing.JPanel();
@@ -127,24 +132,17 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.setBackground(new java.awt.Color(153, 102, 0));
 
-        lb_menuName1.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_menuName1.setForeground(new java.awt.Color(255, 255, 255));
-        lb_menuName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_menuName1.setText("Hello");
-        lb_menuName1.setToolTipText("");
-        lb_menuName1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lb_menuName1.setFocusable(false);
-        lb_menuName1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        lb_menuName1.setName(""); // NOI18N
-        lb_menuName1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        pnl_menu.add(lb_menuName1);
-
-        lblIconUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIconUser.setToolTipText("");
-        lblIconUser.setMaximumSize(new java.awt.Dimension(250, 72));
-        lblIconUser.setMinimumSize(new java.awt.Dimension(250, 72));
-        lblIconUser.setPreferredSize(new java.awt.Dimension(250, 72));
-        pnl_menu.add(lblIconUser);
+        lb_userCurrent.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
+        lb_userCurrent.setForeground(new java.awt.Color(255, 255, 255));
+        lb_userCurrent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_userCurrent.setText("NULL");
+        lb_userCurrent.setToolTipText("");
+        lb_userCurrent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lb_userCurrent.setFocusable(false);
+        lb_userCurrent.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lb_userCurrent.setName(""); // NOI18N
+        lb_userCurrent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pnl_menu.add(lb_userCurrent);
 
         pnlHome.setBackground(new java.awt.Color(153, 102, 0));
         pnlHome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
@@ -169,36 +167,19 @@ public class MainGUI extends javax.swing.JFrame {
         lb_Home.setName(""); // NOI18N
         lb_Home.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        lb_menuName.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_menuName.setForeground(new java.awt.Color(255, 255, 255));
-        lb_menuName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_menuName.setText("NULL");
-        lb_menuName.setToolTipText("");
-        lb_menuName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lb_menuName.setFocusable(false);
-        lb_menuName.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        lb_menuName.setName(""); // NOI18N
-        lb_menuName.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         javax.swing.GroupLayout pnlHomeLayout = new javax.swing.GroupLayout(pnlHome);
         pnlHome.setLayout(pnlHomeLayout);
         pnlHomeLayout.setHorizontalGroup(
             pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addGroup(pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlHomeLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(lb_Home, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHomeLayout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(lb_menuName)))
+                .addGap(67, 67, 67)
+                .addComponent(lb_Home, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         pnlHomeLayout.setVerticalGroup(
             pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addComponent(lb_menuName)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(lb_Home, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
         );
 
@@ -390,7 +371,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(pnlCategoryLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(lb_cate)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         pnlCategoryLayout.setVerticalGroup(
             pnlCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,7 +527,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(pnlLogoutLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(lb_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         pnlLogoutLayout.setVerticalGroup(
             pnlLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,14 +540,24 @@ public class MainGUI extends javax.swing.JFrame {
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1031, Short.MAX_VALUE)
+            .addGap(0, 1021, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGap(0, 725, Short.MAX_VALUE)
         );
 
         jMenu2.setText("File");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Edit");
@@ -582,7 +573,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(pnl_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(desktop)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -612,7 +603,10 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlLogoutMousePressed
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
-        
+        if(DialogMessage.confirm(apartment, "Bạn có muốn đăng xuất không?")){
+            Auth.user.setName("");
+            openLogin();
+        }
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     private void pnlSercurityMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSercurityMousePressed
@@ -643,7 +637,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Click);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        lb_menuName.setText("Home");
     }//GEN-LAST:event_pnlProblemMousePressed
 
     private void pnlProblemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProblemMouseClicked
@@ -661,7 +654,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Click);
-        lb_menuName.setText("Service");
     }//GEN-LAST:event_pnlServiceMousePressed
 
     private void pnlServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiceMouseClicked
@@ -679,7 +671,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        lb_menuName.setText("Category");
     }//GEN-LAST:event_pnlCategoryMousePressed
 
     private void pnlCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoryMouseClicked
@@ -697,7 +688,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        lb_menuName.setText("Customer");
     }//GEN-LAST:event_pnlCustomerMousePressed
 
     private void pnlCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCustomerMouseClicked
@@ -715,7 +705,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        lb_menuName.setText("Contract");
     }//GEN-LAST:event_pnlContractMousePressed
 
     private void pnlContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlContractMouseClicked
@@ -733,7 +722,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        lb_menuName.setText("Apartment");
     }//GEN-LAST:event_pnlApartmentMousePressed
 
     private void pnlApartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlApartmentMouseClicked
@@ -751,7 +739,6 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        lb_menuName.setText("Building");
     }//GEN-LAST:event_pnlBuildingMousePressed
 
     private void pnlBuildingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuildingMouseClicked
@@ -769,12 +756,19 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        lb_menuName.setText("Home");
     }//GEN-LAST:event_pnlHomeMousePressed
 
     private void pnlHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHomeMouseClicked
         openHome();
     }//GEN-LAST:event_pnlHomeMouseClicked
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+       
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+       openLogin();
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -823,12 +817,10 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lb_contract;
     private javax.swing.JLabel lb_customer;
     private javax.swing.JLabel lb_logout;
-    private javax.swing.JLabel lb_menuName;
-    private javax.swing.JLabel lb_menuName1;
     private javax.swing.JLabel lb_problem;
     private javax.swing.JLabel lb_sercurity;
     private javax.swing.JLabel lb_service;
-    private javax.swing.JLabel lblIconUser;
+    private javax.swing.JLabel lb_userCurrent;
     private javax.swing.JPanel pnlApartment;
     private javax.swing.JPanel pnlBuilding;
     private javax.swing.JPanel pnlCategory;

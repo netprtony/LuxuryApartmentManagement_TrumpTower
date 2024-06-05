@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CustomerGUI extends javax.swing.JInternalFrame {
 
-     CustomerDAO cusDAO = new CustomerDAO();
+    CustomerDAO cusDAO = new CustomerDAO();
     List<CustomerModel> lst = new ArrayList<>();
     DefaultTableModel tblModel  = new DefaultTableModel();
     int index = 0;
@@ -26,7 +26,7 @@ public class CustomerGUI extends javax.swing.JInternalFrame {
         initComponents();
         FillTableData();
     }
-
+    
     public void FillTableData() {
         lst = cusDAO.readAll();
         tblModel = (DefaultTableModel) tbl_customer.getModel();

@@ -5,6 +5,7 @@
 package GUI;
 import DAO.BuildingDAO;
 import MODEL.BuildingModel;
+import MODEL.DialogMessage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ public class BuildingGUI extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         initComponents();
-        //fillDataTableCurrent();
+        fillDataTableCurrent();
     }
     public void fillDataTableCurrent(){
         BuildingDAO Buidao = new BuildingDAO();
@@ -358,12 +359,13 @@ public class BuildingGUI extends javax.swing.JInternalFrame {
         b.setName(tf_bui_name.getText());
         b.setDescribe(tf_bui_des.getText());
         int x = buidao.update(b);
-        if(x > 0){
-            JOptionPane.showMessageDialog(this, "Đã sửa thành công");
-            fillDataTableCurrent();
-        }else{
-            JOptionPane.showMessageDialog(this, "Sửa thất bại");
-        }
+        if(DialogMessage.confirm(jPanel1, "Bạn có muốn thêm tòa " + b.getName() + " không?"))
+            if(x > 0){
+                JOptionPane.showMessageDialog(this, "Đã sửa thành công");
+                fillDataTableCurrent();
+            }else{
+                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+            }
     }//GEN-LAST:event_btn_bui_updateActionPerformed
 
     private void btn_bui_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bui_delActionPerformed

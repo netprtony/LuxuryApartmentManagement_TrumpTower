@@ -6,7 +6,7 @@ public class LoginAndSignUp {
 
     public static void main(String[] args) {
 
-        LoginGUI LoginFrame = new LoginGUI();
+        SignUpGUI LoginFrame = new SignUpGUI();
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null); 

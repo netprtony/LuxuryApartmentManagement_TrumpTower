@@ -261,13 +261,15 @@ CREATE TABLE ACCOUNTS
 	Acc_User VARCHAR(50) PRIMARY KEY,
 	Acc_NameOwner NVARCHAR(100),
 	Acc_Password VARCHAR(50),
-	Acc_Role NVARCHAR(50) DEFAULT 'USER',
+	Acc_Role bit DEFAULT 0,
 )
 GO
-INSERT INTO ACCOUNTS (Acc_User, Acc_NameOwner, Acc_Password)
+INSERT INTO ACCOUNTS (Acc_User, Acc_NameOwner, Acc_Password, Acc_Role)
 VALUES 
-	(N'netprtony', 'huynhvikhang', '123')
-
+	('netprtony', N'Huỳnh Vĩ Khang', '123', 1)
+INSERT INTO ACCOUNTS (Acc_User, Acc_NameOwner, Acc_Password, Acc_Role)
+VALUES 
+	('muidao', 'Đào Quí Mùi', '123', 0)
 GO
 --===================================================================================================
 
@@ -437,7 +439,8 @@ create proc USP_setApartmentAvailable
 @numberApartment int
 as
 begin
-    update APARTMENTS set Apart_Avaiable = 1 where Apart_Number = @numberApartment
+    update APARTMENTS set Apart_Available = 1 where Apart_Number = @numberApartment
 end
 go
+
 

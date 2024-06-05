@@ -3,19 +3,19 @@ package GUI;
 
 import DAO.AccountDAO;
 import MODEL.AccountModel;
+import MODEL.DialogMessage;
+import java.awt.Dialog;
 import javax.swing.JOptionPane;
 
 
-public class SignUp extends javax.swing.JFrame {
-    AccountDAO dao = new AccountDAO();
- 
-    public SignUp() {
-        lb_promptFullname.setVisible(false);
-        lb_promprRepass.setVisible(false);
-        lb_promptUserName.setVisible(false);
-        lb_promptPass.setVisible(false);
+public class SignUpGUI extends javax.swing.JFrame {
+     AccountDAO dao = new AccountDAO();
+    public SignUpGUI() {
         initComponents();
-        
+        lb_promprRepass.setVisible(false);
+        lb_promptFullname.setVisible(false);
+        lb_promptPass.setVisible(false);
+        lb_promptUserName.setVisible(false);
     }
 
     
@@ -30,6 +30,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -39,7 +40,6 @@ public class SignUp extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         tf_username = new javax.swing.JTextField();
-        tf_fullname = new javax.swing.JTextField();
         pf_pass = new javax.swing.JPasswordField();
         jLabel12 = new javax.swing.JLabel();
         pf_pass2 = new javax.swing.JPasswordField();
@@ -47,6 +47,7 @@ public class SignUp extends javax.swing.JFrame {
         lb_promprRepass = new javax.swing.JLabel();
         lb_promptFullname = new javax.swing.JLabel();
         lb_promptPass = new javax.swing.JLabel();
+        tf_fullname = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign Up");
@@ -68,6 +69,8 @@ public class SignUp extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icon/donald-trump2.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icon/pngwing.com.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -75,36 +78,42 @@ public class SignUp extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
+                        .addGap(94, 94, 94)
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jLabel5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel6)
-                        .addGap(44, 44, 44)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(jLabel6)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
@@ -155,16 +164,18 @@ public class SignUp extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(153, 102, 0));
         jLabel11.setText("Password");
 
-        tf_username.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        tf_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tf_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         tf_username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tf_usernameFocusLost(evt);
             }
         });
-
-        tf_fullname.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
-        tf_fullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        tf_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_usernameActionPerformed(evt);
+            }
+        });
 
         pf_pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         pf_pass.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -217,6 +228,19 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        tf_fullname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tf_fullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        tf_fullname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tf_fullnameFocusLost(evt);
+            }
+        });
+        tf_fullname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_fullnameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -233,23 +257,21 @@ public class SignUp extends javax.swing.JFrame {
                             .addComponent(btn_signUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pf_pass)
                             .addComponent(pf_pass2)
-                            .addComponent(tf_fullname)
                             .addComponent(tf_username)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lb_promptFullname)
-                                    .addComponent(lb_promprRepass)
-                                    .addComponent(lb_promptUserName)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12)
-                                    .addComponent(lb_promptPass))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lb_promptFullname)
+                                .addComponent(lb_promprRepass)
+                                .addComponent(lb_promptUserName)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel12)
+                                .addComponent(lb_promptPass)
+                                .addComponent(tf_fullname)))))
                 .addGap(65, 65, 65))
         );
         jPanel3Layout.setVerticalGroup(
@@ -260,8 +282,8 @@ public class SignUp extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(lb_promptFullname)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel10)
@@ -308,36 +330,47 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
-        // TODO add your handling code here:
         LoginGUI LoginFrame = new LoginGUI();
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null); 
         this.dispose();
     }//GEN-LAST:event_btn_LoginActionPerformed
-
-    private void pf_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pf_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pf_passActionPerformed
-
+    public boolean CheckForm(String name, String user, String pass, String rePass){
+        
+        if (dao.Check_resemble_username(user) > 0) {
+           DialogMessage.alert(jPanel1, "Trùng tên đăng nhập vui lòng thử lại");
+           return false;
+       }else
+           if(pass.equals("")) {
+               DialogMessage.alert(jPanel1, "Vui lòng không để trống mật khẩu!");
+               return false;
+           }else
+               if(!pass.equals(rePass)) {
+                   DialogMessage.alert(jPanel1, "Nhập lại mật khẩu không khớp nhau. Hãy thử lại!");
+                   return false;
+               }else if(name.equals("")){ 
+                    return DialogMessage.confirm(jPanel1, "Bạn không muốn cho chúng tôi biết tên của bạn?");
+               }
+        return true;
+    }
     private void btn_signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_signUpActionPerformed
-        AccountDAO ac = new AccountDAO();
-        String nameowner = tf_fullname.getText();
-        String username = tf_username.getText();
+        String name = tf_fullname.getText();
+        String user = tf_username.getText();
         String pass  = String.valueOf(pf_pass.getPassword());
         String retypePass = String.valueOf(pf_pass2.getPassword());
-        if(!pass.equals(retypePass)) {
-            JOptionPane.showMessageDialog(null, "Nhập lại mật khẩu không khớp nhau. Hãy thử lại!");
-            return;
-        }
-        Boolean role = true;
-        AccountModel ac1 = new AccountModel(username, nameowner, pass, role);
-        int i = ac.Add(ac1);
-        if(i > 0){
-            JOptionPane.showMessageDialog(null, "Đăng kí tài khoản thành công");
-            btn_LoginActionPerformed(evt);
+        if(CheckForm(name, user, pass, retypePass)){
+            Boolean role = true;
+            AccountModel ac1 = new AccountModel(user, name, pass, role);
+            int i = dao.Add(ac1);
+            if(i > 0){
+                DialogMessage.alert(jPanel1, "Đăng kí tài khoản thành công");
+                btn_LoginActionPerformed(evt);
+            }else{
+                DialogMessage.alert(jPanel1, "Đăng kí tài khoản không thành công!");
+            }
         }else{
-            JOptionPane.showMessageDialog(null, "Đăng kí tài khoản không thành công!");
+            return;
         }
     }//GEN-LAST:event_btn_signUpActionPerformed
 
@@ -345,45 +378,66 @@ public class SignUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pf_pass2ActionPerformed
 
-    private void lb_promptFullnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lb_promptFullnameFocusLost
-        if(tf_fullname.getText().equals("")){
-            lb_promptFullname.setVisible(true);
-        }else{
-            lb_promptFullname.setVisible(false);
-        }
-    }//GEN-LAST:event_lb_promptFullnameFocusLost
-
-    private void tf_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_usernameFocusLost
-        if(tf_username.getText().equals("")){
-            lb_promptUserName.setText("User name does not empty!");
-            lb_promptFullname.setVisible(true);
-        }else if( dao.Check_resemble_username(tf_username.getText()) > 0) {
-            lb_promptUserName.setText(" This username already exists! Please choose another name.");
-            lb_promptFullname.setVisible(true);
-        }else lb_promptFullname.setVisible(false);
-    }//GEN-LAST:event_tf_usernameFocusLost
-
-    private void lb_promptPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lb_promptPassFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lb_promptPassFocusLost
-
-    private void pf_passFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pf_passFocusLost
-       if(pf_pass.getPassword().equals("")){
-           lb_promptPass.setText("Password does not empty!");
-           lb_promptPass.setVisible(true);
-       }else{
-           lb_promptPass.setVisible(false);
-       }
-    }//GEN-LAST:event_pf_passFocusLost
-
     private void pf_pass2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pf_pass2FocusLost
         if(pf_pass2.getPassword().equals("")){
-            lb_promprRepass.setText("Your confirmation password does not match! Please try again");
+            lb_promprRepass.setText("Your confirmation password does not empty");
             lb_promprRepass.setVisible(true);
         }else{
             lb_promprRepass.setVisible(false);
         }
+        
     }//GEN-LAST:event_pf_pass2FocusLost
+
+    private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_usernameActionPerformed
+
+    private void tf_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_usernameFocusLost
+        if(tf_username.getText().equals("")){
+                lb_promptUserName.setText("User name does not empty!");
+                lb_promptUserName.setVisible(true);
+            }else if(dao.Check_resemble_username(tf_username.getText()) > 0) {
+                lb_promptUserName.setText("This username already exists! Please choose another name.");
+                lb_promptUserName.setVisible(true);
+            }else{
+                lb_promptUserName.setText("");
+            }
+    }//GEN-LAST:event_tf_usernameFocusLost
+
+    private void pf_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pf_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pf_passActionPerformed
+
+    private void pf_passFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pf_passFocusLost
+    if(pf_pass.getPassword().equals("")){
+            lb_promptPass.setText("Password does not empty!");
+            lb_promptPass.setVisible(true);
+        }else{
+            lb_promptPass.setVisible(false);
+        }
+    }//GEN-LAST:event_pf_passFocusLost
+
+    private void lb_promptPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lb_promptPassFocusLost
+       
+    }//GEN-LAST:event_lb_promptPassFocusLost
+
+    private void lb_promptFullnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lb_promptFullnameFocusLost
+       
+    }//GEN-LAST:event_lb_promptFullnameFocusLost
+
+    private void tf_fullnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_fullnameFocusLost
+        if(this.isVisible()){
+            if(tf_fullname.getText().equals("")){
+                    lb_promptFullname.setVisible(true);
+            }else{
+                lb_promptFullname.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_tf_fullnameFocusLost
+
+    private void tf_fullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_fullnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_fullnameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,6 +456,7 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

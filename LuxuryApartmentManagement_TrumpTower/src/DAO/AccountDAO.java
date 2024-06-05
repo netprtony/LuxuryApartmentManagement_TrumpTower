@@ -28,8 +28,8 @@ public class AccountDAO {
             return pstm.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(AccountModel.class.getName()).log(Level.SEVERE, null, e);
+            return -1;
         }
-        return -1;
     }
     public  AccountModel Login(String user, String password){
         AccountModel acc = null;
