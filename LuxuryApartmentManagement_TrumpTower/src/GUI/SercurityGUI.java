@@ -80,18 +80,35 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_account = new javax.swing.JTable();
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
 
+        tf_fullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Fullname");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Username");
 
+        tf_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Password");
 
+        tf_password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
+
+        cbo_role.setBackground(new java.awt.Color(102, 0, 0));
+        cbo_role.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cbo_role.setForeground(new java.awt.Color(204, 153, 0));
         cbo_role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User", " " }));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Role");
 
+        btn_add.setBackground(new java.awt.Color(102, 0, 0));
+        btn_add.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_add.setForeground(new java.awt.Color(204, 153, 0));
         btn_add.setText("Add");
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +116,9 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_update.setBackground(new java.awt.Color(102, 0, 0));
+        btn_update.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_update.setForeground(new java.awt.Color(204, 153, 0));
         btn_update.setText("Update");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +126,9 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_del.setBackground(new java.awt.Color(102, 0, 0));
+        btn_del.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_del.setForeground(new java.awt.Color(204, 153, 0));
         btn_del.setText("Delete");
         btn_del.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +136,9 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_new.setBackground(new java.awt.Color(102, 0, 0));
+        btn_new.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_new.setForeground(new java.awt.Color(204, 153, 0));
         btn_new.setText("New");
         btn_new.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,12 +155,9 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(33, 33, 33))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(37, 37, 37)))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_fullname)
                             .addComponent(tf_username, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
@@ -148,7 +171,7 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
                                 .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
-                                .addComponent(cbo_role, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cbo_role, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(btn_add)
@@ -158,7 +181,7 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
                         .addComponent(btn_del)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_new)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +239,7 @@ public class SercurityGUI extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

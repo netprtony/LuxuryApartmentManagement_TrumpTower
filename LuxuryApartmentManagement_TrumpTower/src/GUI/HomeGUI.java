@@ -104,20 +104,20 @@ public class HomeGUI extends javax.swing.JInternalFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\apartmentHome.png")); // NOI18N
 
-        lb_building.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
-        lb_building.setForeground(new java.awt.Color(0, 0, 255));
+        lb_building.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lb_building.setForeground(new java.awt.Color(0, 0, 153));
         lb_building.setText("Building: 10");
 
-        lb_apartment.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
-        lb_apartment.setForeground(new java.awt.Color(0, 0, 255));
+        lb_apartment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lb_apartment.setForeground(new java.awt.Color(0, 0, 153));
         lb_apartment.setText("Apartment: 10");
 
-        lb_customer.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
-        lb_customer.setForeground(new java.awt.Color(0, 0, 255));
+        lb_customer.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lb_customer.setForeground(new java.awt.Color(0, 0, 153));
         lb_customer.setText("Customer: 10");
 
-        lb_emptyApart.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
-        lb_emptyApart.setForeground(new java.awt.Color(0, 0, 255));
+        lb_emptyApart.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lb_emptyApart.setForeground(new java.awt.Color(0, 0, 153));
         lb_emptyApart.setText("Empty Apartment: 10");
 
         jLabel12.setIcon(new javax.swing.ImageIcon("D:\\Work_space\\JavaTech\\LuxuryApartmentManagement\\LuxuryApartmentManagement_TrumpTower\\LuxuryApartmentManagement_TrumpTower\\src\\GUI\\icon\\apartmentHome.png")); // NOI18N
@@ -131,25 +131,26 @@ public class HomeGUI extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lb_building)
-                        .addGap(158, 158, 158)
-                        .addComponent(lb_customer))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(jLabel3)
                         .addGap(256, 256, 256)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(4, 4, 4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(lb_building)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                        .addComponent(lb_customer)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lb_apartment)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(134, 134, 134)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(lb_apartment)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
@@ -161,7 +162,7 @@ public class HomeGUI extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,16 +174,16 @@ public class HomeGUI extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lb_customer)
-                                    .addComponent(lb_building))))
-                        .addGap(74, 74, 74)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lb_building)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lb_apartment))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_apartment)
+                            .addComponent(lb_customer)))))
         );
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("All Problems"));
@@ -217,7 +218,7 @@ public class HomeGUI extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))

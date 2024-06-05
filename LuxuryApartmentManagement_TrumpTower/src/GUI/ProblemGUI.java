@@ -94,14 +94,20 @@ public class ProblemGUI extends javax.swing.JInternalFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_problem = new javax.swing.JTable();
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Describe");
 
         tf_des.setColumns(20);
         tf_des.setRows(5);
+        tf_des.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
         jScrollPane2.setViewportView(tf_des);
 
+        btn_add.setBackground(new java.awt.Color(102, 0, 0));
+        btn_add.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_add.setForeground(new java.awt.Color(204, 153, 0));
         btn_add.setText("Add");
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +115,9 @@ public class ProblemGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_update.setBackground(new java.awt.Color(102, 0, 0));
+        btn_update.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_update.setForeground(new java.awt.Color(204, 153, 0));
         btn_update.setText("Update");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +125,9 @@ public class ProblemGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_del.setBackground(new java.awt.Color(102, 0, 0));
+        btn_del.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_del.setForeground(new java.awt.Color(204, 153, 0));
         btn_del.setText("Delete");
         btn_del.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,23 +135,37 @@ public class ProblemGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Status");
+
+        tf_status.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
 
         tf_note.setColumns(20);
         tf_note.setRows(5);
+        tf_note.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
         jScrollPane3.setViewportView(tf_note);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Note");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Date:");
 
+        tf_date.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
         tf_date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d-M-yyyy hh:mm:ss"))));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Apartments");
 
+        cbo_apartment.setBackground(new java.awt.Color(102, 0, 0));
+        cbo_apartment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cbo_apartment.setForeground(new java.awt.Color(204, 153, 0));
         cbo_apartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("ID");
+
+        tf_id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

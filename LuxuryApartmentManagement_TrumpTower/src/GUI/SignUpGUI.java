@@ -89,11 +89,11 @@ public class SignUpGUI extends javax.swing.JFrame {
                         .addGap(113, 113, 113)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -113,9 +113,9 @@ public class SignUpGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
                 .addComponent(jLabel6)
-                .addGap(44, 44, 44)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel3)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         jPanel1.add(jPanel2);
@@ -165,7 +165,7 @@ public class SignUpGUI extends javax.swing.JFrame {
         jLabel11.setText("Password");
 
         tf_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tf_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        tf_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
         tf_username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tf_usernameFocusLost(evt);
@@ -177,7 +177,7 @@ public class SignUpGUI extends javax.swing.JFrame {
             }
         });
 
-        pf_pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        pf_pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
         pf_pass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 pf_passFocusLost(evt);
@@ -194,7 +194,7 @@ public class SignUpGUI extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(153, 102, 0));
         jLabel12.setText("Retype Password");
 
-        pf_pass2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        pf_pass2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
         pf_pass2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 pf_pass2FocusLost(evt);
@@ -229,7 +229,7 @@ public class SignUpGUI extends javax.swing.JFrame {
         });
 
         tf_fullname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tf_fullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        tf_fullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
         tf_fullname.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tf_fullnameFocusLost(evt);
@@ -258,20 +258,19 @@ public class SignUpGUI extends javax.swing.JFrame {
                             .addComponent(pf_pass)
                             .addComponent(pf_pass2)
                             .addComponent(tf_username)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lb_promptFullname)
-                                .addComponent(lb_promprRepass)
-                                .addComponent(lb_promptUserName)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel12)
-                                .addComponent(lb_promptPass)
-                                .addComponent(tf_fullname)))))
+                            .addComponent(lb_promptFullname)
+                            .addComponent(lb_promprRepass)
+                            .addComponent(lb_promptUserName)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(lb_promptPass)
+                            .addComponent(tf_fullname))))
                 .addGap(65, 65, 65))
         );
         jPanel3Layout.setVerticalGroup(

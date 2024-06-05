@@ -141,16 +141,25 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbl_cateApart);
 
+        jPanel2.setBackground(java.awt.Color.white);
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Name");
 
+        tf_NameCateApr.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Explication");
 
         tf_explication.setColumns(20);
         tf_explication.setRows(5);
+        tf_explication.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
         jScrollPane2.setViewportView(tf_explication);
 
+        btn_addApart.setBackground(new java.awt.Color(102, 0, 0));
+        btn_addApart.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_addApart.setForeground(new java.awt.Color(204, 153, 0));
         btn_addApart.setText("Add");
         btn_addApart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +167,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_updateApart.setBackground(new java.awt.Color(102, 0, 0));
+        btn_updateApart.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_updateApart.setForeground(new java.awt.Color(204, 153, 0));
         btn_updateApart.setText("Update");
         btn_updateApart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +177,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_delApart.setBackground(new java.awt.Color(102, 0, 0));
+        btn_delApart.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_delApart.setForeground(new java.awt.Color(204, 153, 0));
         btn_delApart.setText("Delete");
         btn_delApart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +187,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_newApart.setBackground(new java.awt.Color(102, 0, 0));
+        btn_newApart.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_newApart.setForeground(new java.awt.Color(204, 153, 0));
         btn_newApart.setText("New");
         btn_newApart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,16 +214,14 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
                     .addComponent(tf_NameCateApr))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(55, 55, 55)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_addApart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_delApart))
+                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_delApart)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_newApart))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_addApart)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_updateApart)))
+                    .addComponent(btn_newApart, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_updateApart))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -219,9 +235,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_updateApart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_updateApart, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_addApart, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -238,7 +254,7 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -253,10 +269,17 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Category Apartment", jPanel1);
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Name");
 
+        tf_NameCateCon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 0, 0)));
+
+        btn_addCon.setBackground(new java.awt.Color(102, 0, 0));
+        btn_addCon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_addCon.setForeground(new java.awt.Color(204, 153, 0));
         btn_addCon.setText("Add");
         btn_addCon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,6 +287,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_updateCon.setBackground(new java.awt.Color(102, 0, 0));
+        btn_updateCon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_updateCon.setForeground(new java.awt.Color(204, 153, 0));
         btn_updateCon.setText("Update");
         btn_updateCon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,6 +297,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_delCon.setBackground(new java.awt.Color(102, 0, 0));
+        btn_delCon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_delCon.setForeground(new java.awt.Color(204, 153, 0));
         btn_delCon.setText("Delete");
         btn_delCon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +307,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_newCon.setBackground(new java.awt.Color(102, 0, 0));
+        btn_newCon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_newCon.setForeground(new java.awt.Color(204, 153, 0));
         btn_newCon.setText("New");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -285,23 +317,22 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_NameCateCon)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(btn_delCon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_newCon))
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_newCon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(btn_addCon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_updateCon))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_NameCateCon, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)))
+                                .addComponent(btn_addCon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_updateCon)))
+                        .addGap(17, 17, 17)))
                 .addGap(45, 45, 45))
         );
         jPanel5Layout.setVerticalGroup(
@@ -311,9 +342,9 @@ public class CategoryGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tf_NameCateCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_updateCon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_updateCon, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_addCon, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

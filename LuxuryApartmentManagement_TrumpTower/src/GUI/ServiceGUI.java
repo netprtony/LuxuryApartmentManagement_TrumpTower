@@ -74,12 +74,16 @@ public class ServiceGUI extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Properties"));
 
+        jLabel191.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel191.setText("ID");
 
+        jLabel192.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel192.setText("Name");
 
+        jLabel193.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel193.setText("Price");
 
+        jLabel194.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel194.setText("Explication");
 
         tf_expli.setColumns(20);
@@ -129,6 +133,7 @@ public class ServiceGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        ck_avai.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         ck_avai.setText("Available");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -147,7 +152,7 @@ public class ServiceGUI extends javax.swing.JInternalFrame {
                     .addComponent(tf_name)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(tf_price, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
+                        .addGap(42, 42, 42)
                         .addComponent(ck_avai)))
                 .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -173,10 +178,13 @@ public class ServiceGUI extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel193)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tf_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ck_avai))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(tf_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(ck_avai)
+                        .addGap(8, 8, 8)))
                 .addComponent(jLabel194)
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane51, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,12 +252,12 @@ public class ServiceGUI extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1214, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

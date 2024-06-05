@@ -160,9 +160,8 @@ public class MainGUI extends javax.swing.JFrame {
         lb_userCurrent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnl_menu.add(lb_userCurrent);
 
-        pnlHome.setBackground(new java.awt.Color(153, 102, 0));
-        pnlHome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlHome.setForeground(new java.awt.Color(255, 255, 204));
+        pnlHome.setBackground(new java.awt.Color(102, 0, 0));
+        pnlHome.setForeground(new java.awt.Color(204, 153, 0));
         pnlHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlHomeMouseClicked(evt);
@@ -173,7 +172,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_Home.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_Home.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Home.setForeground(new java.awt.Color(204, 153, 0));
         lb_Home.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_Home.setText("Home");
         lb_Home.setToolTipText("");
@@ -201,9 +200,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlHome);
 
-        pnlBuilding.setBackground(new java.awt.Color(153, 102, 0));
-        pnlBuilding.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlBuilding.setForeground(new java.awt.Color(255, 255, 204));
+        pnlBuilding.setBackground(new java.awt.Color(102, 0, 0));
+        pnlBuilding.setForeground(new java.awt.Color(204, 153, 0));
         pnlBuilding.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlBuildingMouseClicked(evt);
@@ -214,7 +212,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_Building.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_Building.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Building.setForeground(new java.awt.Color(204, 153, 0));
         lb_Building.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_Building.setText("Buildings");
         lb_Building.setToolTipText("");
@@ -240,9 +238,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlBuilding);
 
-        pnlApartment.setBackground(new java.awt.Color(153, 102, 0));
-        pnlApartment.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlApartment.setForeground(new java.awt.Color(255, 255, 204));
+        pnlApartment.setBackground(new java.awt.Color(102, 0, 0));
+        pnlApartment.setForeground(new java.awt.Color(204, 153, 0));
         pnlApartment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlApartmentMouseClicked(evt);
@@ -253,7 +250,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_Apartment.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_Apartment.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Apartment.setForeground(new java.awt.Color(204, 153, 0));
         lb_Apartment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_Apartment.setText("Apartments");
         lb_Apartment.setToolTipText("");
@@ -279,9 +276,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlApartment);
 
-        pnlContract.setBackground(new java.awt.Color(153, 102, 0));
-        pnlContract.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlContract.setForeground(new java.awt.Color(255, 255, 204));
+        pnlContract.setBackground(new java.awt.Color(102, 0, 0));
+        pnlContract.setForeground(new java.awt.Color(204, 153, 0));
         pnlContract.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlContractMouseClicked(evt);
@@ -292,7 +288,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_contract.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_contract.setForeground(new java.awt.Color(255, 255, 255));
+        lb_contract.setForeground(new java.awt.Color(204, 153, 0));
         lb_contract.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_contract.setText("Contracts");
         lb_contract.setToolTipText("");
@@ -318,9 +314,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlContract);
 
-        pnlCustomer.setBackground(new java.awt.Color(153, 102, 0));
-        pnlCustomer.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlCustomer.setForeground(new java.awt.Color(255, 255, 204));
+        pnlCustomer.setBackground(new java.awt.Color(102, 0, 0));
+        pnlCustomer.setForeground(new java.awt.Color(204, 153, 0));
         pnlCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlCustomerMouseClicked(evt);
@@ -331,7 +326,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_customer.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_customer.setForeground(new java.awt.Color(255, 255, 255));
+        lb_customer.setForeground(new java.awt.Color(204, 153, 0));
         lb_customer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_customer.setText("Customers");
         lb_customer.setToolTipText("");
@@ -357,9 +352,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlCustomer);
 
-        pnlCategory.setBackground(new java.awt.Color(153, 102, 0));
-        pnlCategory.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlCategory.setForeground(new java.awt.Color(255, 255, 204));
+        pnlCategory.setBackground(new java.awt.Color(102, 0, 0));
+        pnlCategory.setForeground(new java.awt.Color(204, 153, 0));
         pnlCategory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlCategoryMouseClicked(evt);
@@ -370,7 +364,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_cate.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_cate.setForeground(new java.awt.Color(255, 255, 255));
+        lb_cate.setForeground(new java.awt.Color(204, 153, 0));
         lb_cate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_cate.setText("Categories");
         lb_cate.setToolTipText("");
@@ -396,9 +390,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlCategory);
 
-        pnlService.setBackground(new java.awt.Color(153, 102, 0));
-        pnlService.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlService.setForeground(new java.awt.Color(255, 255, 204));
+        pnlService.setBackground(new java.awt.Color(102, 0, 0));
+        pnlService.setForeground(new java.awt.Color(204, 153, 0));
         pnlService.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlServiceMouseClicked(evt);
@@ -409,7 +402,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_service.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_service.setForeground(new java.awt.Color(255, 255, 255));
+        lb_service.setForeground(new java.awt.Color(204, 153, 0));
         lb_service.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_service.setText("Services");
         lb_service.setToolTipText("");
@@ -435,9 +428,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlService);
 
-        pnlProblem.setBackground(new java.awt.Color(153, 102, 0));
-        pnlProblem.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlProblem.setForeground(new java.awt.Color(255, 255, 204));
+        pnlProblem.setBackground(new java.awt.Color(102, 0, 0));
+        pnlProblem.setForeground(new java.awt.Color(204, 153, 0));
         pnlProblem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlProblemMouseClicked(evt);
@@ -448,7 +440,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_problem.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_problem.setForeground(new java.awt.Color(255, 255, 255));
+        lb_problem.setForeground(new java.awt.Color(204, 153, 0));
         lb_problem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_problem.setText("Problems");
         lb_problem.setToolTipText("");
@@ -474,9 +466,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlProblem);
 
-        pnlSercurity.setBackground(new java.awt.Color(153, 102, 0));
-        pnlSercurity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlSercurity.setForeground(new java.awt.Color(255, 255, 204));
+        pnlSercurity.setBackground(new java.awt.Color(102, 0, 0));
+        pnlSercurity.setForeground(new java.awt.Color(204, 153, 0));
         pnlSercurity.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlSercurityMouseClicked(evt);
@@ -487,7 +478,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_sercurity.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_sercurity.setForeground(new java.awt.Color(255, 255, 255));
+        lb_sercurity.setForeground(new java.awt.Color(204, 153, 0));
         lb_sercurity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_sercurity.setText("Sercurity");
         lb_sercurity.setToolTipText("");
@@ -513,9 +504,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnl_menu.add(pnlSercurity);
 
-        pnlLogout.setBackground(new java.awt.Color(153, 102, 0));
-        pnlLogout.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 204)));
-        pnlLogout.setForeground(new java.awt.Color(255, 255, 204));
+        pnlLogout.setBackground(new java.awt.Color(102, 0, 0));
+        pnlLogout.setForeground(new java.awt.Color(204, 153, 0));
         pnlLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlLogoutMouseClicked(evt);
@@ -526,7 +516,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
 
         lb_logout.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_logout.setForeground(new java.awt.Color(255, 255, 255));
+        lb_logout.setForeground(new java.awt.Color(204, 153, 0));
         lb_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_logout.setText("Log out");
         lb_logout.setToolTipText("");
@@ -560,7 +550,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 704, Short.MAX_VALUE)
         );
 
         jMenu2.setText("File");

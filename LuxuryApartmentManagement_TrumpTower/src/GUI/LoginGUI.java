@@ -82,18 +82,18 @@ public class LoginGUI extends javax.swing.JFrame {
             }
         });
 
-        tf_username.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        tf_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tf_username.setText("netprtony");
-        tf_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        tf_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
         tf_username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tf_usernameFocusLost(evt);
             }
         });
 
-        pf_pass.setForeground(new java.awt.Color(51, 0, 0));
+        pf_pass.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         pf_pass.setText("123");
-        pf_pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        pf_pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(102, 0, 0)));
         pf_pass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 pf_passFocusLost(evt);
