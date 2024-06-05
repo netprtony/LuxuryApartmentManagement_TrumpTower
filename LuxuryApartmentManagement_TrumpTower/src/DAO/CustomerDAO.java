@@ -43,6 +43,17 @@ public class CustomerDAO {
         }
         return lst;
     }
+    public int Sum(){
+        try {
+            String sql=  "select Count(*) from Customers";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return 0;
+    }
     public List<CustomerModel> readAllCustomerHaveNoContract(){
         List<CustomerModel> lst = new ArrayList<>();
         try {
@@ -61,13 +72,13 @@ public class CustomerDAO {
         }
         return lst;
     }
-    public List<CustomerModel> FindByName(String id){
+    public List<CustomerModel> FindByName(String name){
         List<CustomerModel> lst = new ArrayList<>();
         try {
-            String sql = "select * from CUSTOMERS where Cus_ID like %?%";
+            String sql = "select * from CUSTOMERS where Cus_Name like %?%";
             Connection con = DBConnect.openConnection();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, id);
+            pstm.setString(1, name);
             ResultSet rs = pstm.executeQuery();
             lst.clear();
             while(rs.next()){

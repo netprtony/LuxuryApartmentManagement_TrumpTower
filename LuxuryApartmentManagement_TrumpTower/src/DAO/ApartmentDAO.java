@@ -59,7 +59,29 @@ public class ApartmentDAO {
             
         }
         return lstAp;
-    }    
+    } 
+    public int SumAvaialbe(){
+        try {
+            String sql=  "select Count(*) from Apartments where Apart_avaiable = 1";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return 0;
+    }
+    public int SumEmpty(){
+        try {
+            String sql=  "select Count(*) from Apartments where Apart_avaiable = 0";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(ApartmentModel.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return 0;
+    }
     public List<ApartmentModel> getAllApartmentEmpty(){
         List<ApartmentModel> lst = new ArrayList<>();
         try {

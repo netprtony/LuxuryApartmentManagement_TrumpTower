@@ -660,7 +660,9 @@ public class ContractGUI extends javax.swing.JInternalFrame {
 
     private void tbl_ContractMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ContractMouseClicked
         showFromContract();
-        //FillDetailContractByIdContract(index);
+        ContractModel con = new ContractModel();
+        con = lstget.get(index);
+        FillDetailContractByIdContract(con.getId());
     }//GEN-LAST:event_tbl_ContractMouseClicked
 
     private void btn_bui_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bui_searchActionPerformed

@@ -39,7 +39,17 @@ public class BuildingDAO {
         }
         return lst;
     }
-    
+    public int Sum(){
+        try {
+            String sql=  "select Count(*) from Buildings";
+            Connection con = DBConnect.openConnection();
+            PreparedStatement pstm = con.prepareStatement(sql);
+            return pstm.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(BuildingModel.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return 0;
+    }
     public List<BuildingModel> FindByName(String name){
         List<BuildingModel> lst = new ArrayList<>();
         try {

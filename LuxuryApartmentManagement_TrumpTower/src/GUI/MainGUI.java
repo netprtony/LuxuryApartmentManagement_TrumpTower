@@ -18,11 +18,22 @@ public class MainGUI extends javax.swing.JFrame {
     CustomerGUI customer;
     CategoryGUI category;
     ProblemGUI problem;
-    ChangePasswordGUI changpass;
+    SercurityGUI sercurity;
     Color Default, Click;
     public MainGUI() {
         initComponents();
-        lb_userCurrent.setText("Welcome " + Auth.user.getName());
+        if(Auth.user.isRole()){
+           lb_userCurrent.setText("Admin");
+           openHome();
+        }else{
+            lb_sercurity.setEnabled(false);
+            lb_Apartment.setEnabled(false);
+            lb_Building.setEnabled(false);
+            lb_cate.setEnabled(false);
+            lb_service.setEnabled(false);
+            openHome();
+        }
+        
         setLocationRelativeTo(null);
         Default = new Color(153,102,0);
         Click = new Color(255,204,102);
@@ -36,14 +47,18 @@ public class MainGUI extends javax.swing.JFrame {
         pnlProblem.setBackground(Default);
         pnlSercurity.setBackground(Default);
         pnlService.setBackground(Default);
-        openHome();
-        
     }
-    public void openHome(){
+     public void openSercurity(){
         home = new HomeGUI();
         home.setBounds(0, 0, 1030, 720);
         desktop.removeAll();
         desktop.add(home).setVisible(true);
+    }
+    public void openHome(){
+        sercurity = new SercurityGUI();
+        sercurity.setBounds(0, 0, 1030, 720);
+        desktop.removeAll();
+        desktop.add(sercurity).setVisible(true);
     }
     public void openLogin(){
         login = new LoginGUI();
@@ -125,6 +140,7 @@ public class MainGUI extends javax.swing.JFrame {
         desktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,7 +149,7 @@ public class MainGUI extends javax.swing.JFrame {
         pnl_menu.setBackground(new java.awt.Color(153, 102, 0));
 
         lb_userCurrent.setFont(new java.awt.Font("Sitka Heading", 1, 24)); // NOI18N
-        lb_userCurrent.setForeground(new java.awt.Color(255, 255, 255));
+        lb_userCurrent.setForeground(new java.awt.Color(0, 0, 204));
         lb_userCurrent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_userCurrent.setText("NULL");
         lb_userCurrent.setToolTipText("");
@@ -558,6 +574,15 @@ public class MainGUI extends javax.swing.JFrame {
                 jMenu2ActionPerformed(evt);
             }
         });
+
+        jMenuItem1.setText("Change password");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Edit");
@@ -623,7 +648,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlSercurityMousePressed
 
     private void pnlSercurityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSercurityMouseClicked
-        new ChangePasswordGUI(this, true).setVisible(true);
+        openSercurity();
     }//GEN-LAST:event_pnlSercurityMouseClicked
 
     private void pnlProblemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProblemMousePressed
@@ -770,6 +795,10 @@ public class MainGUI extends javax.swing.JFrame {
        openLogin();
     }//GEN-LAST:event_jMenu2MouseClicked
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       new ChangePasswordGUI(this, true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -810,6 +839,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lb_Apartment;
     private javax.swing.JLabel lb_Building;
     private javax.swing.JLabel lb_Home;
